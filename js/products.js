@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 productDiv.classList.add("product");
 
                 // Crear elementos para cada propiedad del producto
-                const productName = document.createElement("p");
+                const productName = document.createElement("h4");
                 productName.textContent = product.name;
 
                 const productDescription = document.createElement("p");
                 productDescription.textContent = product.description;
 
-                const productPrice = document.createElement("p");
+                const productPrice = document.createElement("h5");
                 productPrice.textContent = `Precio: USD ${product.cost}`;
 
                 const productSold = document.createElement("p");
