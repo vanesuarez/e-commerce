@@ -5,6 +5,82 @@
   font-family: 'Verdana', serif !important;
 }
 
+#mainLogin {
+  background-color: white;
+}
+
+.mainDiv {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.imgForm {
+  width: 50%;
+  height: auto;
+  max-width: 1200px;
+}
+
+.sectionForm {
+  display: flex;
+  justify-content: center;
+}
+
+.htresForm {
+  font-size: 35px;
+}
+
+
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 0.1px solid black;
+  border-radius: 5px;
+}
+
+.formulario label {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.formulario input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formulario button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.formulario button:hover {
+  background-color: gray;
+  color: #000000;
+}
+
+.boton-enlace {
+  text-decoration: none;
+  color: white;
+}
+
+.boton-enlace:hover {
+  background-color: gray;
+  color: #000000;
+}
+
 .jumbotron .display-4 {
   font-weight: bold;
 }
