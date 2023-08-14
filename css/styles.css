@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
+  font-family: 'Raleway', serif !important;
 }
 
 /* PRODUCTOS */
@@ -16,8 +16,6 @@
 .list-group {
     cursor: pointer;
 }
-
-
 
 .product {
   display: grid;
