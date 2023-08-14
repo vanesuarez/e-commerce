@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Raleway', serif !important;
+  font-family: 'Verdana', serif !important;
 }
 
 /* PRODUCTOS */
@@ -16,6 +16,7 @@
 .list-group {
     cursor: pointer;
 }
+
 
 .product {
   display: grid;
@@ -34,6 +35,8 @@
 
 .product h5 {
   font-size: 17px;
+  position: absolute;
+  bottom: 0;
 }
 
 .product:hover {
@@ -41,15 +44,18 @@
 }
 
 .product img {
-  width: 50% !important;
+  width: 80% !important;
   height: auto !important;
   border: 3px solid rgb(128, 128, 128);
   border: 1px solid #dddddd;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  float: right;
 }
 
-
+.divParaTexto {
+  position: relative;
+}
 
 .parrafoSub {
   font-size: 19px;
