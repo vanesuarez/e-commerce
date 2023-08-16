@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() { // Evento DOMLoaded p
         window.location.href = "index.html";
 
       } else {
-        alert("Ingresa datos validos");
+        alert("Ingresa datos en ambos campos para continuar");
       }
 
   });
