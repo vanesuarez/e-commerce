@@ -42,7 +42,7 @@ let getJSONData = function(url){
 
     // REDIRECCIONAR AL LOGIN SI NO SE ENCUENTRAN DATOS EN EL SESSIONSTORAGE
 
-    const savedUsername = sessionStorage.getItem("username");
+    const savedUsername = sessionStorage.getItem("username"); // Llamamos al contenido guardado en login.js
     const savedPassword = sessionStorage.getItem("password");
 
     if (!savedUsername || !savedPassword) { //SI NO ENCUENTRA NINGUN VALOR (ES FALSE, POR ESO !), REDIRECCIONA

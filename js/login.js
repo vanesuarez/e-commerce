@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() { // Evento DOMLoaded p
       // si no hay datos, tira un alert
 
       if (username && password) {
-        sessionStorage.setItem("username", username);
+        sessionStorage.setItem("username", username); // (nombre, el contenido)
         sessionStorage.setItem("password", password);
         window.location.href = "index.html";
 
