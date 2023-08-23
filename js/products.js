@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "https://japceibal.github.io/emercado-api/cats_products/102.json" para categoría Juguetes.
     "https://japceibal.github.io/emercado-api/cats_products/103.json" para categoría Muebles.
 */
-
     const catID = localStorage.getItem("catID"); // obtener la clave de localStorage
 
     console.log(catID); // prueba, para no acceder a applicartion...
@@ -70,4 +69,17 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error al cargar los productos:", error);
         });
 }
+
+// para arreglar la descripción de cada producto
+
+const pDet = document.getElementById("detalle"); // llamo al párrafo que aparece debajo de Productos el que decia "Veras aqui todos los productos de la categoria autos.", lo edite en el HTML para que este vacío.
+
+if (catID == 101) { // si catID es 101, es porque accedimos a la categoría autos.
+    pDet.textContent = "Veras aqui todos los productos de la categoria autos."
+} else if (catID == 102) { // si catID es 101, es porque accedimos a la categoría juguetes.
+    pDet.textContent = "Veras aqui todos los productos de la categoria jueguetes."
+} else { // si no es ninguna de las anteriores es porque accedimos a la categoría muebles.
+    pDet.textContent = "Veras aqui todos los productos de la categoria muebles."
+}
+
 });
