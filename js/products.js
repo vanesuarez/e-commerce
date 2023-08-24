@@ -1,5 +1,6 @@
+const productList = document.getElementById("product-list");
+
 document.addEventListener("DOMContentLoaded", function () {
-    const productList = document.getElementById("product-list");
 
     // URL del JSON de productos
     const url = "https://japceibal.github.io/emercado-api/cats_products/101.json";
@@ -52,77 +53,52 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => {
             console.error("Error al cargar los productos:", error);
+
         });
-});
 
-// FILTRAR POR PRECIO (filter)
-let currentCategoriesArray = [];
-let minCount = undefined;
-let maxCount = undefined;
+    
+    // FILTRAR POR PRECIO (filter)
 
-function showCategoriesList(){
+    const botonFiltrar = document.getElementById("rangeFilterCount");
+    const minPrice = document.getElementById("rangeFilterCountMin").value;
+    const maxPrice = document.getElementById("rangeFilterCountMax").value;
 
-    let htmlContentToAppend = "";
-    for(let i = 0; i < currentCategoriesArray.length; i++){
-        let product = currentCategoriesArray[i];
-
-        if (((minCount == undefined) || (minCount != undefined && parseInt(product.cost) >= minCount)) &&
-            ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
-
-            htmlContentToAppend += `
-            <div onclick="setCatID(${product.id})" class="list-group-item list-group-item-action cursor-active">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${product.name}</h4>
-                            <small class="text-muted">${product.soldCount} artículos</small>
-                        </div>
-                        <p class="mb-1">${product.description}</p>
-                    </div>
-                </div>
-            </div>
-            `
+    botonFiltrar.addEventListener("click", () => { 
+        if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0){
+            minPrice = parseInt(minPrice);
+            let filterMin = productList.filter( (product) => product.price === minPrice);
         }
 
-        document.getElementById("product-list").innerHTML = htmlContentToAppend;
-    }
-}
+        if  ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0){
+            maxPrice = parseInt(maxPrice); 
+            let filterMax = productList.filter( (product) => product.price === maxPrice);
+        }
 
-document.getElementById("rangeFilterCount").addEventListener("click", function(){
-    //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
-    //de productos por categoría.
-    minCount = document.getElementById("rangeFilterCountMin").value;
-    maxCount = document.getElementById("rangeFilterCountMax").value;
+    })
 
-    if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
-        minCount = parseInt(minCount);
-    }
-    else{
-        minCount = undefined;
-    }
 
-    if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
-        maxCount = parseInt(maxCount);
-    }
-    else{
-        maxCount = undefined;
-    }
-
-    showCategoriesList();
+        
 });
 
-// ORDENAR ALFABETICAMENTE (sort)
+// ENTREGA 2
 
-const ORDER_ASC_BY_NAME = "AZ";
-const ORDER_DESC_BY_NAME = "ZA";
-const ORDER_BY_PROD_COUNT = "Cant.";
-let currentSortCriteria = undefined;
+// FILTRAR POR PRECIO (filter)
+
+let filterMin = productList.filter( (product) => product.price === minCount);
+
+// // ORDENAR ALFABETICAMENTE (sort)
+
+// let asc = productName.sort((x, y) => x.name.localeCompare(y.name));
+//     console.log(asc);
 
 
+// document.addEventListener("DOMContentLoaded", function(e){
 
+//     document.getElementById("sortAsc").addEventListener("click", function(){
+//         const orderedStrings = productList.sort((a, b) => a.localeCompare(b));;
+//     });
+
+// })
 
 
 // LIMPIAR
