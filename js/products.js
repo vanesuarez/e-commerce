@@ -1,6 +1,5 @@
-const productList = document.getElementById("product-list");
-
 document.addEventListener("DOMContentLoaded", function () {
+    const productList = document.getElementById("product-list");
 
     // URL del JSON de productos
     const url = "https://japceibal.github.io/emercado-api/cats_products/101.json";
@@ -9,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+
             // Iterar a través de los productos en el JSON
             data.products.forEach(product => {
                 const productDiv = document.createElement("div");
@@ -50,67 +50,37 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Agregar el contenedor del producto a la lista de productos
                 productList.appendChild(productDiv);
             });
+
+            // // ENTREGA 2 - ORDENAR AFLABETICAMENTE ASCENDENTE
+
+            document.getElementById("sortAsc").addEventListener("click", function(){
+                let asc = data.products.sort((x, y) => x.name.localeCompare(y.name));
+                console.log(asc); // FALTA FUNCION PARA MOSTRAR LOS PRODUCTOS ORDENADOS
+            });
+
+            document.getElementById("sortDesc").addEventListener("click", function(){
+                let desc = data.products.sort((x, y) => y.name.localeCompare(x.name));
+                console.log(desc); // FALTA FUNCION PARA MOSTRAR LOS PRODUCTOS ORDENADOS
+            });
+
+            
         })
+
         .catch(error => {
             console.error("Error al cargar los productos:", error);
-
         });
-
-    
-    // FILTRAR POR PRECIO (filter)
-
-    const botonFiltrar = document.getElementById("rangeFilterCount");
-    const minPrice = document.getElementById("rangeFilterCountMin").value;
-    const maxPrice = document.getElementById("rangeFilterCountMax").value;
-
-    botonFiltrar.addEventListener("click", () => { 
-        if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0){
-            minPrice = parseInt(minPrice);
-            let filterMin = productList.filter( (product) => product.price === minPrice);
-        }
-
-        if  ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0){
-            maxPrice = parseInt(maxPrice); 
-            let filterMax = productList.filter( (product) => product.price === maxPrice);
-        }
-
-    })
-
-
-        
 });
-
-// ENTREGA 2
-
-// FILTRAR POR PRECIO (filter)
-
-let filterMin = productList.filter( (product) => product.price === minCount);
-
-// // ORDENAR ALFABETICAMENTE (sort)
-
-// let asc = productName.sort((x, y) => x.name.localeCompare(y.name));
-//     console.log(asc);
-
-
-// document.addEventListener("DOMContentLoaded", function(e){
-
-//     document.getElementById("sortAsc").addEventListener("click", function(){
-//         const orderedStrings = productList.sort((a, b) => a.localeCompare(b));;
-//     });
-
-// })
-
 
 // LIMPIAR
 
-document.getElementById("clearRangeFilter").addEventListener("click", function(){
-    document.getElementById("rangeFilterCountMin").value = "";
-    document.getElementById("rangeFilterCountMax").value = "";
+// document.getElementById("clearRangeFilter").addEventListener("click", function(){
+//     document.getElementById("rangeFilterCountMin").value = "";
+//     document.getElementById("rangeFilterCountMax").value = "";
 
-    minCount = undefined;
-    maxCount = undefined;
+//     minCount = undefined;
+//     maxCount = undefined;
 
-    showCategoriesList();
+//     showCategoriesList();
 
-})
+// })
 
