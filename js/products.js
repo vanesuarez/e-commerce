@@ -1,86 +1,91 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const productList = document.getElementById("product-list");
+  const productList = document.getElementById("product-list");
+  const url = "https://japceibal.github.io/emercado-api/cats_products/101.json"; // URL del JSON de productos
 
-    // URL del JSON de productos
-    const url = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+  // Función inicial para mostrar los productos en la página
+  function displayProducts(products) {
+    productList.innerHTML = ""; // limpia la lista de productos existente
 
-    // Realizar la petición GET usando Fetch API
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
+    // Iterar a través de los productos y crear elementos HTML para cada uno
+    products.forEach((product) => {
+      const productDiv = document.createElement("div");
+      productDiv.classList.add("product");
 
-            // Iterar a través de los productos en el JSON
-            data.products.forEach(product => {
-                const productDiv = document.createElement("div");
-                productDiv.classList.add("product");
+      const divTexto = document.createElement("div");
+      divTexto.classList.add("divParaTexto");
 
-                const divTexto = document.createElement("div");
-                divTexto.classList.add("divParaTexto");
+      const divImg = document.createElement("div");
+      divImg.classList.add("divParaImg");
 
-                const divImg = document.createElement("div");
-                divImg.classList.add("divParaImg");
+      // Crear elementos para cada propiedad del producto
+      const productName = document.createElement("h4");
+      productName.textContent = product.name;
 
-                // Crear elementos para cada propiedad del producto
-                const productName = document.createElement("h4");
-                productName.textContent = product.name;
+      const productDescription = document.createElement("p");
+      productDescription.textContent = product.description;
 
-                const productDescription = document.createElement("p");
-                productDescription.textContent = product.description;
+      const productPrice = document.createElement("h5");
+      productPrice.textContent = `Precio: USD ${product.cost}`;
 
-                const productPrice = document.createElement("h5");
-                productPrice.textContent = `Precio: USD ${product.cost}`;
+      const productSold = document.createElement("p");
+      productSold.textContent = ` ${product.soldCount} vendidos`;
 
-                const productSold = document.createElement("p");
-                productSold.textContent = ` ${product.soldCount} vendidos`;
+      const productImage = document.createElement("img");
+      productImage.src = product.image;
+      productImage.alt = product.name;
 
-                const productImage = document.createElement("img");
-                productImage.src = product.image;
-                productImage.alt = product.name;
+      productDiv.appendChild(divTexto);
+      productDiv.appendChild(divImg);
 
-                productDiv.appendChild(divTexto);
-                productDiv.appendChild(divImg);
-                
-                // Agregar elementos al contenedor del producto
-                divTexto.appendChild(productName);
-                divTexto.appendChild(productDescription);
-                divTexto.appendChild(productPrice);
-                divTexto.appendChild(productSold);
-                divImg.appendChild(productImage);
+      // Agregar elementos al contenedor del producto
+      divTexto.appendChild(productName);
+      divTexto.appendChild(productDescription);
+      divTexto.appendChild(productPrice);
+      divTexto.appendChild(productSold);
+      divImg.appendChild(productImage);
 
-                // Agregar el contenedor del producto a la lista de productos
-                productList.appendChild(productDiv);
-            });
+      // Agregar el contenedor del producto a la lista de productos
+      productList.appendChild(productDiv);
+    });
+  }
 
-            // // ENTREGA 2 - ORDENAR AFLABETICAMENTE ASCENDENTE
+  // Realizar la petición GET usando Fetch API
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      displayProducts(data.products);
 
-            document.getElementById("sortAsc").addEventListener("click", function(){
-                let asc = data.products.sort((x, y) => x.name.localeCompare(y.name));
-                console.log(asc); // FALTA FUNCION PARA MOSTRAR LOS PRODUCTOS ORDENADOS
-            });
+      // ENTREGA 2 - ORDENAR ALFABÉTICAMENTE ASCENDENTE
+      document.getElementById("sortAsc").addEventListener("click", function () {
+        let asc = data.products.sort((x, y) => x.name.localeCompare(y.name));
+        displayProducts(asc);
+      });
 
-            document.getElementById("sortDesc").addEventListener("click", function(){
-                let desc = data.products.sort((x, y) => y.name.localeCompare(x.name));
-                console.log(desc); // FALTA FUNCION PARA MOSTRAR LOS PRODUCTOS ORDENADOS
-            });
-
-            
-        })
-
-        .catch(error => {
-            console.error("Error al cargar los productos:", error);
+      // ENTREGA 2 - ORDENAR ALFABÉTICAMENTE DESCENDENTE
+      document.getElementById("sortDesc").addEventListener("click", function () {
+          let desc = data.products.sort((x, y) => y.name.localeCompare(x.name));
+          displayProducts(desc);
         });
+
+      // ENTREGA 2 - ORDENAR POR PRECIO
+      document.getElementById("sortByCount").addEventListener("click", function () {
+          let sortCount = data.products.sort(
+            (x, y) => parseInt(y.soldCount) - parseInt(x.soldCount)
+          );
+          displayProducts(sortCount);
+          console.log(data.products);
+        });
+
+      // ENTREGA 2 - FILTRAR POR PRECIO
+
+
+      // LIMPIAR
+      document.getElementById("clearRangeFilter").addEventListener("click", function () {
+          document.getElementById("rangeFilterCountMin").value = "";
+          document.getElementById("rangeFilterCountMax").value = "";
+        });
+    })
+    .catch((error) => {
+      console.error("Error al cargar los productos:", error);
+    });
 });
-
-// LIMPIAR
-
-// document.getElementById("clearRangeFilter").addEventListener("click", function(){
-//     document.getElementById("rangeFilterCountMin").value = "";
-//     document.getElementById("rangeFilterCountMax").value = "";
-
-//     minCount = undefined;
-//     maxCount = undefined;
-
-//     showCategoriesList();
-
-// })
-
