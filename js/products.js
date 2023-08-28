@@ -69,11 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // ENTREGA 2 - ORDENAR POR PRECIO
       document.getElementById("sortByCount").addEventListener("click", function () {
-          let sortCount = data.products.sort(
-            (x, y) => parseInt(y.soldCount) - parseInt(x.soldCount)
-          );
+          let sortCount = data.products.sort((x, y) => parseInt(y.soldCount) - parseInt(x.soldCount));
           displayProducts(sortCount);
-          console.log(data.products);
         });
 
       // ENTREGA 2 - FILTRAR POR PRECIO
