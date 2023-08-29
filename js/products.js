@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const productDiv = document.createElement("div");
       productDiv.classList.add("product");
 
-      const divTexto = document.createElement("div");
-      divTexto.classList.add("divParaTexto");
+      const divText = document.createElement("div");
+      divText.classList.add("divForText");
 
       const divImg = document.createElement("div");
-      divImg.classList.add("divParaImg");
+      divImg.classList.add("divForImg");
 
       // Crear elementos para cada propiedad del producto
       const productName = document.createElement("h4");
@@ -34,14 +34,14 @@ document.addEventListener("DOMContentLoaded", function () {
       productImage.src = product.image;
       productImage.alt = product.name;
 
-      productDiv.appendChild(divTexto);
+      productDiv.appendChild(divText);
       productDiv.appendChild(divImg);
 
       // Agregar elementos al contenedor del producto
-      divTexto.appendChild(productName);
-      divTexto.appendChild(productDescription);
-      divTexto.appendChild(productPrice);
-      divTexto.appendChild(productSold);
+      divText.appendChild(productName);
+      divText.appendChild(productDescription);
+      divText.appendChild(productPrice);
+      divText.appendChild(productSold);
       divImg.appendChild(productImage);
 
       // Agregar el contenedor del producto a la lista de productos
