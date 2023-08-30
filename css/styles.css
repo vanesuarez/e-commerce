@@ -145,6 +145,67 @@ h5 {
   color: #000000;
 }
 
+/* INPUT   */
+
+.inputBuscar {
+  display: flex;
+  justify-content: space-between;
+}
+
+#inputFilter {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 300px;
+}
+
+#inputFilter::placeholder {
+  color: #999;
+}
+
+/* NAVBAR */
+
+#prfLogo {
+  font-size: 40px;
+  margin-left: 10px !important;
+}
+
+.miPerfil {
+  color: black;
+}
+
+.miPerfil:hover {
+  color: white;
+}
+
+#navBar {
+ 
+ background-color: #cccccc65 !important;
+}
+
+#navBar:hover {
+  
+  background-color:#8080808c!important;
+}
+
+#navItem:hover {
+  background-color: #ffa500 !important;
+  border-radius: 20px !important;
+  border-top: 1px solid bisque !important;
+ 
+}
+
+
+
+  
+
+.text-orange {
+  color: #ffa500;
+  letter-spacing: 1.5px;
+}
+
+
 .jumbotron .display-4 {
   font-weight: bold;
 }
