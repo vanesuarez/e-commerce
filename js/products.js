@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 productList.appendChild(productDiv);
             });
 
+            // ENTREGA 2 - DESAFIATE
+
             // Almacenamos todos los elementos de producto en un array
             const products = Array.from(document.querySelectorAll(".product")); // se seleccionan todos los elementos con la clase products y lo convertimos en un array utilizando array.from()
             
