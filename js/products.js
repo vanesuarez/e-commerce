@@ -76,4 +76,32 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error("Error al cargar los productos:", error);
         });
+
 });
+
+// Filtrar productos por precio
+const filterButton = document.getElementById("rangeFilterCount");
+filterButton.addEventListener("click", filterProducts);
+
+function filterProducts() {
+    const minPriceInput = document.getElementById("rangeFilterCountMin");
+    const maxPriceInput = document.getElementById("rangeFilterCountMax");
+
+    const minPrice = parseFloat(minPriceInput.value);
+    const maxPrice = parseFloat(maxPriceInput.value);
+
+    // Obtén todos los productos
+    const products = document.querySelectorAll(".product");
+
+    // Itera sobre los productos y muestra solo los que están en el rango de precio
+    products.forEach(product => {
+        const productPrice = product.querySelector("h5");
+        const productPriceValue = parseFloat(productPrice.textContent.replace("Precio: USD ", ""));
+
+        if ((isNaN(minPrice) || productPriceValue >= minPrice) && (isNaN(maxPrice) || productPriceValue <= maxPrice)) {
+            product.style.display = "block"; // Muestra el producto
+        } else {
+            product.style.display = "none"; // Oculta el producto
+        }
+    });
+}
