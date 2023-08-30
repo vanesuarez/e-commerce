@@ -1,12 +1,12 @@
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const productList = document.getElementById("product-list");
 
-    const catID = localStorage.getItem("catID"); // obtener la clave de localStorage
+    // URL del JSON de productos
+    const url = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 
-    if (catID) { // si catID es distinto del vacio entonces es true y con ese contenido crea la URL
-        const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
-
-    // pasa a estar dentro del if
     // Realizar la petición GET usando Fetch API
     fetch(url)
         .then(response => response.json())
@@ -52,22 +52,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Agregar el contenedor del producto a la lista de productos
                 productList.appendChild(productDiv);
             });
+
+            // Almacenamos todos los elementos de producto en un array
+            const products = Array.from(document.querySelectorAll(".product")); // se seleccionan todos los elementos con la clase products y lo convertimos en un array utilizando array.from()
+            
+            // Manejamos el evento de filtro en tiempo real
+            const inputFilter = document.getElementById("inputFilter");
+            inputFilter.addEventListener("input", function () { // agregamos evento de escucha , cuando el usuario escribe en el tecelado el codigo se ejecutara
+                const filterText = inputFilter.value.toLowerCase().trim(); // accedemos al texto que escribio el usuario y le hacemos validaciones 
+                products.forEach(product => {  // recorremos el array que creamos en la linea 54 
+                    const productName = product.querySelector("h4").textContent.toLowerCase().trim(); // obtenemos el nombre del producto y le hacemos sus validaciones (convertir texto en minuscula y eliminar espacios)
+                    const productDescription = product.querySelector("p").textContent.toLowerCase().trim(); // obtenemos la descripcion del producto y le hacemos sus validaciones (convertir texto en minuscula y eliminar espacios)
+                    
+                    if (productName.includes(filterText) || productDescription.includes(filterText)) { // utilizamos includes y verificamos si hay texto ingresado relacionado con el titulo o || la descripcion del producto
+                        product.style.display = "block";  // si se cumple va a mostrar los productos 
+                    } else {
+                        product.style.display = "none"; // va a ocultar los productos que no cumplan
+                    }
+                });
+            });
+            
         })
         .catch(error => {
             console.error("Error al cargar los productos:", error);
         });
-}
-
-// para arreglar la descripción de cada producto
-
-const pDet = document.getElementById("detalle"); // llama al párrafo que aparece debajo de Productos.
-
-if (catID == 101) { // si catID es 101, accedimos a la categoría autos.
-    pDet.textContent = "Veras aqui todos los productos de la categoria autos."
-} else if (catID == 102) { // si catID es 102, accedimos a la categoría juguetes.
-    pDet.textContent = "Veras aqui todos los productos de la categoria jueguetes."
-} else { // si no es ninguna de las anteriores es porque accedimos a la categoría muebles.
-    pDet.textContent = "Veras aqui todos los productos de la categoria muebles."
-}
-
 });
