@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   const productList = document.getElementById("product-list");
-  const url = "https://japceibal.github.io/emercado-api/cats_products/101.json"; // URL del JSON de productos
 
   // Función inicial para mostrar los productos en la página
   function displayProducts(products) {
@@ -50,6 +49,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  const catID = localStorage.getItem("catID"); // obtener la clave de localStorage
+
+  if (catID) { // si catID es distinto del vacio entonces es true y con ese contenido crea la URL
+      const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
   // Realizar la petición GET usando Fetch API
   fetch(url)
     .then((response) => response.json())
@@ -113,6 +116,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
 
+      // para arreglar la descripción de cada producto
+
+const pDet = document.getElementById("detalle"); // llama al párrafo que aparece debajo de Productos.
+
+if (catID == 101) { // si catID es 101, accedimos a la categoría autos.
+    pDet.textContent = "Veras aqui todos los productos de la categoria autos."
+} else if (catID == 102) { // si catID es 102, accedimos a la categoría juguetes.
+    pDet.textContent = "Veras aqui todos los productos de la categoria jueguetes."
+} else { // si no es ninguna de las anteriores es porque accedimos a la categoría muebles.
+    pDet.textContent = "Veras aqui todos los productos de la categoria muebles."
+}
+
       // LIMPIAR
       document
         .getElementById("clearRangeFilter")
@@ -157,4 +172,4 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => {
       console.error("Error al cargar los productos:", error);
     });
-});
+}});
