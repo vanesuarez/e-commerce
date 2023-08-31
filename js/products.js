@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
               (isNaN(minPrice) || productPriceValue >= minPrice) &&
               (isNaN(maxPrice) || productPriceValue <= maxPrice)
             ) {
-              product.style.display = "block"; // Muestra el producto
+              product.style.display = "hidden"; // Muestra el producto
             } else {
               product.style.display = "none"; // Oculta el producto
             }
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
               productDescription.includes(filterText)
             ) {
               // utilizamos includes y verificamos si hay texto ingresado relacionado con el titulo o || la descripcion del producto
-              product.style.display = "block"; // si se cumple va a mostrar los productos
+              product.style.display = "hidden"; // si se cumple va a mostrar los productos
             } else {
               product.style.display = "none"; // va a ocultar los productos que no cumplan
             }

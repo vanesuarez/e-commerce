@@ -17,7 +17,7 @@
     cursor: pointer;
 }
 
-.product {
+.product, .product.hidden {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border: 1px solid gray;
