@@ -109,37 +109,9 @@ document.addEventListener("DOMContentLoaded", function () {
           });
 
         // ENTREGA 2 - FILTRAR POR PRECIO
+        
 
-        const filterButton = document.getElementById("rangeFilterCount");
-        filterButton.addEventListener("click", filterProducts);
 
-        function filterProducts() {
-          const minPriceInput = document.getElementById("rangeFilterCountMin");
-          const maxPriceInput = document.getElementById("rangeFilterCountMax");
-
-          const minPrice = parseFloat(minPriceInput.value);
-          const maxPrice = parseFloat(maxPriceInput.value);
-
-          // Obtén todos los productos
-          const products = document.querySelectorAll(".product");
-
-          // Itera sobre los productos y muestra solo los que están en el rango de precio
-          products.forEach((product) => {
-            const productPrice = product.querySelector("h5");
-            const productPriceValue = parseFloat(
-              productPrice.textContent.replace("Precio: USD ", "")
-            );
-
-            if (
-              (isNaN(minPrice) || productPriceValue >= minPrice) &&
-              (isNaN(maxPrice) || productPriceValue <= maxPrice)
-            ) {
-              product.style.display = "hidden"; // Muestra el producto
-            } else {
-              product.style.display = "none"; // Oculta el producto
-            }
-          });
-        }
 
         // LIMPIAR
         document
@@ -150,38 +122,38 @@ document.addEventListener("DOMContentLoaded", function () {
             displayProducts(data.products);
           });
 
-        // ENTREGA 2 - DESAFIATE
+        //   // ENTREGA 2 - DESAFIATE
 
-        // Almacenamos todos los elementos de producto en un array
-        const products = Array.from(document.querySelectorAll(".product")); // se seleccionan todos los elementos con la clase products y lo convertimos en un array utilizando array.from()
+        //   // Almacenamos todos los elementos de producto en un array
+        //   const products = Array.from(document.querySelectorAll(".product")); // se seleccionan todos los elementos con la clase products y lo convertimos en un array utilizando array.from()
 
-        // Manejamos el evento de filtro en tiempo real
-        const inputFilter = document.getElementById("inputFilter");
-        inputFilter.addEventListener("input", function () {
-          // agregamos evento de escucha , cuando el usuario escribe en el tecelado el codigo se ejecutara
-          const filterText = inputFilter.value.toLowerCase().trim(); // accedemos al texto que escribio el usuario y le hacemos validaciones
-          products.forEach((product) => {
-            // recorremos el array que creamos en la linea 54
-            const productName = product
-              .querySelector("h4")
-              .textContent.toLowerCase()
-              .trim(); // obtenemos el nombre del producto y le hacemos sus validaciones (convertir texto en minuscula y eliminar espacios)
-            const productDescription = product
-              .querySelector("p")
-              .textContent.toLowerCase()
-              .trim(); // obtenemos la descripcion del producto y le hacemos sus validaciones (convertir texto en minuscula y eliminar espacios)
+        //   // Manejamos el evento de filtro en tiempo real
+        //   const inputFilter = document.getElementById("inputFilter");
+        //   inputFilter.addEventListener("input", function () {
+        //     // agregamos evento de escucha , cuando el usuario escribe en el tecelado el codigo se ejecutara
+        //     const filterText = inputFilter.value.toLowerCase().trim(); // accedemos al texto que escribio el usuario y le hacemos validaciones
+        //     products.forEach((product) => {
+        //       // recorremos el array que creamos en la linea 54
+        //       const productName = product
+        //         .querySelector("h4")
+        //         .textContent.toLowerCase()
+        //         .trim(); // obtenemos el nombre del producto y le hacemos sus validaciones (convertir texto en minuscula y eliminar espacios)
+        //       const productDescription = product
+        //         .querySelector("p")
+        //         .textContent.toLowerCase()
+        //         .trim(); // obtenemos la descripcion del producto y le hacemos sus validaciones (convertir texto en minuscula y eliminar espacios)
 
-            if (
-              productName.includes(filterText) ||
-              productDescription.includes(filterText)
-            ) {
-              // utilizamos includes y verificamos si hay texto ingresado relacionado con el titulo o || la descripcion del producto
-              product.style.display = "hidden"; // si se cumple va a mostrar los productos
-            } else {
-              product.style.display = "none"; // va a ocultar los productos que no cumplan
-            }
-          });
-        });
+        //       if (
+        //         productName.includes(filterText) ||
+        //         productDescription.includes(filterText)
+        //       ) {
+        //         // utilizamos includes y verificamos si hay texto ingresado relacionado con el titulo o || la descripcion del producto
+        //         product.style.display = "hidden"; // si se cumple va a mostrar los productos
+        //       } else {
+        //         product.style.display = "none"; // va a ocultar los productos que no cumplan
+        //       }
+        //     });
+        //   });
       })
       .catch((error) => {
         console.error("Error al cargar los productos:", error);
