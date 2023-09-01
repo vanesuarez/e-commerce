@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const catID = localStorage.getItem("catID"); // obtener la clave de localStorage
-
+  
   if (catID) {
     // si catID es distinto del vacio entonces es true y con ese contenido crea la URL
     const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
@@ -158,10 +158,9 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("rangeFilterCountMax").value = "";
             displayProducts(data.products);
           });
+      })
+      .catch ((error) => {
+        console.error("Error al cargar los productos:", error);
       });
-
-    // .catch ((error) => {
-    //   console.error("Error al cargar los productos:", error);
-    // });
-  }
+    }  
 });
