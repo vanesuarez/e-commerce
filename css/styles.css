@@ -7,7 +7,7 @@
 
 /* PRODUCTOS */
 
-.hcuatro {
+.subtitle {
   font-size: 2rem;
   text-align: center;
   margin-top: 27px;
@@ -17,8 +17,7 @@
     cursor: pointer;
 }
 
-
-.product {
+.product, .product.hidden {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border: 1px solid gray;
@@ -26,7 +25,6 @@
   border-top-right-radius: inherit;
   padding: 20px;
   background-color: white;
-  
 }
 
 .product h4 {
@@ -57,9 +55,10 @@ h5 {
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   float: right;
+  max-width: 100%; /* prueba */
 }
 
-.divParaTexto {
+.divForText {
   position: relative;
 }
 
@@ -96,7 +95,7 @@ h5 {
 
 /* FORMULARIO LOGIN */
 
-.formulario {
+.general-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,12 +107,12 @@ h5 {
   border-radius: 5px;
 }
 
-.formulario label {
+.general-form label {
   font-size: 16px;
   margin-bottom: 10px;
 }
 
-.formulario input {
+.general-form input {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -121,7 +120,7 @@ h5 {
     border-radius: 5px;
 }
 
-.formulario button {
+.general-form button {
   background-color: black;
   color: white;
   border: none;
@@ -130,7 +129,7 @@ h5 {
   cursor: pointer;
 }
 
-.formulario button:hover {
+.general-form button:hover {
   background-color: gray;
   color: #000000;
 }
@@ -144,6 +143,28 @@ h5 {
   background-color: gray;
   color: #000000;
 }
+
+/* INPUT   */
+
+.inputBuscar {
+  display: flex;
+  justify-content: space-between;
+}
+
+#inputFilter {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 300px;
+}
+
+#inputFilter::placeholder {
+  color: #999;
+}
+
+
+
 
 .jumbotron .display-4 {
   font-weight: bold;
