@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             displayProducts(desc);
           });
 
-        // ENTREGA 2 - ORDENAR POR PRECIO
+        // ENTREGA 2 - ORDENAR POR CANTIDAD
         document
           .getElementById("sortByCount")
           .addEventListener("click", function () {
