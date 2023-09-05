@@ -10,6 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
       const productDiv = document.createElement("div");
       productDiv.classList.add("product");
 
+      // ENTREGA 3 IDENTIFICADOR
+
+      const specificProduct = document.getElementsByClassName("product");
+      productDiv.setAttribute("id", `${product.id}`); // agrega id con el id del producto
+      console.log(product.id);
+
+      //
+
       const divText = document.createElement("div");
       divText.classList.add("divForText");
 
