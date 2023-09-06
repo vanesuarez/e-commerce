@@ -1,17 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-    /* por ahora la URL es estática, cuando tengamos el código de la parte 1, podremos crear la URL dinámica, ya que lo único que cambia es el número final.
-    const pID = localStorage.getItem("pID"); */
-
-    const url = "https://japceibal.github.io/emercado-api/products/50921.json";
-
-    /* URLs de prueba 
-    "https://japceibal.github.io/emercado-api/products/50921.json"; Chevrolet Onix Joy
-    "https://japceibal.github.io/emercado-api/products/50922.json"; Fiat Way
-    "https://japceibal.github.io/emercado-api/products/50741.json"; Oso de peluche
-    "https://japceibal.github.io/emercado-api/products/50743.json"; PlayStation 5
-    "https://japceibal.github.io/emercado-api/products/40281.json"; Computadora de escritorio
-    */
+    const productID = localStorage.getItem("productID")
+    const url = `https://japceibal.github.io/emercado-api/products/${productID}.json`;
     
         fetch(url)
             .then(response => response.json())
