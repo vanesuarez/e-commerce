@@ -5,6 +5,19 @@
   font-family: 'Raleway', serif !important;
 }
 
+/* Entrega 3 */
+#productName {
+  font-size: 32px;
+  padding: 25px 0;
+}
+
+#productImages img {
+  width: 250px;
+  margin: 5px 10px 5px 0;
+  border: gray 1px solid;
+  border-radius: 5px;
+}
+
 /* PRODUCTOS */
 
 .subtitle {
