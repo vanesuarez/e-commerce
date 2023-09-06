@@ -5,6 +5,14 @@ document.addEventListener("DOMContentLoaded", function(){
 
     const url = "https://japceibal.github.io/emercado-api/products/50921.json";
 
+    /* URLs de prueba 
+    "https://japceibal.github.io/emercado-api/products/50921.json"; Chevrolet Onix Joy
+    "https://japceibal.github.io/emercado-api/products/50922.json"; Fiat Way
+    "https://japceibal.github.io/emercado-api/products/50922.json"; Oso de peluche
+    "https://japceibal.github.io/emercado-api/products/50922.json"; Bicicleta
+    "https://japceibal.github.io/emercado-api/products/50922.json"; Sofá
+    */
+    
         fetch(url)
             .then(response => response.json())
             .then(data => {
