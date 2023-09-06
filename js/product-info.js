@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", function(){
     /* URLs de prueba 
     "https://japceibal.github.io/emercado-api/products/50921.json"; Chevrolet Onix Joy
     "https://japceibal.github.io/emercado-api/products/50922.json"; Fiat Way
-    "https://japceibal.github.io/emercado-api/products/50922.json"; Oso de peluche
-    "https://japceibal.github.io/emercado-api/products/50922.json"; Bicicleta
-    "https://japceibal.github.io/emercado-api/products/50922.json"; Sofá
+    "https://japceibal.github.io/emercado-api/products/50741.json"; Oso de peluche
+    "https://japceibal.github.io/emercado-api/products/50743.json"; PlayStation 5
+    "https://japceibal.github.io/emercado-api/products/40281.json"; Computadora de escritorio
     */
     
         fetch(url)
