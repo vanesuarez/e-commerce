@@ -10,6 +10,19 @@ document.addEventListener("DOMContentLoaded", function () {
       const productDiv = document.createElement("div");
       productDiv.classList.add("product");
 
+      // ENTREGA 3 IDENTIFICADOR
+
+      productDiv.setAttribute("id", `${product.id}`); // agrega id con el id del producto
+
+      productDiv.addEventListener("click", function() {
+
+        window.location.href = "product-info.html"
+
+        localStorage.setItem("productID",product.id)
+      })
+
+      //
+
       const divText = document.createElement("div");
       divText.classList.add("divForText");
 
@@ -49,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const catID = localStorage.getItem("catID"); // obtener la clave de localStorage
-
+  
   if (catID) {
     // si catID es distinto del vacio entonces es true y con ese contenido crea la URL
     const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
@@ -98,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
             displayProducts(desc);
           });
 
-        // ENTREGA 2 - ORDENAR POR PRECIO
+        // ENTREGA 2 - ORDENAR POR CANTIDAD
         document
           .getElementById("sortByCount")
           .addEventListener("click", function () {
@@ -110,8 +123,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // ENTREGA 2 - FILTRAR POR PRECIO
         
+        document
+          .getElementById("rangeFilterCount")
+          .addEventListener("click", function () {
+            const minPriceInput = document.getElementById(
+              "rangeFilterCountMin"
+            );
+            const maxPriceInput = document.getElementById(
+              "rangeFilterCountMax"
+            );
+            const minPrice = parseFloat(minPriceInput.value);
+            const maxPrice = parseFloat(maxPriceInput.value);
 
+            const filteredProducts = data.products.filter(function (product) {
+              const productPriceValue = parseFloat(product.cost);
+              return (
+                (isNaN(minPrice) || productPriceValue >= minPrice) &&
+                (isNaN(maxPrice) || productPriceValue <= maxPrice)
+              );
+            });
 
+            displayProducts(filteredProducts);
+          });
+
+        // ENTREGA 2
+
+        const inputFilter = document.getElementById("inputFilter");
+
+        inputFilter.addEventListener("input", function () {
+          // Agregamos evento de escucha, se ejecutará cuando el usuario escriba en el teclado
+          const filterText = inputFilter.value.toLowerCase().trim(); // Accedemos al texto que escribió el usuario y le aplicamos validaciones
+
+          const searchFilter = data.products.filter(function (product) {
+            return (
+              product.name.toLowerCase().includes(filterText) || // Verificamos si el nombre del producto incluye el texto de búsqueda
+              product.description.toLowerCase().includes(filterText) // Verificamos si la descripción del producto incluye el texto de búsqueda
+            );
+          });
+
+          displayProducts(searchFilter);
+        });
 
         // LIMPIAR
         document
@@ -121,42 +172,9 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("rangeFilterCountMax").value = "";
             displayProducts(data.products);
           });
-
-        //   // ENTREGA 2 - DESAFIATE
-
-        //   // Almacenamos todos los elementos de producto en un array
-        //   const products = Array.from(document.querySelectorAll(".product")); // se seleccionan todos los elementos con la clase products y lo convertimos en un array utilizando array.from()
-
-        //   // Manejamos el evento de filtro en tiempo real
-        //   const inputFilter = document.getElementById("inputFilter");
-        //   inputFilter.addEventListener("input", function () {
-        //     // agregamos evento de escucha , cuando el usuario escribe en el tecelado el codigo se ejecutara
-        //     const filterText = inputFilter.value.toLowerCase().trim(); // accedemos al texto que escribio el usuario y le hacemos validaciones
-        //     products.forEach((product) => {
-        //       // recorremos el array que creamos en la linea 54
-        //       const productName = product
-        //         .querySelector("h4")
-        //         .textContent.toLowerCase()
-        //         .trim(); // obtenemos el nombre del producto y le hacemos sus validaciones (convertir texto en minuscula y eliminar espacios)
-        //       const productDescription = product
-        //         .querySelector("p")
-        //         .textContent.toLowerCase()
-        //         .trim(); // obtenemos la descripcion del producto y le hacemos sus validaciones (convertir texto en minuscula y eliminar espacios)
-
-        //       if (
-        //         productName.includes(filterText) ||
-        //         productDescription.includes(filterText)
-        //       ) {
-        //         // utilizamos includes y verificamos si hay texto ingresado relacionado con el titulo o || la descripcion del producto
-        //         product.style.display = "hidden"; // si se cumple va a mostrar los productos
-        //       } else {
-        //         product.style.display = "none"; // va a ocultar los productos que no cumplan
-        //       }
-        //     });
-        //   });
       })
-      .catch((error) => {
+      .catch ((error) => {
         console.error("Error al cargar los productos:", error);
       });
-  }
+    }  
 });
