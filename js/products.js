@@ -12,9 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // ENTREGA 3 IDENTIFICADOR
 
-      const specificProduct = document.getElementsByClassName("product");
       productDiv.setAttribute("id", `${product.id}`); // agrega id con el id del producto
-      console.log(product.id);
+
+      productDiv.addEventListener("click", function() {
+
+        window.location.href = "product-info.html"
+
+        localStorage.setItem("productID",product.id)
+      })
 
       //
 
