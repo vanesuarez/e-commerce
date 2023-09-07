@@ -25,7 +25,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 console.error("Error al cargar los datos:", error);
             });
 
+    const urlComments = `https://japceibal.github.io/emercado-api/products_comments/${productID}.json`;
+    const idInformation = document.getElementById ("divInformation");
 
+    
 
 
     
