@@ -8,21 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => response.json())
         .then((data) => {
             document.getElementById("productName").innerHTML = data.name;
-            document.getElementById(
-                "productPrice"
-            ).innerHTML = `<b>Precio</b> <br>${data.currency} ${data.cost}`;
-            document.getElementById(
-                "productDescription"
-            ).innerHTML = `<b>Descripción</b> <br>${data.description}`;
-            document.getElementById(
-                "productCategory"
-            ).innerHTML = `<b>Categoría</b> <br>${data.category}`;
-            document.getElementById(
-                "productSoldCount"
-            ).innerHTML = `<b>Vendidos</b> <br>${data.soldCount}`;
+            document.getElementById("productPrice").innerHTML = `<b>Precio</b> <br>${data.currency} ${data.cost}`;
+            document.getElementById("productDescription").innerHTML = `<b>Descripción</b> <br>${data.description}`;
+            document.getElementById("productCategory").innerHTML = `<b>Categoría</b> <br>${data.category}`;
+            document.getElementById("productSoldCount").innerHTML = `<b>Vendidos</b> <br>${data.soldCount}`;
 
             const imagesDiv = document.getElementById("productImages");
             imagesDiv.innerHTML = `<b>Imágenes ilustrativas</b><br>`;
+            
             data.images.forEach((image) => {
                 const imgElement = document.createElement("img");
                 imgElement.src = image;
@@ -50,10 +43,19 @@ document.addEventListener("DOMContentLoaded", function () {
         
               const commentUser = document.createElement("p");
               commentUser.textContent = `Usuario: ${comment.user}`;
+
+            //   AGREGAR ACA PUNTAJE CON ESTRELLAS
         
               const commentScore = document.createElement("p");
-              commentScore.textContent = `Puntuación: ${comment.score}`;
-        
+              commentScore.innerHTML = `<span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span> 
+              <span class="fa fa-star"></span> 
+              Puntuación: ${comment.score}`;
+              
+            // -- 
+
               const commentDate = document.createElement("p");
               commentDate.textContent = `Fecha: ${comment.dateTime}`;
         
