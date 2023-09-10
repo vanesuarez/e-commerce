@@ -86,5 +86,60 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error al obtener los comentarios:", error);
           });
 
+
+
+
+          // Agregar un nuevo comentario al enviar el formulario
+          const form = document.getElementById("formComentarios");
+
+          form.addEventListener("submit", function (event) {
+              event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+      
+              // Obtiene los datos del formulario
+              const comentario = document.getElementById("comentario").value;
+              const puntuacion = document.getElementById("puntuacion").value;
+      
+              // Crea un nuevo comentario
+              const nuevoComentario = document.createElement("div");
+              nuevoComentario.classList.add("comment");
+      
+              // Usuario ejemplo, faltaría ver como agregar el usuario que agregamos en login (EN PROCESO)
+              const commentUser = document.createElement("p");
+              commentUser.textContent = `Usuario: Usuario Ejemplo`;
+      
+              // Agrega el puntaje
+              let stars = "";
+              for (let i = 0; i <= 5; i++) {
+                  if (i <= puntuacion) {
+                      stars += '<span class="fa fa-star checked"></span>';
+                  } else {
+                      stars += '<span class="fa fa-star"></span>';
+                  }
+              }
+              const commentScore = document.createElement("p");
+              commentScore.innerHTML = `${stars} 
+                    Puntuación: ${puntuacion}`;
+      
+              const currentDate = new Date();
+              const commentDate = document.createElement("p");
+              commentDate.textContent = `Fecha: ${currentDate.toISOString()}`;
+      
+              const commentText = document.createElement("p");
+              commentText.textContent = `Comentario: ${comentario}`;
+      
+              // Agrega los elementos del comentario al div del comentario
+              nuevoComentario.appendChild(commentUser);
+              nuevoComentario.appendChild(commentScore);
+              nuevoComentario.appendChild(commentDate);
+              nuevoComentario.appendChild(commentText);
+      
+              // Agrega el nuevo comentario al div de comentarios
+              commentsDiv.appendChild(nuevoComentario);
+      
+              // Limpia el formulario
+              form.reset();
+          });
 });
+
+
 

@@ -10,7 +10,6 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -39,26 +38,51 @@
   </nav>
   <main>
     <div class="container">
-      <p id="productName"></p> 
+      <p id="productName"></p>
       <hr>
       <p id="productPrice"></p>
       <p id="productDescription"></p>
       <p id="productCategory"></p>
       <p id="productSoldCount"></p>
       <div id="productImages"></div>
-
   </div>
     </div>
   </main>
-  <br>
-  <section>
-
-    <h4 class="container">Comentarios</h4>
+  
+     <section class="container">
     <div id="productComments">
-    </div>
-    
-  </section>
+ 
 
+    </div>
+
+    <hr> 
+    <div>
+      <h6 id="hseisForm">Escribi tu comentario</h5>
+
+        <form id="formComentarios" action="procesar_formulario.php" method="post">
+          <label class="opinion" for="comentario">Tu opinion:</label>
+          
+          <textarea id="comentario" name="comentario" rows="4" cols="50" required></textarea>
+          
+          
+          <label class="opinion" for="puntuacion">Puntuación:</label>
+          
+          <select id="puntuacion" name="puntuacion" required>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+          </select>
+          
+  
+          <button id="botonComentario" type="submit">Enviar</button>
+      </form> 
+    </div>
+  </section>
+  
+ 
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

@@ -5,6 +5,56 @@
   font-family: 'Raleway', serif !important;
 }
 
+
+
+#productComments {
+  margin-top: 30px;
+  max-width: 500px;
+  
+ 
+}
+
+.comment {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+
+.comment:hover {
+  background-color: #f0f0f0;
+}
+
+.comment p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.comment .prfUsuario {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.comment .commentText {
+  margin-top: 5px;
+}
+
+.comment .commentDate {
+  font-size: 12px;
+  color: #888;
+}
+
+.comment .actions {
+  margin-top: 10px;
+}
+
+
+
+
+
 /* Entrega 3 */
 #productName {
   font-size: 32px;
@@ -24,6 +74,44 @@
   transform: scale(1.1); 
 }
 
+
+#productName {
+  font-size: 24px; 
+  font-weight: bold; 
+  margin-bottom: 10px; 
+}
+
+#productPrice {
+  font-size: 18px; 
+  color: #007bff; 
+  margin-bottom: 10px; 
+}
+
+#productDescription {
+  margin-bottom: 20px; 
+}
+
+#productCategory {
+  font-weight: bold;
+}
+
+#productSoldCount {
+  font-style: italic; 
+  margin-top: 10px; 
+}
+
+
+
+hr {
+  margin: 20px 0; 
+  border: none;
+  border-top: 1px solid #ccc; 
+}
+
+.prfUsuario {
+  font-size: 20px;
+}
+
 /* PRODUCTOS */
 
 .subtitle {
@@ -34,26 +122,101 @@
 
 .list-group {
     cursor: pointer;
+    
 }
+
+#formComentarios {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+#hseisForm {
+  font-weight: bold;
+  font-size: 25px;
+  color: #007bff;
+}
+
+.opinion {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+#botonComentario {
+  margin-top: 10px;
+  color: #007bff;
+  border: none;
+  padding: 5px 10px;
+  max-width: 100px;
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+#botonComentario:hover {
+  background-color: #007bff11;
+  color: black
+}
+
+#comentario {
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 400px;
+  color: #333;
+  background-color: #fff;
+}
+
+#comentario:focus {
+  border-color: #007bff;
+}
+
+#puntuacion {
+  font-size: 16px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 200px;
+  color: #333;
+  background-color: #fff;
+}
+
+#puntuacion option {
+  font-size: 16px;
+  padding: 5px;
+}
+
+
+
 
 .product, .product.hidden {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid gray;
+  border: 0.5px solid gray;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
   padding: 20px;
   background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  background-color: #53c0fb04;
 }
 
 .product h4 {
   color: #0087F7;
+  font-weight: bold;
 }
 
 .product h5 {
   font-size: 17px;
   position: absolute;
   bottom: 0;
+ 
 }
 
 h5 {
@@ -367,19 +530,4 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
-}
-
-
-/* Seccion comentarios  */
-
-.comment {
-  background-color: rgb(237, 236, 236);
-  padding: 10px;
-  margin: 10px;
-}
-
-#productComments {
-  margin: 5rem;
-
-
 }
