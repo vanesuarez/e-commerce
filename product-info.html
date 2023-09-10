@@ -48,26 +48,29 @@
   </div>
     </div>
   </main>
-  
-     <section class="container">
-    <div id="productComments">
- 
 
+  <br>
+  
+     <section class="container comments-section">
+      <h3>Comentarios</h3>
+
+    <div id="productComments">
     </div>
 
     <hr> 
-    <div>
-      <h6 id="hseisForm">Escribi tu comentario</h5>
 
-        <form id="formComentarios" action="procesar_formulario.php" method="post">
-          <label class="opinion" for="comentario">Tu opinion:</label>
+    <div class = addYourComment>
+      <h6 id="titleForm">Escribi tu comentario</h5>
+
+        <form id="formComments" action="procesar_formulario.php" method="post">
+          <label class="opinion" for="comment">Tu opinion:</label>
           
-          <textarea id="comentario" name="comentario" rows="4" cols="50" required></textarea>
+          <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
           
           
-          <label class="opinion" for="puntuacion">Puntuación:</label>
+          <label class="opinion" for="punctuation">Puntuación:</label>
           
-          <select id="puntuacion" name="puntuacion" required>
+          <select id="punctuation" name="punctuation" required>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -77,7 +80,7 @@
           </select>
           
   
-          <button id="botonComentario" type="submit">Enviar</button>
+          <button id="commentButton" type="submit">Enviar</button>
       </form> 
     </div>
   </section>

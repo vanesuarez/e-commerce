@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const productID = localStorage.getItem("productID");
     const url = `https://japceibal.github.io/emercado-api/products/${productID}.json`;
 
-    // Fetch para cada producto
+    // Fetch para mostrar info de cada producto
 
     fetch(url)
         .then((response) => {
@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then((data) => {
           console.log(data);
+          // Agreggamos las propiedades a cada producto
             document.getElementById("productName").innerHTML = data.name;
             document.getElementById("productPrice").innerHTML = `<b>Precio</b> <br>${data.currency} ${data.cost}`;
             document.getElementById("productDescription").innerHTML = `<b>Descripción</b> <br>${data.description}`;
@@ -46,30 +47,27 @@ document.addEventListener("DOMContentLoaded", function () {
               commentElement.classList.add("comment");
         
               const commentUser = document.createElement("p");
-              commentUser.textContent = `Usuario: ${comment.user}`;
+              commentUser.textContent = `${comment.user}`; // mostrar usuario
 
-            //   AGREGAR ACA PUNTAJE CON ESTRELLAS
-              //hago una variable que se llame stars, no constante porque va a variar, x eso variable
-              //no utilice for each porque me parece es una  iteracion para los arrays
+            //  Bucle for para mostrar las estrellas en cada comentario
               let stars= ""
               for(let i =1;i<6;i++){
                 if (i<=comment.score){
-                  stars+='<span class="fa fa-star checked"></span>'
+                  stars+='<span class="fa fa-star checked"></span>' //  clase de estrellas pintadas
                 } else {
-                  stars+='<span class="fa fa-star"></span>'
+                  stars+='<span class="fa fa-star"></span>' //  clase de estellas sin pintar
                 }
               }
               const commentScore = document.createElement("p");
-              commentScore.innerHTML = `${stars} 
-              Puntuación: ${comment.score}`;
+              commentScore.innerHTML = `${stars} `; 
               
             // -- 
 
               const commentDate = document.createElement("p");
-              commentDate.textContent = `Fecha: ${comment.dateTime}`;
+              commentDate.textContent = ` ${comment.dateTime}`; // mostrar fecha
         
               const commentText = document.createElement("p");
-              commentText.textContent = `Comentario: ${comment.description}`;
+              commentText.textContent = `${comment.description}`; // mostrar texto del comentario
 
               // Agregamos cada elemento al div padre para cada elemento
               commentElement.appendChild(commentUser);
@@ -86,55 +84,51 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error al obtener los comentarios:", error);
           });
 
-
-
-
           // Agregar un nuevo comentario al enviar el formulario
-          const form = document.getElementById("formComentarios");
+          const form = document.getElementById("formComments");
 
           form.addEventListener("submit", function (event) {
               event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
       
               // Obtiene los datos del formulario
-              const comentario = document.getElementById("comentario").value;
-              const puntuacion = document.getElementById("puntuacion").value;
+              const comment = document.getElementById("comment").value;
+              const punctuation = document.getElementById("punctuation").value;
       
               // Crea un nuevo comentario
-              const nuevoComentario = document.createElement("div");
-              nuevoComentario.classList.add("comment");
+              const newComment = document.createElement("div");
+              newComment.classList.add("comment");
       
-              // Usuario ejemplo, faltaría ver como agregar el usuario que agregamos en login (EN PROCESO)
+              // Muestra el nombre del usuario guardado en el localstorage
               const commentUser = document.createElement("p");
-              commentUser.textContent = `Usuario: Usuario Ejemplo`;
+              commentUser.textContent = savedUsername;
       
               // Agrega el puntaje
               let stars = "";
-              for (let i = 0; i <= 5; i++) {
-                  if (i <= puntuacion) {
+              for (let i = 1; i < 6; i++) {
+                  if (i <= punctuation) {
                       stars += '<span class="fa fa-star checked"></span>';
                   } else {
                       stars += '<span class="fa fa-star"></span>';
                   }
               }
               const commentScore = document.createElement("p");
-              commentScore.innerHTML = `${stars} 
-                    Puntuación: ${puntuacion}`;
+              commentScore.innerHTML = `${stars}`;
       
               const currentDate = new Date();
               const commentDate = document.createElement("p");
-              commentDate.textContent = `Fecha: ${currentDate.toISOString()}`;
+              commentDate.textContent = `${currentDate.toISOString()}`;
       
               const commentText = document.createElement("p");
-              commentText.textContent = `Comentario: ${comentario}`;
+              commentText.textContent = ` ${comment}`;
       
               // Agrega los elementos del comentario al div del comentario
-              nuevoComentario.appendChild(commentUser);
-              nuevoComentario.appendChild(commentScore);
-              nuevoComentario.appendChild(commentDate);
-              nuevoComentario.appendChild(commentText);
+              newComment.appendChild(commentUser);
+              newComment.appendChild(commentScore);
+              newComment.appendChild(commentDate);
+              newComment.appendChild(commentText);
       
               // Agrega el nuevo comentario al div de comentarios
-              commentsDiv.appendChild(nuevoComentario);
+              commentsDiv.appendChild(newComment);
       
               // Limpia el formulario
               form.reset();

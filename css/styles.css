@@ -5,13 +5,13 @@
   font-family: 'Raleway', serif !important;
 }
 
-
-
 #productComments {
   margin-top: 30px;
   max-width: 500px;
-  
- 
+  /* display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 50%;
+  gap: 0.5rem; */
 }
 
 .comment {
@@ -50,10 +50,6 @@
 .comment .actions {
   margin-top: 10px;
 }
-
-
-
-
 
 /* Entrega 3 */
 #productName {
@@ -100,8 +96,6 @@
   margin-top: 10px; 
 }
 
-
-
 hr {
   margin: 20px 0; 
   border: none;
@@ -125,13 +119,13 @@ hr {
     
 }
 
-#formComentarios {
+#formComments {
   display: flex;
   flex-direction: column;
   max-width: 300px;
 }
 
-#hseisForm {
+#titleForm {
   font-weight: bold;
   font-size: 25px;
   color: #007bff;
@@ -144,7 +138,7 @@ hr {
   letter-spacing: 1px;
 }
 
-#botonComentario {
+#commentButton {
   margin-top: 10px;
   color: #007bff;
   border: none;
@@ -155,12 +149,12 @@ hr {
   border-radius: 10px;
 }
 
-#botonComentario:hover {
+#commentButton:hover {
   background-color: #007bff11;
   color: black
 }
 
-#comentario {
+#comment {
   font-size: 16px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -171,7 +165,7 @@ hr {
   background-color: #fff;
 }
 
-#comentario:focus {
+#comment:focus {
   border-color: #007bff;
 }
 
@@ -190,9 +184,6 @@ hr {
   font-size: 16px;
   padding: 5px;
 }
-
-
-
 
 .product, .product.hidden {
   display: grid;
@@ -344,9 +335,6 @@ h5 {
 #inputFilter::placeholder {
   color: #999;
 }
-
-
-
 
 .jumbotron .display-4 {
   font-weight: bold;
