@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
           .getElementById("sortAsc")
           .addEventListener("click", function () {
             let asc = data.products.sort((x, y) =>
-              x.name.localeCompare(y.name)
+            parseInt(x.cost) - parseInt(y.cost)
             );
             displayProducts(asc);
           });
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
           .getElementById("sortDesc")
           .addEventListener("click", function () {
             let desc = data.products.sort((x, y) =>
-              y.name.localeCompare(x.name)
+            parseInt(y.cost) - parseInt(x.cost)
             );
             displayProducts(desc);
           });
