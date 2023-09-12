@@ -121,13 +121,8 @@ document.addEventListener("DOMContentLoaded", function () {
               commentScore.innerHTML = `${stars}`;
 
               const currentDate = new Date();
-
-              /* le da formato a la fecha:
-              toString(), lo convierte a string para manipularlo y
-              padStart(2, '0'), si el nnúmero no llega a las 2 cifras, le agrega un "0" al principio*/
-              const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")} ${currentDate.getHours().toString().padStart(2, "0")}:${currentDate.getMinutes().toString().padStart(2, "0")}:${currentDate.getSeconds().toString().padStart(2, "0")}`;
               const commentDate = document.createElement("p");
-              commentDate.textContent = formattedDate;
+              commentDate.textContent = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')} ${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`;
       
               const commentText = document.createElement("p");
               commentText.textContent = ` ${comment}`;
