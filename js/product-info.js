@@ -11,13 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Fetch para mostrar info de cada producto
 
     fetch(url)
-        .then((response) => {
-          console.log(response);
-          return response.json()
-        })
+        .then(response => response.json())
         .then((data) => {
-          console.log(data);
-          // Agreggamos las propiedades a cada producto
+          // Agregamos las propiedades a cada producto
             document.getElementById("productName").innerHTML = data.name;
             document.getElementById("productPrice").innerHTML = `<b>Precio</b> <br>${data.currency} ${data.cost}`;
             document.getElementById("productDescription").innerHTML = `<b>Descripción</b> <br>${data.description}`;
