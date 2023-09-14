@@ -52,9 +52,9 @@
 }
 
 /* Entrega 3 */
-#productName {
-  font-size: 32px;
-  padding: 25px 0;
+
+#main-product-info {
+  display: inline;
 }
 
 #productImages img {
@@ -70,25 +70,21 @@
   transform: scale(1.1); 
 }
 
-
 #productName {
-  font-size: 24px; 
-  font-weight: bold; 
+  padding: 25px 0 0;
+  font-size: 24px;
+  color: #007bff; 
+  font-weight: bold;
   margin-bottom: 10px; 
 }
 
 #productPrice {
   font-size: 18px; 
-  color: #007bff; 
   margin-bottom: 10px; 
 }
 
 #productDescription {
   margin-bottom: 20px; 
-}
-
-#productCategory {
-  font-weight: bold;
 }
 
 #productSoldCount {

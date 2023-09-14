@@ -2,16 +2,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const productID = localStorage.getItem("productID");
     const url = `https://japceibal.github.io/emercado-api/products/${productID}.json`;
 
+   // si "productID" es vacío nos re envia a product.html
+    
+   if (!productID) {
+    window.location.href = "products.html"
+   }
+    
     // Fetch para mostrar info de cada producto
 
     fetch(url)
-        .then((response) => {
-          console.log(response);
-          return response.json()
-        })
+        .then(response => response.json())
         .then((data) => {
-          console.log(data);
-          // Agreggamos las propiedades a cada producto
+          // Agregamos las propiedades a cada producto
             document.getElementById("productName").innerHTML = data.name;
             document.getElementById("productPrice").innerHTML = `<b>Precio</b> <br>${data.currency} ${data.cost}`;
             document.getElementById("productDescription").innerHTML = `<b>Descripción</b> <br>${data.description}`;
@@ -113,10 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
               }
               const commentScore = document.createElement("p");
               commentScore.innerHTML = `${stars}`;
-      
+
               const currentDate = new Date();
               const commentDate = document.createElement("p");
-              commentDate.textContent = `${currentDate.toISOString()}`;
+              commentDate.textContent = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")} ${currentDate.getHours().toString().padStart(2, "0")}:${currentDate.getMinutes().toString().padStart(2, "0")}:${currentDate.getSeconds().toString().padStart(2, "0")}`;
       
               const commentText = document.createElement("p");
               commentText.textContent = ` ${comment}`;
@@ -134,6 +136,3 @@ document.addEventListener("DOMContentLoaded", function () {
               form.reset();
           });
 });
-
-
-
