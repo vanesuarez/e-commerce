@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
    // si "productID" es vacío nos re envia a product.html
     
-   if (!localStorage.getItem("productID")) {
+   if (!productID) {
     window.location.href = "products.html"
    }
     
