@@ -14,12 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       productDiv.setAttribute("id", `${product.id}`); // agrega id con el id del producto
 
-      productDiv.addEventListener("click", function() {
+      productDiv.addEventListener("click", function () {
+        window.location.href = "product-info.html";
 
-        window.location.href = "product-info.html"
-
-        localStorage.setItem("productID",product.id)
-      })
+        localStorage.setItem("productID", product.id);
+      });
 
       //
 
@@ -62,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const catID = localStorage.getItem("catID"); // obtener la clave de localStorage
-  
+
   if (catID) {
     // si catID es distinto del vacio entonces es true y con ese contenido crea la URL
     const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
@@ -77,15 +76,14 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         displayProducts(data.products);
 
-        pDet.textContent =
-        `Veras aqui todos los productos de la categoria ${data.catName}.`;
+        pDet.textContent = `Veras aqui todos los productos de la categoria ${data.catName}.`;
 
         // ENTREGA 2 - ORDENAR ALFABÉTICAMENTE ASCENDENTE
         document
           .getElementById("sortAsc")
           .addEventListener("click", function () {
-            let asc = data.products.sort((x, y) =>
-            parseInt(x.cost) - parseInt(y.cost)
+            let asc = data.products.sort(
+              (x, y) => parseInt(x.cost) - parseInt(y.cost)
             );
             displayProducts(asc);
           });
@@ -94,8 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document
           .getElementById("sortDesc")
           .addEventListener("click", function () {
-            let desc = data.products.sort((x, y) =>
-            parseInt(y.cost) - parseInt(x.cost)
+            let desc = data.products.sort(
+              (x, y) => parseInt(y.cost) - parseInt(x.cost)
             );
             displayProducts(desc);
           });
@@ -161,8 +159,8 @@ document.addEventListener("DOMContentLoaded", function () {
             displayProducts(data.products);
           });
       })
-      .catch ((error) => {
+      .catch((error) => {
         console.error("Error al cargar los productos:", error);
       });
-    }  
+  }
 });
