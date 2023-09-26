@@ -60,6 +60,10 @@
 
 /* Entrega 3 */
 
+.rounded-fill {
+  background-color: white;
+}
+
 #main-product-info {
   display: inline;
 }
