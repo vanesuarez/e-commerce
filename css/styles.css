@@ -14,6 +14,12 @@
   gap: 0.5rem; */
 }
 
+#related div {
+  display: inline-block;
+  margin-right: 20px; 
+  text-align: center; 
+}
+
 .comment {
   border: 1px solid #ccc;
   padding: 10px;
@@ -52,12 +58,16 @@
 }
 
 /* Entrega 3 */
-#productName {
-  font-size: 32px;
-  padding: 25px 0;
+
+.rounded-fill {
+  background-color: white;
 }
 
-#productImages img {
+#main-product-info {
+  display: inline;
+}
+
+#productImages img, #related img {
   width: 250px;
   margin: 5px 10px 5px 0;
   border: gray 1px solid;
@@ -70,25 +80,21 @@
   transform: scale(1.1); 
 }
 
-
 #productName {
-  font-size: 24px; 
-  font-weight: bold; 
+  padding: 25px 0 0;
+  font-size: 24px;
+  color: #007bff; 
+  font-weight: bold;
   margin-bottom: 10px; 
 }
 
 #productPrice {
   font-size: 18px; 
-  color: #007bff; 
   margin-bottom: 10px; 
 }
 
 #productDescription {
   margin-bottom: 20px; 
-}
-
-#productCategory {
-  font-weight: bold;
 }
 
 #productSoldCount {

@@ -54,20 +54,45 @@ if (!savedUsername || !savedPassword) {
 
 // MOSTRAR USUARIO EN LA BARRA DE NAVEGACION
 
-// Creo link, agrego la calse y guardo la info de savedusername
+// ENTREGA 4.2 DROPDOWN
+
+// Agregar usuario como boton
 const userInfo = document.createElement("a"); 
-userInfo.classList.add("nav-link");
-userInfo.innerHTML = savedUsername; 
+const dropdownMenu = document.getElementById("dropdownMenuButton1");
+dropdownMenu.innerHTML = savedUsername; 
+
+// Cerrar sesion y eliminar el usuario del localStorage
+const session = document.getElementById('closeSession');
+
+session.addEventListener('click', function() {
+
+  localStorage.removeItem('username');
+  localStorage.removeItem('password');
+  window.location.href = "login.html";
+
+})
+
+// ENTREGA 4.2 DROPDOWN
+
+// // Creo link, agrego la calse y guardo la info de savedusername
+// const userInfo = document.createElement("a"); 
+// userInfo.classList.add("nav-link");
+// userInfo.innerHTML = savedUsername; 
 
 // Creo un li y le agrego clase y luego agrego el a creado antes al li
-const li = document.createElement("li"); 
-li.classList.add("nav-item"); 
-li.appendChild(userInfo);
+// const li = document.createElement("li"); 
+// li.classList.add("nav-item"); 
+// li.appendChild(userInfo);
 
-// Obtengo los datos de la barra de navegacion y obtengo la lista dentro, finalmente agrego el li al ul
-const navbar = document.getElementById("navbarNav"); 
-const ul = navbar.querySelector(".navbar-nav"); 
+// // Obtengo los datos de la barra de navegacion y obtengo la lista dentro, finalmente agrego el li al ul
+// const navbar = document.getElementById("navbarNav"); 
+// const ul = navbar.querySelector(".navbar-nav"); 
 
-ul.appendChild(li); 
+// ul.appendChild(li); 
+
+
+
+
+
 
 

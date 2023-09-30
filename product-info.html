@@ -32,11 +32,28 @@
           </li>
           <li class="nav-item">
           </li>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Dropdown button
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+              <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
+              <li>
+                 <a id="closeSession" class="dropdown-item" href="login.html">Cerrar Sesión</a>
+              </li>
+            </ul>
+          </div>
         </ul>
       </div>
     </div>
   </nav>
-  <main>
+  <main id="main-product-info">
     <div class="container">
       <p id="productName"></p>
       <hr>
@@ -44,7 +61,23 @@
       <p id="productDescription"></p>
       <p id="productCategory"></p>
       <p id="productSoldCount"></p>
-      <div id="productImages"></div>
+      <!-- <div id="productImages"></div> -->
+
+      <!-- CAROUSEL BOOSTRAP CODE-->
+      
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
   </div>
     </div>
   </main>
@@ -83,8 +116,15 @@
           <button id="commentButton" type="submit">Enviar</button>
       </form> 
     </div>
+
+    <hr> 
+    <div>
+      <b>Productos realacionados</b>
+      <div id="related">  
+      </div>
+    </div>
+
   </section>
-  
  
   <footer class="text-muted">
     <div class="container">
