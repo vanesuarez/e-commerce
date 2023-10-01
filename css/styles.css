@@ -5,6 +5,16 @@
   font-family: 'Raleway', serif !important;
 }
 
+/*carousel*/
+
+
+#carouselExampleControls {
+  border: 1px solid #ccc; 
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+  width: 50%;
+  height: auto;
+}
+
 #productComments {
   margin-top: 30px;
   max-width: 500px;
@@ -13,7 +23,6 @@
   grid-auto-rows: 50%;
   gap: 0.5rem; */
 }
-
 
 #related div {
   display: inline-block;
@@ -59,6 +68,10 @@
 }
 
 /* Entrega 3 */
+
+.rounded-fill {
+  background-color: white;
+}
 
 #main-product-info {
   display: inline;
