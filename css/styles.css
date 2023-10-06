@@ -14,6 +14,12 @@
   margin-top: 20px;
 }
 
+#buybtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*carousel*/
 
 
