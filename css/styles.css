@@ -5,6 +5,15 @@
   font-family: 'Raleway', serif !important;
 }
 
+/* CARRITO */
+
+.divCart {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  border: 0.5px solid black;
+  margin-top: 20px;
+}
+
 /*carousel*/
 
 
