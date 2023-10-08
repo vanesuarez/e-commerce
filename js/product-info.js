@@ -50,16 +50,10 @@ document.addEventListener("DOMContentLoaded", function () {
         carouselInner.appendChild(carouselItem);
       });
 
-      // Codigo anterior de usar el carousel
 
-      // const imagesDiv = document.getElementById("productImages");
-      // imagesDiv.innerHTML = `<b>Imágenes ilustrativas</b><br>`;
+      
 
-      // data.images.forEach((image) => {
-      //   const imgElement = document.createElement("img");
-      //   imgElement.src = image;
-      //   imagesDiv.appendChild(imgElement);
-      // });
+     
 
       // Entrega 4.1
       const related = document.getElementById("related");
