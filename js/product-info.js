@@ -50,10 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         carouselInner.appendChild(carouselItem);
       });
 
-
       
-
-     
 
       // Entrega 4.1
       const related = document.getElementById("related");
