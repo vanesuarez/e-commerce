@@ -72,23 +72,7 @@ session.addEventListener('click', function() {
 
 })
 
-// ENTREGA 4.2 DROPDOWN
 
-// // Creo link, agrego la calse y guardo la info de savedusername
-// const userInfo = document.createElement("a"); 
-// userInfo.classList.add("nav-link");
-// userInfo.innerHTML = savedUsername; 
-
-// Creo un li y le agrego clase y luego agrego el a creado antes al li
-// const li = document.createElement("li"); 
-// li.classList.add("nav-item"); 
-// li.appendChild(userInfo);
-
-// // Obtengo los datos de la barra de navegacion y obtengo la lista dentro, finalmente agrego el li al ul
-// const navbar = document.getElementById("navbarNav"); 
-// const ul = navbar.querySelector(".navbar-nav"); 
-
-// ul.appendChild(li); 
 
 
 

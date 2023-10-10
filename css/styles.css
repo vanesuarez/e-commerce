@@ -70,6 +70,13 @@
   margin-top: 20px;
 }
 
+/*boton comprar*/
+#buyBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*carousel*/
 
 
