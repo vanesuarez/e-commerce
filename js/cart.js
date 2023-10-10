@@ -29,11 +29,8 @@ document.addEventListener("DOMContentLoaded", ()=> {
         cCount.value = count;
         const cSubTotal = document.createElement("p");
         articulo.appendChild(cSubTotal); 
+        // NO SE MODIFICA EN TIEMPO REAL
         cSubTotal.innerHTML = `<b>${data.articles[0].currency} ${data.articles[0].unitCost * data.articles[0].count}</b>`;
     })
 })
-//Entrega 5 desafiate
-document.getElementById("buyBtn").addEventListener("click", function (){
-       
-    window.location.href = "cart.html";
-    });
+

@@ -50,8 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
         carouselInner.appendChild(carouselItem);
       });
 
-      
-
       // Entrega 4.1
       const related = document.getElementById("related");
 
@@ -192,5 +190,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Limpia el formulario
     form.reset();
+  });
+
+  //Entrega 5 desafiate
+  document.getElementById("buyBtn").addEventListener("click", function () {
+
+    
+    window.location.href = "cart.html";
+
+
   });
 });

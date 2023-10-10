@@ -71,10 +71,9 @@
 }
 
 /*boton comprar*/
-#buyBtn{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#buyBtnDiv{
+  margin-top: 2rem;
+  margin-left: 60%;
 }
 
 /*carousel*/
