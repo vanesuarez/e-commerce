@@ -37,22 +37,47 @@
   width: 100px;
 }
 
-@media screen and (max-width: 900px) {
+/* MEDIA QUERIES */
+
+/* Tamaño LG */
+@media screen and (min-width: 992px) {
   .centrar {
     margin: 0 5%;
   }
+  #mainHeader {
+    display: none;
+  }
 }
 
-@media screen and (max-width: 700px) {
+/* Tamaño MD */
+@media screen and (min-width: 768px) and (max-width: 992px) {
   .centrar {
     margin: 0 1%;
   }
   .divCartN input {
     width: 70px;
   }
+
+  #mainImg {
+    display: none;
+  }
+
+  #mainHeader {
+    margin: 1rem;
+  }
 }
 
-@media screen and (max-width: 500px) {
+/* Tamaño SM */
+@media screen and (max-width: 768px) {
+
+  #mainHeader {
+    margin: 1rem;
+  }
+
+  #mainImg {
+    display: none;
+  }
+
   .centrar {
     margin: 0;
   }
