@@ -44,9 +44,6 @@
   .centrar {
     margin: 0 5%;
   }
-  #mainHeader {
-    display: none;
-  }
 }
 
 /* Tamaño MD */
@@ -57,26 +54,10 @@
   .divCartN input {
     width: 70px;
   }
-
-  #mainImg {
-    display: none;
-  }
-
-  #mainHeader {
-    margin: 1rem;
-  }
 }
 
 /* Tamaño SM */
 @media screen and (max-width: 768px) {
-
-  #mainHeader {
-    margin: 1rem;
-  }
-
-  #mainImg {
-    display: none;
-  }
 
   .centrar {
     margin: 0;
