@@ -193,11 +193,27 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   //Entrega 5 desafiate
+  
   document.getElementById("buyBtn").addEventListener("click", function () {
-
-    
+    const name = document.getElementById("productName").textContent;
+    const price = document.getElementById("productPrice").textContent;
+    const img = document.querySelector(".carousel-inner img").src;
+  
+    // Obtén el carrito actual del almacenamiento local o crea uno vacío si no existe.
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+    // Agrega el producto al carrito como un objeto.
+    cart.push({
+      name: name,
+      price: price,
+      img: img,
+    });
+  
+    // Guarda el carrito actualizado en el almacenamiento local.
+    localStorage.setItem("cart", JSON.stringify(cart));
+  
+    // Redirige a la página del carrito.
     window.location.href = "cart.html";
-
-
   });
+  
 });
