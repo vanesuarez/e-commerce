@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Función para actualizar el subtotal cuando cambia la cantidad
     function updateSubtotal() {
       const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, "")); // expresión regular que elimina caracteres que no sean números
-      const count = parseFloat(cCount.value) || 0; // Utiliza 0 si se elimina lo que haya en el campo
+      const count = parseFloat(cCount.value) || 0; // Utiliza en precio 0 si se elimina lo que haya en el campo
       const subtotal = unitCost * count;
       cSubTotal.innerHTML = `<b>${
         product.price.split(" ")[0] // se usa para tomar la primera parte de la cadena product.price antes del primer espacio en blanco

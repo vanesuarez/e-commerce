@@ -248,7 +248,7 @@ hr {
   letter-spacing: 1px;
 }
 
-#commentButton {
+/* #commentButton {
   margin-top: 10px;
   color: #007bff;
   border: none;
@@ -262,7 +262,7 @@ hr {
 #commentButton:hover {
   background-color: #007bff11;
   color: black
-}
+} */
 
 #comment {
   font-size: 16px;
