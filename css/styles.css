@@ -5,6 +5,13 @@
   font-family: 'Raleway', serif !important;
 }
 
+.sectionBuscar {
+  margin-right: 50px;
+}
+
+
+
+
 /* Entrega 5.1*/
 
 #descVenta ul {
@@ -54,6 +61,9 @@
   .divCartN input {
     width: 70px;
   }
+  #inputFilter {
+    padding: 20px;
+  }
 }
 
 /* Tamaño SM */
@@ -71,59 +81,14 @@
     margin-right: 3rem;
     height: 8vh;
   }
-
-  #priceText {
-    display: flex;
-    text-overflow: inherit;
-    text-wrap: wrap;
-  }
-
-  #soldText {
-    text-align: right;
-    padding-top: 2rem;
-    margin-bottom: 0.5rem;
-    
-  }
-}
-
-@media (max-width: 768px) {
-  #inputFilter {
-    width: 100%; 
-  }
-}
-
-
-@media (max-width: 600px) {
-  #inputFilter {
-    font-size: 14px;
-  }
-  .product {
-    margin-top: 20px;
-  }
-  .btn.btn-link.btn-sm {
-    
-    color: red;
-    font-size: 10px;
-    padding: 5px 10px;
-  }
-  .col-lg-6.offset-lg-6.col-md-12.mb-1.container {
-    font-size: 14px; 
-    text-align: left; 
-  }
-  .sectionBuscar .row {
-    font-size: 13px;
-  }
-  .btn.btn-light.btn-block {
-    font-size: 14px;
-  }
-  .form-control {
-    font-size: 14px;
-  }
  
 }
 
-.sectionBuscar {
-  margin-right: 50px;
+@media (max-width:600px) {
+  
+  #inputFilter {
+    padding: 20px;
+  }
 }
 
 /* CARRITO */
@@ -135,13 +100,13 @@
   margin-top: 20px;
 }
 
-/*boton comprar*/
+/boton comprar/
 #buyBtnDiv{
   margin-top: 2rem;
   margin-left: 60%;
 }
 
-/*carousel*/
+/carousel/
 
 
 #carouselExampleControls {
@@ -357,12 +322,14 @@ hr {
 
 .product h5 {
   font-size: 17px;
+  /position: absolute;/
   bottom: 0;
  
 }
 
 h5 {
-  color: darkblue;
+  
+  color: black;
   font-weight: bold;
 }
 
@@ -668,4 +635,39 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+@media (max-width: 768px) {
+  #inputFilter {
+    width: 100%; 
+  }
+}
+
+@media (max-width: 600px) {
+  #inputFilter {
+    font-size: 14px;
+  }
+  .product {
+    margin-top: 20px;
+  }
+  .btn.btn-link.btn-sm {
+    
+    color: red;
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+  .col-lg-6.offset-lg-6.col-md-12.mb-1.container {
+    font-size: 14px; 
+    text-align: left; 
+  }
+  .sectionBuscar .row {
+    font-size: 13px;
+  }
+  .btn.btn-light.btn-block {
+    font-size: 14px;
+  }
+  .form-control {
+    font-size: 14px;
+  }
+ 
 }
