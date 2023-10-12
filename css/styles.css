@@ -9,9 +9,6 @@
   margin-right: 50px;
 }
 
-
-
-
 /* Entrega 5.1*/
 
 #descVenta ul {
@@ -100,13 +97,13 @@
   margin-top: 20px;
 }
 
-/boton comprar/
+/* boton comprar */
 #buyBtnDiv{
   margin-top: 2rem;
   margin-left: 60%;
 }
 
-/carousel/
+/* carousel */
 
 
 #carouselExampleControls {
@@ -119,10 +116,6 @@
 #productComments {
   margin-top: 30px;
   max-width: 500px;
-  /* display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 50%;
-  gap: 0.5rem; */
 }
 
 #related div {
@@ -322,13 +315,10 @@ hr {
 
 .product h5 {
   font-size: 17px;
-  /position: absolute;/
   bottom: 0;
- 
 }
 
 h5 {
-  
   color: black;
   font-weight: bold;
 }
