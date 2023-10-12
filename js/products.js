@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       productDescription.textContent = product.description;
 
       const productPrice = document.createElement("h5");
-      productPrice.textContent = `Precio: USD ${product.cost}`;
+      productPrice.textContent = `USD ${product.cost}`;
 
       const productSold = document.createElement("p");
       productSold.textContent = ` ${product.soldCount} vendidos`;

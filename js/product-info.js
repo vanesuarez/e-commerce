@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("productName").innerHTML = data.name;
       document.getElementById(
         "productPrice"
-      ).innerHTML = `<b>Precio</b> <br>${data.currency} ${data.cost}`;
+      ).innerHTML = `<br> ${data.currency} ${data.cost}`;
       document.getElementById(
         "productDescription"
       ).innerHTML = `<b>Descripción</b> <br>${data.description}`;
@@ -192,17 +192,17 @@ document.addEventListener("DOMContentLoaded", function () {
     form.reset();
   });
 
-  //Entrega 5 desafiate
+  // Entrega 5 desafiate
   
   document.getElementById("buyBtn").addEventListener("click", function () {
     const name = document.getElementById("productName").textContent;
     const price = document.getElementById("productPrice").textContent;
     const img = document.querySelector(".carousel-inner img").src;
   
-    // Obtén el carrito actual del almacenamiento local o crea uno vacío si no existe.
+    // llama el carrito actual del almacenamiento local o crea uno vacio si no existe
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
   
-    // Agrega el producto al carrito como un objeto.
+    // Agrega el producto al carrito como un objeto
     cart.push({
       name: name,
       price: price,

@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const cont = document.getElementById("container");
 
-  // Llamamos el carrito desde almacenamiento local.
+  // Llamamos el carrito desde almacenamiento local
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Recorre los productos en el carrito y muéstralos en la página del carrito.
+  // Recorre los productos en el carrito y muéstralos en la página del carrito
   cart.forEach((product) => {
     const article = createCartItem(product);
     cont.appendChild(article);
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     article.appendChild(cName);
 
     const cPrice = document.createElement("p");
-    cPrice.innerHTML = product.price;
+    cPrice.innerHTML = product.price
     article.appendChild(cPrice);
     console.log(cPrice);
 
@@ -56,20 +56,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const cSubTotal = document.createElement("p");
     article.appendChild(cSubTotal);
 
-    // Función para actualizar el subtotal cuando cambia la cantidad.
+    // Función para actualizar el subtotal cuando cambia la cantidad
     function updateSubtotal() {
-      const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, "")); // elimina caracteres que no sean numeros
-      const count = parseFloat(cCount.value);
+      const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, "")); // expresión regular que elimina caracteres que no sean números
+      const count = parseFloat(cCount.value) || 0; // Utiliza 0 si se elimina lo que haya en el campo
       const subtotal = unitCost * count;
       cSubTotal.innerHTML = `<b>${
-        product.price.split(" ")[0]
-      } ${subtotal.toFixed(2)}</b>`;
+        product.price.split(" ")[0] // se usa para tomar la primera parte de la cadena product.price antes del primer espacio en blanco
+       } ${subtotal.toFixed(2)}</b>`; // formatea como cadena de 2 decimales
     }
 
-    // Llama a la función updateSubtotal cuando cambia la cantidad.
+    // Llama a la función updateSubtotal cuando cambia la cantidad y actualiza en tiempo real
     cCount.addEventListener("input", updateSubtotal);
 
-    // Calcula el subtotal inicial.
+    // Calcula el subtotal inicial
     updateSubtotal();
 
     return article;
