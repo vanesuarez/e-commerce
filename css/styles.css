@@ -71,6 +71,19 @@
     margin-right: 3rem;
     height: 8vh;
   }
+
+  #priceText {
+    display: flex;
+    text-overflow: inherit;
+    text-wrap: wrap;
+  }
+
+  #soldText {
+    text-align: right;
+    padding-top: 2rem;
+    margin-bottom: 0.5rem;
+    
+  }
 }
 
 /* CARRITO */
