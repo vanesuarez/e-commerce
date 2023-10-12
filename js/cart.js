@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     article.appendChild(cName);
 
     const cPrice = document.createElement("p");
-    cPrice.innerHTML = product.price
+    cPrice.innerHTML = product.price;
     article.appendChild(cPrice);
     console.log(cPrice);
 
@@ -58,12 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función para actualizar el subtotal cuando cambia la cantidad
     function updateSubtotal() {
-      const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, "")); // expresión regular que elimina caracteres que no sean números
-      const count = parseFloat(cCount.value) || 0; // Utiliza en precio 0 si se elimina lo que haya en el campo
+      const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+      const count = parseFloat(cCount.value) || 0;
       const subtotal = unitCost * count;
+
+      // Actualiza el contenido de cSubTotal con el subtotal calculado
       cSubTotal.innerHTML = `<b>${
-        product.price.split(" ")[0] // se usa para tomar la primera parte de la cadena product.price antes del primer espacio en blanco
-       } ${subtotal.toFixed(2)}</b>`; // formatea como cadena de 2 decimales
+        product.price.split(" ")[0]
+      } ${subtotal.toFixed(2)}</b>`;
     }
 
     // Llama a la función updateSubtotal cuando cambia la cantidad y actualiza en tiempo real
