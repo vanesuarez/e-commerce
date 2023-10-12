@@ -86,6 +86,46 @@
   }
 }
 
+@media (max-width: 768px) {
+  #inputFilter {
+    width: 100%; 
+  }
+}
+
+
+@media (max-width: 600px) {
+  #inputFilter {
+    font-size: 14px;
+  }
+  .product {
+    margin-top: 20px;
+  }
+  .btn.btn-link.btn-sm {
+    
+    color: red;
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+  .col-lg-6.offset-lg-6.col-md-12.mb-1.container {
+    font-size: 14px; 
+    text-align: left; 
+  }
+  .sectionBuscar .row {
+    font-size: 13px;
+  }
+  .btn.btn-light.btn-block {
+    font-size: 14px;
+  }
+  .form-control {
+    font-size: 14px;
+  }
+ 
+}
+
+.sectionBuscar {
+  margin-right: 50px;
+}
+
 /* CARRITO */
 
 .divCart {
@@ -317,14 +357,12 @@ hr {
 
 .product h5 {
   font-size: 17px;
-  position: absolute;
   bottom: 0;
  
 }
 
 h5 {
-  background-color: darkblue;
-  color: white;
+  color: darkblue;
   font-weight: bold;
 }
 
