@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cCount = document.createElement("input");
     cCount.type = "number";
     cCount.min = "0";
-    cCount.value = product.count || 1; // Establece el valor en 1 si no se proporciona una cantidad
+    cCount.value = product.quantity || 1; // Establece el valor en 1 si no se proporciona una cantidad
     article.appendChild(cCount);
 
     const cSubTotal = document.createElement("p");
