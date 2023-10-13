@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cCount = document.createElement("input");
     cCount.type = "number";
     cCount.min = "0";
-    cCount.value = product.quantity || 1; // Establece el valor en 1 si no se proporciona una cantidad
+    cCount.value = product.count || 1; // Establece el valor en 1 si no se proporciona una cantidad
     article.appendChild(cCount);
 
     const cSubTotal = document.createElement("p");
@@ -59,14 +59,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función para actualizar el subtotal cuando cambia la cantidad
     function updateSubtotal() {
+      const currency = product.price.substring(0, 4);
       const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
       const count = parseFloat(cCount.value) || 0;
-      const subtotal = unitCost * count;
+      const subtotal = `${currency} ${unitCost * count}`;
 
       // Actualiza el contenido de cSubTotal con el subtotal calculado
-      cSubTotal.innerHTML = `<b>${
-        product.price.split(" ")[0]
-      } ${subtotal.toFixed(2)}</b>`;
+      cSubTotal.innerHTML = `<b>${subtotal}</b>`;
     }
 
     // Llama a la función updateSubtotal cuando cambia la cantidad y actualiza en tiempo real
