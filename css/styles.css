@@ -41,53 +41,6 @@
   width: 100px;
 }
 
-/* MEDIA QUERIES */
-
-/* Tamaño LG */
-@media screen and (min-width: 992px) {
-  .centrar {
-    margin: 0 5%;
-  }
-}
-
-/* Tamaño MD */
-@media screen and (min-width: 768px) and (max-width: 992px) {
-  .centrar {
-    margin: 0 1%;
-  }
-  .divCartN input {
-    width: 70px;
-  }
-  #inputFilter {
-    padding: 20px;
-  }
-}
-
-/* Tamaño SM */
-@media screen and (max-width: 768px) {
-
-  .centrar {
-    margin: 0;
-  }
-  .divCartN input {
-    width: 50px;
-  }
-
-  .filterButtons {
-    font-size: 1rem;
-    margin-right: 3rem;
-    height: 8vh;
-  }
- 
-}
-
-@media (max-width:600px) {
-  
-  #inputFilter {
-    padding: 20px;
-  }
-}
-
 /* CARRITO */
 
 .divCart {
@@ -247,22 +200,6 @@ hr {
   margin-bottom: 5px;
   letter-spacing: 1px;
 }
-
-/* #commentButton {
-  margin-top: 10px;
-  color: #007bff;
-  border: none;
-  padding: 5px 10px;
-  max-width: 100px;
-  font-weight: bold;
-  border: 1px solid black;
-  border-radius: 10px;
-}
-
-#commentButton:hover {
-  background-color: #007bff11;
-  color: black
-} */
 
 #comment {
   font-size: 16px;
@@ -626,6 +563,8 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+/* MEDIA QUERIES */
 
 @media (max-width: 768px) {
   #inputFilter {

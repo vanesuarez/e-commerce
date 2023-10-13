@@ -68,6 +68,7 @@ session.addEventListener('click', function() {
 
   localStorage.removeItem('username');
   localStorage.removeItem('password');
+  localStorage.removeItem('cart');
   window.location.href = "login.html";
 
 })
