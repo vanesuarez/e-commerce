@@ -202,12 +202,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // llama el carrito actual del almacenamiento local o crea uno vacio si no existe
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
   
-    // Agrega el producto al carrito como un objeto
-    cart.push({
-      name: name,
-      price: price,
-      img: img,
-    });
+    const exists = cart.find((product) => product.name === name); 
+  
+    if (exists) {
+      exists.cantidad += 1;
+    } else {
+      cart.push({
+        name: name,
+        price: price,
+        img: img,
+        cantidad: 1,
+      });
+    }
   
     // Guarda el carrito actualizado en el almacenamiento local.
     localStorage.setItem("cart", JSON.stringify(cart));
