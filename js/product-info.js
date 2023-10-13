@@ -215,10 +215,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   
-    // Guarda el carrito actualizado en el almacenamiento local.
+    // Guarda el carrito actualizado en el almacenamiento local
     localStorage.setItem("cart", JSON.stringify(cart));
   
-    // Redirige a la página del carrito.
+    // Redirige a la página del carrito
     window.location.href = "cart.html";
   });
   
