@@ -205,13 +205,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const exists = cart.find((product) => product.name === name); 
   
     if (exists) {
-      exists.cantidad += 1;
+      exists.quantity += 1;
     } else {
       cart.push({
         name: name,
         price: price,
         img: img,
-        cantidad: 1,
+        quantity: 1,
       });
     }
   
