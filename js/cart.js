@@ -76,4 +76,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return article;
   }
+
+  // Entrega 6.1 - desgloce de precios
+
+  const subtotalPrice = document.getElementById('subtotalPrice');
+  const shippingPrice = document.getElementById('shippingPrice');
+  const totalPrice = document.getElementById('totalPrice');
+
+
+  
+
+
+
+
+
+
+
+
 });
