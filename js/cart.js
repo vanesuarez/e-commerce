@@ -28,6 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       cont.appendChild(article);
+
+      // codigo para que el subtotal utilice el producto del fetch tambien
+      const unitCost = parseFloat(cost.replace(/[^0-9.-]+/g, ""));
+      let total = 0;
+      total += unitCost * count;
+      subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
     });
 
   // Función para crear un elemento de carrito de compra.
@@ -46,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const cPrice = document.createElement("p");
     cPrice.innerHTML = product.price;
     article.appendChild(cPrice);
-    console.log(cPrice);
 
     const cCount = document.createElement("input");
     cCount.type = "number";
@@ -80,17 +85,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // Entrega 6.1 - desgloce de precios
 
   const subtotalPrice = document.getElementById('subtotalPrice');
-  const shippingPrice = document.getElementById('shippingPrice');
-  const totalPrice = document.getElementById('totalPrice');
 
+    function updateTotal () { 
+
+  let total = 0;
+
+  // Recorre el carrito para sacar los precios y hacer la suma
+  cart.forEach((product) => {
+    const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+    const count = parseFloat(product.quantity || 1);
+    total += unitCost * count;
+  });
+
+  subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
+
+}
 
   
 
-
-
-
-
-
-
-
+  const shippingPrice = document.getElementById('shippingPrice');
+  const totalPrice = document.getElementById('totalPrice');
 });
