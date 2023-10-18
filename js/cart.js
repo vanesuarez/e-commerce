@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       cont.appendChild(article);
 
-      // codigo para que el subtotal utilice el producto del fetch tambien
+      // codigo para que el subtotal tambien utilice el producto del fetch
       const unitCost = parseFloat(cost.replace(/[^0-9.-]+/g, ""));
       let total = 0;
       total += unitCost * count;
@@ -100,8 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
   subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
 
 }
-
-  
 
   const shippingPrice = document.getElementById('shippingPrice');
   const totalPrice = document.getElementById('totalPrice');
