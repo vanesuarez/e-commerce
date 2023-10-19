@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const cont = document.getElementById("container");
+  const subtotalPrice = document.getElementById('subtotalPrice');
 
   // Llamamos el carrito desde almacenamiento local
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   // Recorre los productos en el carrito y muéstralos en la página del carrito
   cart.forEach((product) => {
@@ -12,29 +13,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const url = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
+    // Mostrar el producto por defecto con el Fetch
+  async function fetchAndDisplayProduct(url) {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
       const img = `${data.articles[0].image}`;
       const name = `${data.articles[0].name}`;
       const cost = `${data.articles[0].currency} ${data.articles[0].unitCost}`;
       const count = `${data.articles[0].count}`;
 
-      const article = createCartItem({
+      const newProduct = {
         img: img,
         name: name,
         price: cost,
         count: count,
-      });
+      };
 
+      cart.push(newProduct); // agrega el producto del fetch al carrito
+
+      const article = createCartItem(newProduct);
       cont.appendChild(article);
 
-      // codigo para que el subtotal tambien utilice el producto del fetch
-      const unitCost = parseFloat(cost.replace(/[^0-9.-]+/g, ""));
-      let total = 0;
-      total += unitCost * count;
-      subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
-    });
+      updateSubtotal(); // Actualizamos el subtotal después de agregar el producto del fetch
+
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  fetchAndDisplayProduct(url);
 
   // Función para crear un elemento de carrito de compra.
   function createCartItem(product) {
@@ -64,13 +73,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función para actualizar el subtotal cuando cambia la cantidad
     function updateSubtotal() {
-      const currency = product.price.substring(0, 4);
-      const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
-      const count = parseFloat(cCount.value) || 0;
-      const subtotal = `${currency} ${unitCost * count}`;
+      let total = 0;
 
-      // Actualiza el contenido de cSubTotal con el subtotal calculado
-      cSubTotal.innerHTML = `<b>${subtotal}</b>`;
+      // Recorre el carrito para calcular el subtotal y la suma total
+      cart.forEach((product) => {
+        const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+        const count = parseFloat(cCount.value) || 0;
+        const subtotal = unitCost * count;
+        total += subtotal;
+
+        // Actualiza el contenido de cSubTotal con el subtotal calculado
+        cSubTotal.innerHTML = `<b>${product.price.substring(0, 4)} ${subtotal.toFixed(2)}</b>`;
+      });
+
+      subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
     }
 
     // Llama a la función updateSubtotal cuando cambia la cantidad y actualiza en tiempo real
@@ -81,26 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return article;
   }
-
-  // Entrega 6.1 - desgloce de precios
-
-  const subtotalPrice = document.getElementById('subtotalPrice');
-
-    function updateTotal () { 
-
-  let total = 0;
-
-  // Recorre el carrito para sacar los precios y hacer la suma
-  cart.forEach((product) => {
-    const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
-    const count = parseFloat(product.quantity || 1);
-    total += unitCost * count;
-  });
-
-  subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
-
-}
-
-  const shippingPrice = document.getElementById('shippingPrice');
-  const totalPrice = document.getElementById('totalPrice');
 });
+
+
+// const shippingPrice = document.getElementById('shippingPrice');
+// const totalPrice = document.getElementById('totalPrice');
