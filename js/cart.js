@@ -77,3 +77,47 @@ document.addEventListener("DOMContentLoaded", () => {
     return article;
   }
 });
+
+// Entrega 6 - Parte 2:
+
+document.addEventListener('DOMContentLoaded', function () {
+  const saveBtn = document.getElementById('saveBtn');
+  const formPay = document.querySelector('.centrar p');
+
+  saveBtn.addEventListener('click',  ()=> {
+      const selected = document.querySelector('input[name="paymentMethod"]:checked');
+      if (selected) {
+          formPay.textContent = selected.nextElementSibling.textContent;
+      }
+  });
+});
+
+// Obtén los elementos de radio para tarjeta de crédito y transferencia bancaria
+const creditCardRadio = document.getElementById("creditCard");
+const transferRadio = document.getElementById("transfer");
+
+// Obtén los campos relacionados a la tarjeta de crédito
+const cardNumber = document.getElementById("cardNumber");
+const cardCvv = document.getElementById("cardCvv");
+const cardExpiration = document.getElementById("cardExpiration");
+
+// Obtén el campo relacionado a la transferencia bancaria
+const accountNumber = document.getElementById("accountNumber");
+
+creditCardRadio.addEventListener("change", function () {
+  if (creditCardRadio.checked) {
+    cardNumber.disabled = false;
+    cardCvv.disabled = false;
+    cardExpiration.disabled = false;
+    accountNumber.disabled = true;
+  }
+});
+
+transferRadio.addEventListener("change", function () {
+  if (transferRadio.checked) {
+    cardNumber.disabled = true;
+    cardCvv.disabled = true;
+    cardExpiration.disabled = true;
+    accountNumber.disabled = false;
+  }
+});
