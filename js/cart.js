@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const cont = document.getElementById("container");
   const subtotalPrice = document.getElementById('subtotalPrice');
 
-  // Llamamos el carrito desde almacenamiento local
+  // Llamamos el carrito desde almacenamiento local o crea un carrito vacio si no existe
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Recorre los productos en el carrito y muéstralos en la página del carrito
+  // Recorre los productos en el carrito y los muestra con la funcion createCartItem
   cart.forEach((product) => {
     const article = createCartItem(product);
     cont.appendChild(article);
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const url = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 
-    // Mostrar el producto por defecto con el Fetch
+  // Mostrar el producto por defecto con el Fetch
   async function fetchAndDisplayProduct(url) {
     try {
       const response = await fetch(url);
@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const cost = `${data.articles[0].currency} ${data.articles[0].unitCost}`;
       const count = `${data.articles[0].count}`;
 
+      // Crear un objeto para el producto del fetch
       const newProduct = {
         img: img,
         name: name,
@@ -31,12 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
         count: count,
       };
 
-      cart.push(newProduct); // agrega el producto del fetch al carrito
+      // Agregar el producto del fetch al carrito
+      cart.push(newProduct);
 
       const article = createCartItem(newProduct);
       cont.appendChild(article);
 
-      updateSubtotal(); // Actualizamos el subtotal después de agregar el producto del fetch
+      updateSubtotal();
 
     } catch (error) {
       console.error("Error:", error);
@@ -45,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchAndDisplayProduct(url);
 
-  // Función para crear un elemento de carrito de compra.
+  // Función para crear un elemento de carrito de compra
   function createCartItem(product) {
     const article = document.createElement("div");
     article.classList.add("divCartN");
@@ -65,39 +67,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const cCount = document.createElement("input");
     cCount.type = "number";
     cCount.min = "0";
-    cCount.value = product.quantity || 1; // Establece el valor en 1 si no se proporciona una cantidad
+    cCount.value = product.quantity || 1; // Establecer el valor en 1 si no se proporciona una cantidad
     article.appendChild(cCount);
 
-    const cSubTotal = document.createElement("p");
-    article.appendChild(cSubTotal);
+    const individualSubtotal = document.createElement("p");
+    article.appendChild(individualSubtotal);
 
-    // Función para actualizar el subtotal cuando cambia la cantidad
+    // Función para actualizar el subtotal individual y total cuando cambia la cantidad
     function updateSubtotal() {
       let total = 0;
 
-      // Recorre el carrito para calcular el subtotal y la suma total
+      // Recorrer el carrito para calcular el subtotal individual y la suma total
       cart.forEach((product) => {
         const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
         const count = parseFloat(cCount.value) || 0;
         const subtotal = unitCost * count;
         total += subtotal;
 
-        // Actualiza el contenido de cSubTotal con el subtotal calculado
-        cSubTotal.innerHTML = `<b>${product.price.substring(0, 4)} ${subtotal.toFixed(2)}</b>`;
+        // Actualiza el subtotal individual tomando la moneda y el precio
+        individualSubtotal.innerHTML = `<b>${product.price.substring(0, 4)} ${subtotal.toFixed(2)}</b>`;
       });
 
+      // Actualizar el precio subtotal total en la seccion de Costos
       subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
     }
 
-    // Llama a la función updateSubtotal cuando cambia la cantidad y actualiza en tiempo real
+    // Llamar a la función updateSubtotal cuando cambia la cantidad y actualizar en tiempo real
     cCount.addEventListener("input", updateSubtotal);
 
-    // Calcula el subtotal inicial
+    // Calcular el subtotal inicial
     updateSubtotal();
 
     return article;
   }
+
+  
 });
+
 
 
 // const shippingPrice = document.getElementById('shippingPrice');
