@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const cont = document.getElementById("container");
   const subtotalPrice = document.getElementById('subtotalPrice');
+  const shippingPrice = document.getElementById('shippingPrice');
+  const finalPrice = document.getElementById('totalPrice');
 
   // Llamamos el carrito desde almacenamiento local o crea un carrito vacio si no existe
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -37,8 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const article = createCartItem(newProduct);
       cont.appendChild(article);
-
-      updateSubtotal();
 
     } catch (error) {
       console.error("Error:", error);
@@ -101,10 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return article;
   }
 
-  
 });
 
-
-
-// const shippingPrice = document.getElementById('shippingPrice');
-// const totalPrice = document.getElementById('totalPrice');
+    //  // código para los costos de envío
+    //  const premiumShipping = document.getElementById('exampleRadios1');
+    //  const expressShipping = document.getElementById('exampleRadios2')
+    //  const standardShipping = document.getElementById('exampleRadios3')
+ 
+    //  if (premiumShipping.checked) {
+    //  shippingPrice.textContent = (total * 0.15);
+    //  }
