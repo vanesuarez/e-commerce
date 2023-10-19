@@ -133,32 +133,68 @@
       <hr>
 
       <section class="centrar">
+
         <h4>Formas de pago</h4>
         <p>No ha seleccionado</p>
         <p><a data-bs-toggle="modal" href="#miModal">Seleccionar</a></p>
+
         <div class="modal fade" id="miModal" data-bs-backdrop="static">
           <div class="modal-dialog">
             <div class="modal-content">
+
               <div class="modal-header">
                 <h5 class="modal-title">Formas de pago</h5>
                 <button class="btn-close" data-bs-dismiss="modal"></button>
               </div>
-              <div class="modal-body">
-                <div class="form-check">
-                  <input type="radio" class="form-check-input" id="validationFormCheck3" name="radio-stacked" required>
-                  <label class="form-check-label" for="validationFormCheck3">Tarjeta de crédito</label>
-                  <hr>
-                  <input type="number" class="form-control" placeholder="Número de tarjeta">
-                  <input type="number" class="form-control" placeholder="Código de seg.">
-                  <input type="number" class="form-control" placeholder="Vencimiento (MM/AA)">
-                </div>
 
-                <div class="form-check">
-                  <input type="radio" class="form-check-input" id="validationFormCheck3" name="radio-stacked" required>
-                  <label class="form-check-label" for="validationFormCheck3">Transferencia bancaria</label>
-                  <hr>
+              <div class="modal-body">
+                <div class="my-3">
+                  <div class="form-check">
+                    <input id="credit" name="paymentMethod" type="radio" class="form-check-input" required>
+                    <label class="form-check-label" for="credit">Tarjeta de crédito</label>
+                  </div>
+                  <hr class="my-4">
+                  <div class="row gy-3">
+
+                    <div class="col-md-8">
+                      <label for="cc-number" class="form-label">Número de tarjeta</label>
+                      <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                      <div class="invalid-feedback">
+                        Debe ingresar el número de tarjeta.
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label for="cc-cvv" class="form-label">Código de seg.</label>
+                      <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                      <div class="invalid-feedback">
+                        Debe ingresar el código de seguridad.
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="cc-expiration" class="form-label">Vencimiento (MM/AA)</label>
+                      <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                      <div class="invalid-feedback">
+                        Debe ingresar el vencimiento de su tarjeta.
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <div class="my-3">
+                  <div class="form-check">
+                    <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                    <label class="form-check-label" for="credit">Transferencia bancaria</label>
+                  </div>
+                  <hr class="my-4">
+                  <div class="col-md-6">
+                    <label for="cc-name" class="form-label">Número de cuenta</label>
+                    <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                    <div class="invalid-feedback">
+                      Debe ingresar el número de cuenta.
+                    </div>
+                  </div>
               </div>
+
               <div class="modal-footer">
                 <button class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 <button class="btn btn-primary" type="submit">Guardar</button>
@@ -166,7 +202,6 @@
             </div>
           </div>
         </div>
-        <div class="invalid-feedback">Debe seleccionar una forma de pago</div>
       </section>
     </div>
   </main>
