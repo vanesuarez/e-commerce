@@ -121,3 +121,65 @@ transferRadio.addEventListener("change", function () {
     accountNumber.disabled = false;
   }
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const forms = document.querySelectorAll(".needs-validation");
+  const checkbox = document.querySelector("#cardNumber, #transfer");
+  const termsButton = document.getElementById("termsFeedbackText");
+  const validationText = document.getElementById("termsValidation");
+  const form = document.getElementById("form1");
+
+  forms.forEach(function (form) {
+    form.addEventListener("submit", function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      } 
+      form.classList.add("was-validated");
+
+      // Validaciones del checkbox al enviar el formulario
+      if (!checkbox.checked) {
+        checkbox.classList.add("is-invalid");
+        termsButton.classList.add("text-danger");
+        validationText.style.display = "block";
+      }
+
+      // Validaciones del checkbox junto con el resto del formulario para resetearlo
+      if (form.checkValidity()) {
+        form.reset();
+        updateFeedbackClasses(); // Llamar a la función para quitar las clases de validación
+      }
+    });
+
+    // Evento para darle reset al formulario
+    form.addEventListener("reset", function () {
+      form.classList.remove("was-validated"); // quita las clases de validación al restablecer el formulario
+    });
+
+  });
+
+    // Funcion para el modal
+  function updateFeedbackClasses() {
+    if (checkbox.checked) {
+      checkbox.classList.remove("is-invalid");
+      checkbox.classList.add("is-valid");
+      termsButton.classList.remove("text-danger");
+      validationText.style.display = "none";
+    } else {
+      checkbox.classList.remove("is-valid");
+      checkbox.classList.add("is-invalid");
+      termsButton.classList.add("text-danger");
+      validationText.style.display = "block";
+    }
+  }
+
+  checkbox.addEventListener("change", updateFeedbackClasses);
+
+});
+
+
+
+
+
+
