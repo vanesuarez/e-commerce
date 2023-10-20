@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const cont = document.getElementById("container");
-  const subtotalPrice = document.getElementById('subtotalPrice');
-  const shippingPrice = document.getElementById('shippingPrice');
-  const finalPrice = document.getElementById('totalPrice');
+  const subtotalPrice = document.getElementById("subtotalPrice");
+  const shippingPrice = document.getElementById("shippingPrice");
+  const finalPrice = document.getElementById("totalPrice");
+  const radioButtons = document.querySelectorAll('input[name="exampleRadios"]');
 
   // Llamamos el carrito desde almacenamiento local o crea un carrito vacio si no existe
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -39,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const article = createCartItem(newProduct);
       cont.appendChild(article);
-
     } catch (error) {
       console.error("Error:", error);
     }
@@ -85,14 +85,46 @@ document.addEventListener("DOMContentLoaded", () => {
         total += subtotal;
 
         // Actualiza el subtotal individual tomando la moneda y el precio
-        individualSubtotal.innerHTML = `<b>${product.price.substring(0, 4)} ${subtotal.toFixed(2)}</b>`;
-      });
+        individualSubtotal.innerHTML = `<b>${product.price.substring(
+          0,
+          4
+        )} ${subtotal.toFixed(2)}</b>`;
 
-      // Actualizar el precio subtotal total en la seccion de Costos
-      subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
+        // Actualizar el precio subtotal total en la sección de Costos
+        subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
+
+        // Función para obtener y actualizar el costo de envio en tiempo real
+        function updateShippingPrice() {
+          // Obtenemos la opcion de envio seleccionada
+          const selectedShippingOption = document.querySelector(
+            'input[name="exampleRadios"]:checked'
+          );
+
+          if (selectedShippingOption) {
+            const shippingPercentage =
+              parseFloat(selectedShippingOption.value) / 100;
+            shippingPrice.textContent = `USD ${(
+              total * shippingPercentage
+            ).toFixed(2)}`;
+          } 
+        }
+
+        // Agregamos eventos change a los radio buttons con la funcion creada
+        radioButtons.forEach((radio) => {
+          radio.addEventListener("change", updateShippingPrice);
+        });
+
+        // Llamamos la funcion updateShippingPrice al cargar la pagina para establecer el precio de envio inicial
+        updateShippingPrice();
+
+        // Actualiza el precio total en tiempo real
+        finalPrice.textContent = `USD ${(
+          total + parseFloat(shippingPrice.textContent.split(" ")[1])
+        ).toFixed(2)}`;
+      });
     }
 
-    // Llamar a la función updateSubtotal cuando cambia la cantidad y actualizar en tiempo real
+    // Llamar a la función updateSubtotal cuando cambia la cantidad y actualizar en tiempo real el subtotal individual
     cCount.addEventListener("input", updateSubtotal);
 
     // Calcular el subtotal inicial
@@ -100,14 +132,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return article;
   }
-
 });
-
-    //  // código para los costos de envío
-    //  const premiumShipping = document.getElementById('exampleRadios1');
-    //  const expressShipping = document.getElementById('exampleRadios2')
-    //  const standardShipping = document.getElementById('exampleRadios3')
- 
-    //  if (premiumShipping.checked) {
-    //  shippingPrice.textContent = (total * 0.15);
-    //  }

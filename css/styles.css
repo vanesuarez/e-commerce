@@ -11,9 +11,7 @@
 
 /* Entrega 6.1 */
 
-#subtotalPrice {
-  align-items: right;
-  justify-content: right;
+.finalPrices {
   text-align: right;
 }
 
