@@ -78,14 +78,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let total = 0;
 
-      // Recorrer el carrito para calcular la suma total
+      // Recorrer el carrito para calcular la suma total y el envio
       cart.forEach((item) => {
-        const itemUnitCost = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
-        const itemCount = parseFloat(item.count);
-        total += itemUnitCost * count;
-      });
+        const unitCost = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
+        const subtotal = unitCost * count;
+        total += subtotal;
 
       subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
+
+      })
 
       function updateShippingPrice() {
         const selectedShippingOption = document.querySelector('input[name="exampleRadios"]:checked');
@@ -107,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     cCount.addEventListener("input", updateSubtotal);
+    
     updateSubtotal();
 
     return article;
