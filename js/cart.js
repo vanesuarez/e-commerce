@@ -80,53 +80,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Entrega 6 - Parte 2:
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", () => {
+
   const saveBtn = document.getElementById('saveBtn');
   const formPay = document.querySelector('.centrar p');
 
-  saveBtn.addEventListener('click',  ()=> {
-      const selected = document.querySelector('input[name="paymentMethod"]:checked');
-      if (selected) {
-          formPay.textContent = selected.nextElementSibling.textContent;
-      }
+  saveBtn.addEventListener('click', () => {
+    const selected = document.querySelector('input[name="paymentMethod"]:checked');
+    if (selected) {
+      formPay.textContent = selected.nextElementSibling.textContent;
+    }
   });
-});
 
-// Obtén los elementos de radio para tarjeta de crédito y transferencia bancaria
-const creditCardRadio = document.getElementById("creditCard");
-const transferRadio = document.getElementById("transfer");
+  const cancel = document.getElementById("cancel");
+  // Agrega un manejador de eventos para el botón "Cancelar" del modal
+  cancel.addEventListener("click", function () {
+    // Obtén el formulario modal
+    const modalForm = document.getElementById("modalForm");
 
-// Obtén los campos relacionados a la tarjeta de crédito
-const cardNumber = document.getElementById("cardNumber");
-const cardCvv = document.getElementById("cardCvv");
-const cardExpiration = document.getElementById("cardExpiration");
+    // Restablece el formulario modal
+    modalForm.reset();
 
-// Obtén el campo relacionado a la transferencia bancaria
-const accountNumber = document.getElementById("accountNumber");
+    // También puedes quitar las clases de validación si es necesario
+    modalForm.classList.remove("was-validated");
+  });
 
-creditCardRadio.addEventListener("change", function () {
-  if (creditCardRadio.checked) {
-    cardNumber.disabled = false;
-    cardCvv.disabled = false;
-    cardExpiration.disabled = false;
-    accountNumber.disabled = true;
-  }
-});
+  // Obtén los elementos de radio para tarjeta de crédito y transferencia bancaria
+  const creditCardRadio = document.getElementById("creditCard");
+  const transferRadio = document.getElementById("transfer");
 
-transferRadio.addEventListener("change", function () {
-  if (transferRadio.checked) {
-    cardNumber.disabled = true;
-    cardCvv.disabled = true;
-    cardExpiration.disabled = true;
-    accountNumber.disabled = false;
-  }
-});
+  // Obtén los campos relacionados a la tarjeta de crédito
+  const cardNumber = document.getElementById("cardNumber");
+  const cardCvv = document.getElementById("cardCvv");
+  const cardExpiration = document.getElementById("cardExpiration");
 
+  // Obtén el campo relacionado a la transferencia bancaria
+  const accountNumber = document.getElementById("accountNumber");
 
-document.addEventListener("DOMContentLoaded", function () {
+  creditCardRadio.addEventListener("change", function () {
+    if (creditCardRadio.checked) {
+      cardCvv.disabled = false;
+      cardNumber.disabled = false;
+      cardExpiration.disabled = false;
+      accountNumber.disabled = true;
+    }
+  });
+
+  transferRadio.addEventListener("change", function () {
+    if (transferRadio.checked) {
+      cardCvv.disabled = true;
+      cardNumber.disabled = true;
+      cardExpiration.disabled = true;
+      accountNumber.disabled = false;
+    }
+  });
+
   const forms = document.querySelectorAll(".needs-validation");
-  const checkbox = document.querySelector("#cardNumber, #transfer");
-  const termsButton = document.getElementById("termsFeedbackText");
+  const checkbox = document.querySelector("#creditCard, #transfer");
   const validationText = document.getElementById("termsValidation");
   const form = document.getElementById("form1");
 
@@ -135,13 +145,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!form.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();
-      } 
+      }
       form.classList.add("was-validated");
 
       // Validaciones del checkbox al enviar el formulario
       if (!checkbox.checked) {
         checkbox.classList.add("is-invalid");
-        termsButton.classList.add("text-danger");
         validationText.style.display = "block";
       }
 
@@ -159,17 +168,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   });
 
-    // Funcion para el modal
+  // Funcion para el modal
   function updateFeedbackClasses() {
-    if (checkbox.checked) {
+    const termsModal = document.getElementById("termsModal");
+    if (creditCardRadio.checked || transferRadio.checked) {
       checkbox.classList.remove("is-invalid");
       checkbox.classList.add("is-valid");
-      termsButton.classList.remove("text-danger");
+      termsModal.classList.remove("text-danger");
       validationText.style.display = "none";
     } else {
       checkbox.classList.remove("is-valid");
       checkbox.classList.add("is-invalid");
-      termsButton.classList.add("text-danger");
+      termsModal.classList.add("text-danger");
       validationText.style.display = "block";
     }
   }
@@ -177,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
   checkbox.addEventListener("change", updateFeedbackClasses);
 
 });
+
 
 
 
