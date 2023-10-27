@@ -154,9 +154,58 @@
           <div class="invalid-feedback" id="termsValidation">Debe seleccionar una forma de pago.</div>
         </section>
         <hr>
+        <section class="centrar">
+          <h4>Costos</h4>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <h5>Subtotal</h5>
+                  <small class="text-muted">Costo unitario del producto por cantidad</small>
+                </div>
+                <div class="col-6 text-right">
+                  <h5 class="finalPrices" id="subtotalPrice"></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <h5>Envío</h5>
+                  <small class="text-muted">Según el tipo de envío</small>
+                </div>
+                <div class="col-6 text-right">
+                  <h5 class="finalPrices" id="shippingPrice"></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <h5>Total ($)</h5>
+                </div>
+                <div class="col-6 text-right">
+                  <h5 class="finalPrices" id="totalPrice"></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <hr>
         <button id="finalizarCompra" class="w-100 btn btn-primary btn-lg" type="submit">Finalizar compra</button>
       </form>
     </div>
+    <hr>
+
   </main>
 
   <div class="modal fade" id="miModal" data-bs-backdrop="static">
@@ -174,7 +223,8 @@
 
             <div class="my-3">
               <div class="form-check">
-                <input id="creditCard" name="paymentMethod" type="radio" class="form-check-input" value="creditCard" required>
+                <input id="creditCard" name="paymentMethod" type="radio" class="form-check-input" value="creditCard"
+                  required>
                 <label class="form-check-label" for="creditCard">Tarjeta de crédito</label>
               </div>
 
@@ -199,7 +249,8 @@
 
             <div class="my-3">
               <div class="form-check">
-                <input id="transfer" name="paymentMethod" type="radio" class="form-check-input" value="transfer" required>
+                <input id="transfer" name="paymentMethod" type="radio" class="form-check-input" value="transfer"
+                  required>
                 <label class="form-check-label" for="transfer">Transferencia bancaria</label>
               </div>
 
