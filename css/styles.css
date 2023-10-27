@@ -139,15 +139,16 @@
 
 #productName {
   padding: 25px 0 0;
-  font-size: 24px;
+  font-size: 2rem;
   color: #007bff; 
   font-weight: bold;
   margin-bottom: 10px; 
 }
 
 #productPrice {
-  font-size: 18px; 
+  font-size: 1.5rem; 
   margin-bottom: 10px; 
+  font-weight: bold;
 }
 
 #productDescription {
@@ -167,6 +168,11 @@ hr {
 
 .prfUsuario {
   font-size: 20px;
+}
+
+#priceText {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 /* PRODUCTOS */
@@ -283,6 +289,14 @@ h5 {
   font-size: 19px;
   
   text-align: center;
+}
+
+#rangeFilterCount {
+  border-color: darkgray;
+}
+
+#clearRangeFilter {
+  border-color: darkgray;
 }
 
 #mainLogin {
@@ -581,7 +595,6 @@ a.custom-card:hover {
   }
   .btn.btn-link.btn-sm {
     
-    color: red;
     font-size: 10px;
     padding: 5px 10px;
   }
@@ -597,6 +610,20 @@ a.custom-card:hover {
   }
   .form-control {
     font-size: 14px;
+  }
+
+
+  #compraExitosa {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Para asegurarse de que esté en la parte superior de otros elementos */
+    background-color: #28a745; /* Color de fondo verde (puedes ajustarlo) */
+    color: #fff; /* Color del texto (puedes ajustarlo) */
+    padding: 10px; /* Espaciado interno (ajusta según tu diseño) */
+    border-radius: 5px; /* Bordes redondeados (ajusta según tu diseño) */
+    display: none;
   }
  
 }
