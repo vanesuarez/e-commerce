@@ -60,6 +60,9 @@
       </div>
     </div>
   </nav>
+  <div id="compraExitosa" class="alert alert-success" style="display: none;">
+    ¡Has comprado con éxito!
+  </div>
   <main>
     <div class="container">
       <section class="centrar">
@@ -145,13 +148,13 @@
         <section class="centrar">
 
           <h4>Formas de pago</h4>
-          <p>No ha seleccionado</p>
+          <p id="formaPagoP">No ha seleccionado</p>
           <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal" data-bs-target="#miModal"
             id="termsModal">Seleccionar</button>
           <div class="invalid-feedback" id="termsValidation">Debe seleccionar una forma de pago.</div>
         </section>
         <hr>
-        <button class="w-100 btn btn-primary btn-lg" type="submit">Finalizar compra</button>
+        <button id="finalizarCompra" class="w-100 btn btn-primary btn-lg" type="submit">Finalizar compra</button>
       </form>
     </div>
   </main>
@@ -171,7 +174,7 @@
 
             <div class="my-3">
               <div class="form-check">
-                <input id="creditCard" name="paymentMethod" type="radio" class="form-check-input" required>
+                <input id="creditCard" name="paymentMethod" type="radio" class="form-check-input" value="creditCard" required>
                 <label class="form-check-label" for="creditCard">Tarjeta de crédito</label>
               </div>
 
@@ -181,22 +184,22 @@
 
                 <div class="col-md-8">
                   <label for="cardNumber" class="form-label">Número de tarjeta</label>
-                  <input type="text" class="form-control" id="cardNumber">
+                  <input type="text" class="form-control" id="cardNumber" required>
                 </div>
                 <div class="col-md-4">
                   <label for="cardCvv" class="form-label">Código de seg.</label>
-                  <input type="text" class="form-control" id="cardCvv">
+                  <input type="text" class="form-control" id="cardCvv" required>
                 </div>
                 <div class="col-md-6">
                   <label for="cardExpiration" class="form-label">Vencimiento (MM/AA)</label>
-                  <input type="text" class="form-control" id="cardExpiration">
+                  <input type="text" class="form-control" id="cardExpiration" required>
                 </div>
               </div>
             </div>
 
             <div class="my-3">
               <div class="form-check">
-                <input id="transfer" name="paymentMethod" type="radio" class="form-check-input" required>
+                <input id="transfer" name="paymentMethod" type="radio" class="form-check-input" value="transfer" required>
                 <label class="form-check-label" for="transfer">Transferencia bancaria</label>
               </div>
 
@@ -204,13 +207,13 @@
 
               <div class="col-md-6">
                 <label for="accountNumber" class="form-label">Número de cuenta</label>
-                <input type="text" class="form-control" id="accountNumber">
+                <input type="text" class="form-control" id="accountNumber" required>
               </div>
             </div>
 
             <div class="modal-footer">
               <button class="btn btn-danger" data-bs-dismiss="modal" id="cancel">Cancelar</button>
-              <button class="btn btn-primary" id="saveBtn" data-bs-dismiss="modal">Guardar</button>
+              <button class="btn btn-primary" id="saveBtn" data-bs-dismiss="modal" type="button">Guardar</button>
             </div>
           </form>
         </div>

@@ -611,5 +611,19 @@ a.custom-card:hover {
   .form-control {
     font-size: 14px;
   }
+
+
+  #compraExitosa {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Para asegurarse de que esté en la parte superior de otros elementos */
+    background-color: #28a745; /* Color de fondo verde (puedes ajustarlo) */
+    color: #fff; /* Color del texto (puedes ajustarlo) */
+    padding: 10px; /* Espaciado interno (ajusta según tu diseño) */
+    border-radius: 5px; /* Bordes redondeados (ajusta según tu diseño) */
+    display: none;
+  }
  
 }

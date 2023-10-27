@@ -105,16 +105,12 @@ document.addEventListener("DOMContentLoaded", () => {
     modalForm.classList.remove("was-validated");
   });
 
-  // Obtén los elementos de radio para tarjeta de crédito y transferencia bancaria
   const creditCardRadio = document.getElementById("creditCard");
   const transferRadio = document.getElementById("transfer");
 
-  // Obtén los campos relacionados a la tarjeta de crédito
   const cardNumber = document.getElementById("cardNumber");
   const cardCvv = document.getElementById("cardCvv");
   const cardExpiration = document.getElementById("cardExpiration");
-
-  // Obtén el campo relacionado a la transferencia bancaria
   const accountNumber = document.getElementById("accountNumber");
 
   creditCardRadio.addEventListener("change", function () {
@@ -134,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
       accountNumber.disabled = false;
     }
   });
-
+  
   const forms = document.querySelectorAll(".needs-validation");
   const checkbox = document.querySelector("#creditCard, #transfer");
   const validationText = document.getElementById("termsValidation");
@@ -186,6 +182,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   checkbox.addEventListener("change", updateFeedbackClasses);
 
+  const finalizarCompraBtn = document.getElementById("finalizarCompra");
+  const compraExitosaDiv = document.getElementById("compraExitosa");
+
+  finalizarCompraBtn.addEventListener("click", () => {
+    // Restablece la selección de forma de pago en el formulario modal
+    const creditCardRadio = document.getElementById("creditCard");
+    const transferRadio = document.getElementById("transfer");
+    creditCardRadio.checked = false;
+    transferRadio.checked = false;
+
+    // También puedes deshabilitar los campos relacionados si es necesario
+    const cardNumber = document.getElementById("cardNumber");
+    const cardCvv = document.getElementById("cardCvv");
+    const cardExpiration = document.getElementById("cardExpiration");
+    const accountNumber = document.getElementById("accountNumber");
+    cardNumber.disabled = true;
+    cardCvv.disabled = true;
+    cardExpiration.disabled = true;
+    accountNumber.disabled = true;
+
+    // Borra la forma de pago del párrafo
+    const formaPagoP = document.getElementById("formaPagoP");
+    formaPagoP.textContent = "No ha seleccionado";
+
+    const compraExitosaDiv = document.getElementById("compraExitosa");
+
+    // Mostrar el mensaje de compra exitosa
+    compraExitosaDiv.style.display = "block";
+  });
 });
 
 
