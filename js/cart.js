@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const subtotal = unitCost * count;
         total += subtotal;
 
-      subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
+        subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
 
       })
 
@@ -108,14 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     cCount.addEventListener("input", updateSubtotal);
-    
+
     updateSubtotal();
 
     return article;
   }
 
 
-// Entrega 6 - Parte 2:
+  // Entrega 6 - Parte 2:
 
   const saveBtn = document.getElementById('saveBtn');
   const formPay = document.querySelector('.centrar p');
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
       accountNumber.disabled = false;
     }
   });
-  
+
   const forms = document.querySelectorAll(".needs-validation");
   const checkbox = document.querySelector("#creditCard, #transfer");
   const validationText = document.getElementById("termsValidation");
