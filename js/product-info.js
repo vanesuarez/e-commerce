@@ -212,6 +212,8 @@ document.addEventListener("DOMContentLoaded", function () {
         price: price,
         img: img,
         quantity: 1,
+        id: productID,
+        quantity: 1
       });
     }
   

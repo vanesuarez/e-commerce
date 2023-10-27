@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const radioButtons = document.querySelectorAll('input[name="exampleRadios"]');
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  console.log(cart);
 
   // Recorre los productos en el carrito y los muestra con la funcion createCartItem
   cart.forEach((product) => {
@@ -24,12 +25,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = `${data.articles[0].name}`;
       const cost = `${data.articles[0].currency} ${data.articles[0].unitCost}`;
       const count = `${data.articles[0].count}`;
+      const id = `${data.articles[0].id}`;
 
       const newProduct = {
         img: img,
         name: name,
         price: cost,
         count: count,
+id: id
       };
 
       cart.push(newProduct);
@@ -63,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cCount.type = "number";
     cCount.min = "0";
     cCount.value = product.quantity || 1;
+    cCount.id = product.id
     article.appendChild(cCount);
 
     const individualSubtotal = document.createElement("p");
@@ -80,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Recorrer el carrito para calcular la suma total y el envio
       cart.forEach((item) => {
+        console.log(item);
         const unitCost = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
         const subtotal = unitCost * count;
         total += subtotal;
@@ -107,127 +112,37 @@ document.addEventListener("DOMContentLoaded", () => {
       finalPrice.textContent = `USD ${(parseFloat(subtotalPrice.textContent.split(" ")[1]) + parseFloat(shippingPrice.textContent.split(" ")[1])).toFixed(2)}`;
     }
 
-    cCount.addEventListener("input", updateSubtotal);
+    function updateUniqueProduct(e){
+      console.log(e);
+    }
+
+    cCount.addEventListener("input", (e)=> {
+      console.log(e.target);
+      const quantity = e.target.value;
+      const idProd = e.target.id;
+
+      for(let i = 0; i<cart.length; i++){
+        unProd = cart[i]
+        if(unProd.id == idProd){
+          unProd.quantity = quantity
+        }
+      }
+
+      let total = 0;
+
+      cart.forEach((item) => {
+        console.log(item);
+        const unitCost = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
+        const subtotal = unitCost * parseInt(item.quantity);
+        total += subtotal;
+
+      subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
+
+      })
+    });
     
     updateSubtotal();
 
     return article;
   }
 });
-
-// Entrega 6 - Parte 2:
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const saveBtn = document.getElementById('saveBtn');
-  const formPay = document.querySelector('.centrar p');
-
-  saveBtn.addEventListener('click', () => {
-    const selected = document.querySelector('input[name="paymentMethod"]:checked');
-    if (selected) {
-      formPay.textContent = selected.nextElementSibling.textContent;
-    }
-  });
-
-  const cancel = document.getElementById("cancel");
-  // Agrega un manejador de eventos para el botón "Cancelar" del modal
-  cancel.addEventListener("click", function () {
-    // Obtén el formulario modal
-    const modalForm = document.getElementById("modalForm");
-
-    // Restablece el formulario modal
-    modalForm.reset();
-
-    // También puedes quitar las clases de validación si es necesario
-    modalForm.classList.remove("was-validated");
-  });
-
-  // Obtén los elementos de radio para tarjeta de crédito y transferencia bancaria
-  const creditCardRadio = document.getElementById("creditCard");
-  const transferRadio = document.getElementById("transfer");
-
-  // Obtén los campos relacionados a la tarjeta de crédito
-  const cardNumber = document.getElementById("cardNumber");
-  const cardCvv = document.getElementById("cardCvv");
-  const cardExpiration = document.getElementById("cardExpiration");
-
-  // Obtén el campo relacionado a la transferencia bancaria
-  const accountNumber = document.getElementById("accountNumber");
-
-  creditCardRadio.addEventListener("change", function () {
-    if (creditCardRadio.checked) {
-      cardCvv.disabled = false;
-      cardNumber.disabled = false;
-      cardExpiration.disabled = false;
-      accountNumber.disabled = true;
-    }
-  });
-
-  transferRadio.addEventListener("change", function () {
-    if (transferRadio.checked) {
-      cardCvv.disabled = true;
-      cardNumber.disabled = true;
-      cardExpiration.disabled = true;
-      accountNumber.disabled = false;
-    }
-  });
-
-  const forms = document.querySelectorAll(".needs-validation");
-  const checkbox = document.querySelector("#creditCard, #transfer");
-  const validationText = document.getElementById("termsValidation");
-  const form = document.getElementById("form1");
-
-  forms.forEach(function (form) {
-    form.addEventListener("submit", function (event) {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add("was-validated");
-
-      // Validaciones del checkbox al enviar el formulario
-      if (!checkbox.checked) {
-        checkbox.classList.add("is-invalid");
-        validationText.style.display = "block";
-      }
-
-      // Validaciones del checkbox junto con el resto del formulario para resetearlo
-      if (form.checkValidity()) {
-        form.reset();
-        updateFeedbackClasses(); // Llamar a la función para quitar las clases de validación
-      }
-    });
-
-    // Evento para darle reset al formulario
-    form.addEventListener("reset", function () {
-      form.classList.remove("was-validated"); // quita las clases de validación al restablecer el formulario
-    });
-
-  });
-
-  // Funcion para el modal
-  function updateFeedbackClasses() {
-    const termsModal = document.getElementById("termsModal");
-    if (creditCardRadio.checked || transferRadio.checked) {
-      checkbox.classList.remove("is-invalid");
-      checkbox.classList.add("is-valid");
-      termsModal.classList.remove("text-danger");
-      validationText.style.display = "none";
-    } else {
-      checkbox.classList.remove("is-valid");
-      checkbox.classList.add("is-invalid");
-      termsModal.classList.add("text-danger");
-      validationText.style.display = "block";
-    }
-  }
-
-  checkbox.addEventListener("change", updateFeedbackClasses);
-
-});
-
-
-
-
-
-
-
