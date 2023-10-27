@@ -113,11 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return article;
   }
-});
+
 
 // Entrega 6 - Parte 2:
-
-document.addEventListener("DOMContentLoaded", () => {
 
   const saveBtn = document.getElementById('saveBtn');
   const formPay = document.querySelector('.centrar p');
@@ -248,4 +246,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mostrar el mensaje de compra exitosa
     compraExitosaDiv.style.display = "block";
   });
+
 });
