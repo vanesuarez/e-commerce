@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const productPrice = document.createElement("h5");
       productPrice.setAttribute("id", "priceText");
-      productPrice.textContent = `USD ${product.cost}`;
+      productPrice.textContent = ` ${product.currency} ${product.cost}`;
 
       const productSold = document.createElement("p");
       productSold.setAttribute("id", "soldText");
