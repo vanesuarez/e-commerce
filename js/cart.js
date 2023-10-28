@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const accountNumber = document.getElementById("accountNumber");
   const formaPagoP = document.getElementById("formaPagoP");
   const modalForm = document.getElementById("modalForm");
-
+      
   // Función para deshabilitar los campos dependiendo de cual seleccione
   function updatePaymentMethod(creditCardChecked) {
     cardCvv.disabled = !creditCardChecked;
@@ -249,4 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ? "Transferencia"
       : "No ha seleccionado";
   });
+
+
 });
