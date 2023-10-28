@@ -192,7 +192,7 @@
           id="termsModal">
           Seleccionar
         </button>
-        <div class="invalid-feedback" id="termsValidation">
+        <div class="invalid-feedback" id="paymentValidation">
           Debe seleccionar una forma de pago.
         </div>
       </section>
@@ -278,10 +278,10 @@
               <div class="my-3">
                 <div class="form-check">
                   <input id="creditCard" name="paymentMethod" type="radio" class="form-check-input" value="creditCard" required>
-                  <label class="form-check-label" for="creditCard">Tarjeta de crédito</label>
+                  <label class="form-check-label" for="creditCard"><b>Tarjeta de crédito</b></label>
                 </div>
-  
-                <hr class="my-4">
+
+                <br class="my-4"> 
   
                 <div class="row gy-3">
   
@@ -299,14 +299,16 @@
                   </div>
                 </div>
               </div>
+
+              <hr class="my-4">
   
               <div class="my-3">
                 <div class="form-check">
                   <input id="transfer" name="paymentMethod" type="radio" class="form-check-input" value="transfer" required>
-                  <label class="form-check-label" for="transfer">Transferencia bancaria</label>
+                  <label class="form-check-label" for="transfer"><b>Transferencia bancaria</b></label>
                 </div>
   
-                <hr class="my-4">
+                <br class="my-4">
   
                 <div class="col-md-6">
                   <label for="accountNumber" class="form-label">Número de cuenta</label>

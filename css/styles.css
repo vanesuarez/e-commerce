@@ -15,6 +15,10 @@
   text-align: right;
 }
 
+#totalPrice {
+  font-weight: bold;
+}
+
 /* Entrega 5.1*/
 
 #descVenta ul {
