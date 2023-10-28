@@ -15,65 +15,82 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
 </head>
 
-<body data-bs-theme="light">
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #c4c4c4;">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html"><b>Inicio</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html"><b>Categorías</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html"><b>Vender</b></a>
-          </li>
+  <body data-bs-theme="light">
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="background-color: #c4c4c4">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-between">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html"><b>Inicio</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html"><b>Categorías</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html"><b>Vender</b></a>
+            </li>
 
-          <!-- ENTREGA 4.3 MODO OSCURO Y CLARO -->
-          <li>
-            <button id="moonButton" class="btn rounded-fill"><i id="dl-icon" class="bi bi-moon-fill"></i></button>
-          </li>
+            <!-- ENTREGA 4.3 MODO OSCURO Y CLARO -->
+            <li>
+              <button id="moonButton" class="btn rounded-fill">
+                <i id="dl-icon" class="bi bi-moon-fill"></i>
+              </button>
+            </li>
 
-          <!-- ENTREGA 4.2 DROPDOWN -->
+            <!-- ENTREGA 4.2 DROPDOWN -->
 
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-              data-bs-toggle="dropdown" aria-expanded="false">
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
-              <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
-              <li>
-                <a id="closeSession" class="dropdown-item" href="login.html">Cerrar Sesión</a>
-              </li>
-            </ul>
-          </div>
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"></button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cart.html">Mi Carrito</a>
+                </li>
+                <li>
+                  <a id="closeSession" class="dropdown-item" href="login.html"
+                    >Cerrar Sesión</a
+                  >
+                </li>
+              </ul>
+            </div>
 
-          <!-- ENTREGA 4.2 DROPDOWN -->
-
-        </ul>
+            <!-- ENTREGA 4.2 DROPDOWN -->
+          </ul>
+        </div>
       </div>
+    </nav>
+
+    <div id="compraExitosa" class="alert alert-success" style="display: none">
+      ¡Has comprado con éxito!
     </div>
-  </nav>
 
-  <div id="compraExitosa" class="alert alert-success" style="display: none;">
-    ¡Has comprado con éxito!
-  </div>
-
-  <main>
-    <div class="container">
+    <main>
       <section class="centrar">
         <div>
-          <br>
+          <br />
           <h1 class="text-center">Carrito de compras</h1>
-          <br>
+          <br />
           <h3>Artículos a comprar</h3>
-          <br>
+          <br />
         </div>
 
         <div id="descVenta">
@@ -86,200 +103,240 @@
           </ul>
         </div>
 
-        <div id="container">
+        <div id="container"></div>
+      </section>
+
+      <form
+        action="#"
+        method="get"
+        id="form1"
+        class="needs-validation"
+        novalidate>
+
+      <section class="centrar">
+        <br />
+        <h4>Tipo de envío</h4>
+
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="exampleRadios"
+            id="exampleRadios1"
+            value="15"
+            checked />
+          <label class="form-check-label" for="exampleRadios1">
+            Premium 2 a 5 días (15%)
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="exampleRadios"
+            id="exampleRadios2"
+            value="7" />
+          <label class="form-check-label" for="exampleRadios2">
+            Express 5 a 8 días (7%)
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="exampleRadios"
+            id="exampleRadios3"
+            value="5" />
+          <label class="form-check-label" for="exampleRadios2">
+            Standard 12 a 15 días (5%)
+          </label>
         </div>
       </section>
 
-      <form action="#" method="get" id="form1" class="needs-validation" novalidate>
+      <hr />
 
-        <section class="centrar">
-          <br>
-          <h4>Tipo de envío</h4>
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
-              required>
-            <label class="form-check-label" for="exampleRadios1">
-              Premium 2 a 5 días (15%)
-            </label>
+      <section class="centrar">
+        <h4>Dirección de envío</h4>
+        <div class="row">
+          <div class="col-lg-6 mt-3">
+            <label for="street" class="form-label">Calle</label>
+            <input type="text" class="form-control" id="street" required />
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">Ingresa una calle.</div>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"
-              required>
-            <label class="form-check-label" for="exampleRadios2">
-              Express 5 a 8 días (7%)
-            </label>
+          <div class="col-lg-3 mt-3">
+            <label for="number" class="form-label">Número</label>
+            <input type="text" class="form-control" id="number" required />
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">Ingresa un número.</div>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"
-              required>
-            <label class="form-check-label" for="exampleRadios2">
-              Standard 12 a 15 días (5%)
-            </label>
+          <div class="col-lg-6 mt-3">
+            <label for="corner" class="form-label">Esquina</label>
+            <input type="text" class="form-control" id="corner" required />
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">Ingresa una esquina</div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <hr>
+      <hr />
 
-        <section class="centrar">
-          <h4>Dirección de envío</h4>
-          <div class="row">
-            <div class="col-lg-6 mt-3">
-              <label for="street" class="form-label">Calle</label>
-              <input type="text" class="form-control" id="street" required>
-              <div class="valid-feedback"></div>
-              <div class="invalid-feedback">Ingresa una calle.</div>
-            </div>
-            <div class="col-lg-3 mt-3">
-              <label for="number" class="form-label">Número</label>
-              <input type="text" class="form-control" id="number" required>
-              <div class="valid-feedback"></div>
-              <div class="invalid-feedback">Ingresa un número.</div>
-            </div>
-            <div class="col-lg-6 mt-3">
-              <label for="corner" class="form-label">Esquina</label>
-              <input type="text" class="form-control" id="corner" required>
-              <div class="valid-feedback"></div>
-              <div class="invalid-feedback">Ingresa una esquina</div>
-            </div>
-          </div>
-        </section>
+      <section class="centrar">
+        <h4>Formas de pago</h4>
+        <p id="formaPagoP">No ha seleccionado</p>
+        <button
+          type="button"
+          class="btn btn-link ps-0"
+          data-bs-toggle="modal"
+          data-bs-target="#miModal"
+          id="termsModal">
+          Seleccionar
+        </button>
+        <div class="invalid-feedback" id="termsValidation">
+          Debe seleccionar una forma de pago.
+        </div>
+      </section>
+      <hr />
 
-        <hr>
+    
 
-        <section class="centrar">
+      <!-- 6.1 Desgloce de precios -->
+      <section class="centrar">
+        <h4>Costos</h4>
 
-          <h4>Formas de pago</h4>
-          <p id="formaPagoP">No ha seleccionado</p>
-          <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal" data-bs-target="#miModal"
-            id="termsModal">Seleccionar</button>
-          <div class="invalid-feedback" id="termsValidation">Debe seleccionar una forma de pago.</div>
-        </section>
-
-        <hr>
-
-        <!-- 6.1 Desgloce de precios -->
-        <section class="centrar">
-          <h4>Costos</h4>
-        
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-6">
-                  <h5>Subtotal</h5>
-                  <small class="text-muted">Costo unitario del producto por cantidad</small>
-                </div>
-                <div class="col-6 text-right">
-                  <h5 class="finalPrices" id="subtotalPrice"></h5>
-                </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                <h5>Subtotal</h5>
+                <small class="text-muted"
+                  >Costo unitario del producto por cantidad</small
+                >
+              </div>
+              <div class="col-6 text-right">
+                <h5 class="finalPrices" id="subtotalPrice"></h5>
               </div>
             </div>
           </div>
-    
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-6">
-                  <h5>Envío</h5>
-                  <small class="text-muted">Según el tipo de envío</small>
-                </div>
-                <div class="col-6 text-right">
-                  <h5 class="finalPrices" id="shippingPrice"></h5>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-6">
-                  <h5>Total ($)</h5>
-                </div>
-                <div class="col-6 text-right">
-                  <h5 class="finalPrices" id="totalPrice"></h5>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-        </section>
-
-        <hr>
-
-        <button id="finalizarCompra" class="w-100 btn btn-primary btn-lg" type="submit">Finalizar compra</button>
-      </form>
-
-  </main>
-
-  <div class="modal fade" id="miModal" data-bs-backdrop="static">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h5 class="modal-title">Formas de pago</h5>
-          <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
 
-        <div class="modal-body">
-
-          <form action="#" method="get" id="modalForm" class="needs-validation" novalidate>
-
-            <div class="my-3">
-              <div class="form-check">
-                <input id="creditCard" name="paymentMethod" type="radio" class="form-check-input" value="creditCard" required>
-                <label class="form-check-label" for="creditCard">Tarjeta de crédito</label>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                <h5>Envío</h5>
+                <small class="text-muted">Según el tipo de envío</small>
               </div>
+              <div class="col-6 text-right">
+                <h5 class="finalPrices" id="shippingPrice"></h5>
+              </div>
+            </div>
+          </div>
+        </div>
 
-              <hr class="my-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                <h5>Total ($)</h5>
+              </div>
+              <div class="col-6 text-right">
+                <h5 class="finalPrices" id="totalPrice"></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div class="row gy-3">
+      <hr>
 
-                <div class="col-md-8">
-                  <label for="cardNumber" class="form-label">Número de tarjeta</label>
-                  <input type="text" class="form-control" id="cardNumber" required>
+      <section class="centrar"> 
+      <button id="finalizarCompra" class="w-100 btn btn-primary btn-lg" type="submit">Finalizar compra</button>
+      </section>
+
+  </form>
+
+    <br>
+
+    </main>
+
+    <!-- MODAL -->
+
+    <div class="modal fade" id="miModal" data-bs-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+  
+          <div class="modal-header">
+            <h5 class="modal-title">Formas de pago</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+  
+          <div class="modal-body">
+  
+            <form action="#" method="get" id="modalForm" class="needs-validation" novalidate>
+  
+              <div class="my-3">
+                <div class="form-check">
+                  <input id="creditCard" name="paymentMethod" type="radio" class="form-check-input" value="creditCard" required>
+                  <label class="form-check-label" for="creditCard">Tarjeta de crédito</label>
                 </div>
-                <div class="col-md-4">
-                  <label for="cardCvv" class="form-label">Código de seg.</label>
-                  <input type="text" class="form-control" id="cardCvv" required>
+  
+                <hr class="my-4">
+  
+                <div class="row gy-3">
+  
+                  <div class="col-md-8">
+                    <label for="cardNumber" class="form-label">Número de tarjeta</label>
+                    <input type="text" class="form-control" id="cardNumber" required>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="cardCvv" class="form-label">Código de seg.</label>
+                    <input type="text" class="form-control" id="cardCvv" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="cardExpiration" class="form-label">Vencimiento (MM/AA)</label>
+                    <input type="text" class="form-control" id="cardExpiration" required>
+                  </div>
                 </div>
+              </div>
+  
+              <div class="my-3">
+                <div class="form-check">
+                  <input id="transfer" name="paymentMethod" type="radio" class="form-check-input" value="transfer" required>
+                  <label class="form-check-label" for="transfer">Transferencia bancaria</label>
+                </div>
+  
+                <hr class="my-4">
+  
                 <div class="col-md-6">
-                  <label for="cardExpiration" class="form-label">Vencimiento (MM/AA)</label>
-                  <input type="text" class="form-control" id="cardExpiration" required>
+                  <label for="accountNumber" class="form-label">Número de cuenta</label>
+                  <input type="text" class="form-control" id="accountNumber" required>
                 </div>
               </div>
-            </div>
-
-            <div class="my-3">
-              <div class="form-check">
-                <input id="transfer" name="paymentMethod" type="radio" class="form-check-input" value="transfer" required>
-                <label class="form-check-label" for="transfer">Transferencia bancaria</label>
+  
+              <div class="modal-footer">
+                <button class="btn btn-danger" data-bs-dismiss="modal" id="cancel">Cancelar</button>
+                <button class="btn btn-primary" id="saveBtn" data-bs-dismiss="modal" type="button">Guardar</button>
               </div>
-
-              <hr class="my-4">
-
-              <div class="col-md-6">
-                <label for="accountNumber" class="form-label">Número de cuenta</label>
-                <input type="text" class="form-control" id="accountNumber" required>
-              </div>
-            </div>
-
-            <div class="modal-footer">
-              <button class="btn btn-danger" data-bs-dismiss="modal" id="cancel">Cancelar</button>
-              <button class="btn btn-primary" id="saveBtn" data-bs-dismiss="modal" type="button">Guardar</button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
+      <hr>
+
+      
 
     <footer class="text-muted">
       <div class="container">
         <p class="float-end">
           <a href="#">Volver arriba</a>
         </p>
-        <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
         </p>
       </div>
     </footer>
@@ -294,6 +351,5 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/cart.js"></script>
-</body>
-
+  </body>
 </html>
