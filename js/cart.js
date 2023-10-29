@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cCount = document.createElement("input");
     cCount.type = "number";
     cCount.min = "0";
-    cCount.value = product.count || 1; // Establece el valor en 1 si no se proporciona una cantidad
+    cCount.value = product.count; // Establece el valor en 1 si no se proporciona una cantidad
     article.appendChild(cCount);
     cCount.addEventListener("input", () => {
       
@@ -122,11 +122,24 @@ document.addEventListener("DOMContentLoaded", () => {
       // calcula subtotal general
       
         cart.forEach((product) => { // recorre los objetos guardados en el localStorage
-          const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
-          const count = parseFloat(product.count) || 0;
-          const subtotal = unitCost * count;
+
+          if (product.price.includes("USD")) {
+
+            const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+            const count = parseFloat(product.count);
+            const subtotal = unitCost * count;
       
-          total += subtotal;
+            total += subtotal;
+
+          } else {
+
+            const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+            const count = parseFloat(product.count);
+            const subtotal = unitCost / 40 * count;
+      
+            total += subtotal;
+
+          }
         });
       
         // muestra el subtotal de costo
