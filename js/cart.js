@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+  const estaPeugeot = cart.some((product) => product.name === "Peugeot 208");
+
   // Recorre los productos en el carrito y los muestra con la funcion createCartItem
   cart.forEach((product) => {
     const article = createCartItem(product);
@@ -32,10 +34,14 @@ document.addEventListener("DOMContentLoaded", () => {
         count: count,
       };
 
+      if (!estaPeugeot) {
       cart.push(newProduct);
 
       const article = createCartItem(newProduct);
       cont.appendChild(article);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      }
+      
     } catch (error) {
       console.error("Error:", error);
     }
