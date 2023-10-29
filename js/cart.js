@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  fetchAndDisplayProduct(url);
+  fetchAndDisplayProduct(url)
 
   function createCartItem(product) {
     const article = document.createElement("div");
@@ -64,15 +64,50 @@ document.addEventListener("DOMContentLoaded", () => {
     const cPrice = document.createElement("p");
     cPrice.innerHTML = product.price;
     article.appendChild(cPrice);
+    cPrice.setAttribute("class", "precio");
 
     const cCount = document.createElement("input");
     cCount.type = "number";
     cCount.min = "0";
-    cCount.value = product.quantity || 1; // Establece el valor en 1 si no se proporciona una cantidad
+    cCount.value = product.count; // Establece el valor en 1 si no se proporciona una cantidad
     article.appendChild(cCount);
+    cCount.addEventListener("input", () => {
+      
+      const newCount = parseFloat(cCount.value); // guarda la nueva cantidad indicada en el input
+      
+      const productToUpdate = cart.find((product) => product.name === cName.innerHTML); // busca el producto por el nombre
+    
+      if (productToUpdate) { // si existe el producto
+        
+        productToUpdate.count = newCount; // actualiza su valor
+    
+        localStorage.setItem("cart", JSON.stringify(cart)); // guarda los cambios en el localStorage
+      }
+    });
 
     const individualSubtotal = document.createElement("p");
     article.appendChild(individualSubtotal);
+
+    const trash = document.createElement("div");
+    trash.innerHTML = `<button type="button" class="btn btn-outline-danger">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
+<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
+</svg></button>`;
+
+    article.appendChild(trash);
+
+    trash.addEventListener("click", () => {
+      
+      const index = cart.findIndex((prod) => prod.name === cName.innerHTML); // busca el índice del artículo con su nombre
+    
+      if (index !== -1) {
+        cart.splice(index, 1); // elimina el artículo del carrito
+        localStorage.setItem("cart", JSON.stringify(cart)); // actualiza el almacenamiento local
+        article.remove(); // elimina el elemento de la interfaz
+        updateSubtotal(); // actualiza los totales
+      }
+    });
 
     // Función para actualizar el subtotal individual y total cuando cambia la cantidad
     function updateSubtotal() {
@@ -80,21 +115,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const count = parseFloat(cCount.value) || 0;
       const subtotal = unitCost * count;
 
-      individualSubtotal.innerHTML = `<b>${product.price.substring(
-        0,
-        4
-      )} ${subtotal.toFixed(2)}</b>`;
+      individualSubtotal.innerHTML = `<b>${product.price.substring(0,4)} ${subtotal.toFixed(2)}</b>`; //calcula el total de cada producto
 
       let total = 0;
 
-      // Recorrer el carrito para calcular la suma total y el envio
-      cart.forEach((item) => {
-        const unitCost = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
-        const subtotal = unitCost * count;
-        total += subtotal;
-
+      // calcula subtotal general
+      
+        cart.forEach((product) => { // recorre los objetos guardados en el localStorage
+          const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+          const count = parseFloat(product.count) || 0;
+          const subtotal = unitCost * count;
+      
+          total += subtotal;
+        });
+      
+        // muestra el subtotal de costo
         subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
-      });
+      
 
       function updateShippingPrice() {
         const selectedShippingOption = document.querySelector(
