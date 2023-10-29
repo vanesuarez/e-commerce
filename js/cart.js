@@ -35,19 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       if (!JSONProduct) {
-      cart.push(newProduct);
+        cart.push(newProduct);
 
-      const article = createCartItem(newProduct);
-      cont.appendChild(article);
-      localStorage.setItem("cart", JSON.stringify(cart));
+        const article = createCartItem(newProduct);
+        cont.appendChild(article);
+        localStorage.setItem("cart", JSON.stringify(cart));
       }
-      
     } catch (error) {
       console.error("Error:", error);
     }
   }
 
-  fetchAndDisplayProduct(url)
+  fetchAndDisplayProduct(url);
 
   function createCartItem(product) {
     const article = document.createElement("div");
@@ -72,15 +71,17 @@ document.addEventListener("DOMContentLoaded", () => {
     cCount.value = product.count || 1; // Establece el valor en 1 si no se proporciona una cantidad
     article.appendChild(cCount);
     cCount.addEventListener("input", () => {
-      
       const newCount = parseFloat(cCount.value); // guarda la nueva cantidad indicada en el input
-      
-      const productToUpdate = cart.find((product) => product.name === cName.innerHTML); // busca el producto por el nombre
-    
-      if (productToUpdate) { // si existe el producto
-        
+
+      const productToUpdate = cart.find(
+        (product) => product.name === cName.innerHTML
+      ); // busca el producto por el nombre
+
+      if (productToUpdate) {
+        // si existe el producto
+
         productToUpdate.count = newCount; // actualiza su valor
-    
+
         localStorage.setItem("cart", JSON.stringify(cart)); // guarda los cambios en el localStorage
       }
     });
@@ -98,9 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
     article.appendChild(trash);
 
     trash.addEventListener("click", () => {
-      
       const index = cart.findIndex((prod) => prod.name === cName.innerHTML); // busca el índice del artículo con su nombre
-    
+
       if (index !== -1) {
         cart.splice(index, 1); // elimina el artículo del carrito
         localStorage.setItem("cart", JSON.stringify(cart)); // actualiza el almacenamiento local
@@ -113,25 +113,28 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateSubtotal() {
       const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
       const count = parseFloat(cCount.value) || 0;
-      const subtotal = unitCost * count;
+      let subtotal = unitCost * count; // Inicializar el subtotal
 
-      individualSubtotal.innerHTML = `<b>${product.price.substring(0,4)} ${subtotal.toFixed(2)}</b>`; //calcula el total de cada producto
+      individualSubtotal.innerHTML = `<b>${product.price.substring(
+        0,
+        4
+      )} ${subtotal.toFixed(2)}</b>`; //calcula el total de cada producto
 
       let total = 0;
 
       // calcula subtotal general
-      
-        cart.forEach((product) => { // recorre los objetos guardados en el localStorage
-          const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
-          const count = parseFloat(product.count) || 0;
-          const subtotal = unitCost * count;
-      
-          total += subtotal;
-        });
-      
-        // muestra el subtotal de costo
-        subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
-      
+
+      cart.forEach((product) => {
+        // recorre los objetos guardados en el localStorage
+        const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+        const count = parseFloat(product.count) || 0;
+        const subtotal = unitCost * count;
+
+        total += subtotal;
+      });
+
+      // muestra el subtotal de costo
+      subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
 
       function updateShippingPrice() {
         const selectedShippingOption = document.querySelector(
@@ -173,7 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Variables para elementos del DOM
   const forms = document.querySelectorAll(".needs-validation");
-  const checkbox = document.querySelector("#creditCard, #transfer");
   const validationText = document.getElementById("paymentValidation");
   const compraExitosaDiv = document.getElementById("compraExitosa");
   const saveBtn = document.getElementById("saveBtn");
@@ -187,7 +189,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const accountNumber = document.getElementById("accountNumber");
   const formaPagoP = document.getElementById("formaPagoP");
   const modalForm = document.getElementById("modalForm");
-      
+
+  // Funcion para validar si la cantidad del producto es 0
+  // function validateProductQuantities(cart) {
+  //   return cart.some((product) => product.count === 0);
+  // }
+  // const hasZeroQuantities = validateProductQuantities(cart);
+
+  // console.log(hasZeroQuantities);
+
   // Función para deshabilitar los campos dependiendo de cual seleccione
   function updatePaymentMethod(creditCardChecked) {
     cardCvv.disabled = !creditCardChecked;
@@ -246,10 +256,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       form.classList.add("was-validated");
 
-      if (!checkbox.checked) {
-        checkbox.classList.add("is-invalid");
-        validationText.style.display = "block";
-      }
+            // Verifica si ninguno de los checkboxes está seleccionado
+            if (!creditCardRadio.checked && !transferRadio.checked) {
+              creditCardRadio.classList.add("is-invalid");
+              transferRadio.classList.add("is-invalid");
+              validationText.style.display = "block";
+            } else {
+              creditCardRadio.classList.remove("is-invalid");
+              transferRadio.classList.remove("is-invalid");
+              validationText.style.display = "none";
+            }
 
       if (validatePaymentFields() && form.checkValidity()) {
         form.reset();
@@ -274,7 +290,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   cancel.addEventListener("click", function () {
-    modalForm.reset();
+    cardNumber.value = "";
+    cardCvv.value = "";
+    cardExpiration.value = "";
+    accountNumber.value = "";
     modalForm.classList.remove("was-validated");
     formaPagoP.textContent = "No ha seleccionado";
   });
@@ -284,6 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formaPagoP.textContent = creditCardRadio.checked
       ? "Tarjeta de Crédito"
       : "No ha seleccionado";
+    accountNumber.value = "";
   });
 
   transferRadio.addEventListener("change", function () {
@@ -291,7 +311,8 @@ document.addEventListener("DOMContentLoaded", () => {
     formaPagoP.textContent = transferRadio.checked
       ? "Transferencia"
       : "No ha seleccionado";
+    cardNumber.value = "";
+    cardCvv.value = "";
+    cardExpiration.value = "";
   });
-
-
 });
