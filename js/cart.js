@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cCount = document.createElement("input");
     cCount.type = "number";
     cCount.min = "0";
-    cCount.value = product.count; // Establece el valor en 1 si no se proporciona una cantidad
+    cCount.value = product.count;
     article.appendChild(cCount);
     cCount.addEventListener("input", () => {
       
@@ -250,8 +250,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // VALIDACIONES, LO DE ARRIBA NO LO TOQUE
   // condiciones que deberan cumplirse para enviar el formulario
-  let articulosEnCero = false;
-  let direccionCompleta = false;
+  let countZeroArticles = false;
+  let fullAddress = false;
   let formaDePago = false;
   
   // Manejadores de eventos y validaciones
@@ -269,14 +269,14 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let i = 0; i < cart.length; i++) { // busque que no haya productos con cantidad 0
 
         if (cart[i].count == 0) {
-          articulosEnCero = false; // si encuentra 0, indica que no cumple la condición
+          countZeroArticles = false; // si encuentra 0, indica que no cumple la condición
           event.preventDefault();
           event.stopPropagation();
           compraExitosaDiv.style.display = "none";
           console.error("producto 0"); // prueba producto 0
           break; // detiene la ejecución, sin esto daría por valido un form si el ultimo valor es distinto de 0
         } else {
-          articulosEnCero = true; // al comprobar que no hay productos 0, lo da por valido
+          countZeroArticles = true; // al comprobar que no hay productos 0, lo da por valido
         }
       }
       // Validar que se hayan completado los campos de dirección de envío
@@ -284,9 +284,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const number = document.getElementById("number").value;
       const corner = document.getElementById("corner").value;
       if (street.trim() !== "" && number.trim() !== "" && corner.trim() !== "") {
-        direccionCompleta = true; // si ningún campo de "Dirección de envío" esta vacío, lo da por valido
+        fullAddress = true; // si ningún campo de "Dirección de envío" esta vacío, lo da por valido
       } else { // en caso contrario lo da por invalido
-        direccionCompleta = false;
+        fullAddress = false;
         event.preventDefault();
         event.stopPropagation();
         compraExitosaDiv.style.display = "none";
@@ -363,7 +363,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardExpiration.value = "";
       });
 
-      if (articulosEnCero && direccionCompleta && formaDePago && form.checkValidity()) { // comprueba que cumpla con todo lo necesario antes de enviarlo
+      if (countZeroArticles && fullAddress && formaDePago && form.checkValidity()) { // comprueba que cumpla con todo lo necesario antes de enviarlo
       form.reset();
       updateFeedbackClasses();
       compraExitosaDiv.style.display = "block";
