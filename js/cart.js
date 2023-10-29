@@ -248,6 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return true; // Todos los campos necesarios están completos
   }
   
+  // VALIDACIONES, LO DE ARRIBA NO LO TOQUE
   // condiciones que deberan cumplirse para enviar el formulario
   let articulosEnCero = false;
   let direccionCompleta = false;
@@ -256,6 +257,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Manejadores de eventos y validaciones
   forms.forEach(function (form) {
     form.addEventListener("submit", function (event) {
+
+      let formIsValid = true;
+
       if (!form.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();
@@ -265,33 +269,23 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let i = 0; i < cart.length; i++) { // busque que no haya productos con cantidad 0
 
         if (cart[i].count == 0) {
-
           articulosEnCero = false; // si encuentra 0, indica que no cumple la condición
           event.preventDefault();
           event.stopPropagation();
           compraExitosaDiv.style.display = "none";
-
           console.error("producto 0"); // prueba producto 0
           break; // detiene la ejecución, sin esto daría por valido un form si el ultimo valor es distinto de 0
-
         } else {
-
           articulosEnCero = true; // al comprobar que no hay productos 0, lo da por valido
-
         }
       }
-  
       // Validar que se hayan completado los campos de dirección de envío
       const street = document.getElementById("street").value;
       const number = document.getElementById("number").value;
       const corner = document.getElementById("corner").value;
-
       if (street.trim() !== "" && number.trim() !== "" && corner.trim() !== "") {
-
         direccionCompleta = true; // si ningún campo de "Dirección de envío" esta vacío, lo da por valido
-
       } else { // en caso contrario lo da por invalido
-
         direccionCompleta = false;
         event.preventDefault();
         event.stopPropagation();
@@ -305,61 +299,84 @@ document.addEventListener("DOMContentLoaded", () => {
       const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
 
       if (selectedPaymentMethod) {
-
         if (creditCardRadio.checked) {
-
           if (
-
             cardNumber.value.trim() !== "" &&
             cardCvv.value.trim() !== "" &&
             cardExpiration.value.trim() !== ""
-          
             ) 
           {
-
             formaDePago = true;
-
           } else {
-
             formaDePago = false;
-
           }
-
         } else if (transferRadio.checked) {
-
           if (accountNumber.value.trim() !== "") {
-
             formaDePago = true;
-
           } else {
-
             formaDePago = false;
-
           }
         }
       } else {
-
         formaDePago = false;
-
       }
   
-    form.classList.add("was-validated");
+      form.classList.add("was-validated");
 
-    if (!checkbox.checked) {
+      if (!checkbox.checked) {
+        checkbox.classList.add("is-invalid");
+        validationText.style.display = "block";
+      }
 
-      checkbox.classList.add("is-invalid");
-      validationText.style.display = "block";
+      saveBtn.addEventListener("click", () => {
+        const selected = document.querySelector('input[name="paymentMethod"]:checked');
+        if (selected && validatePaymentFields()) {
+          formPay.textContent = selected.nextElementSibling.textContent;
+          validationText.style.display = "none";
+        }
+      });
 
-    }
+      cancel.addEventListener("click", function () {
+        cardNumber.value = "";
+        cardCvv.value = "";
+        cardExpiration.value = "";
+        accountNumber.value = "";
+        modalForm.classList.remove("was-validated");
+        formaPagoP.textContent = "No ha seleccionado";
+      });
 
-    if (articulosEnCero && direccionCompleta && formaDePago && form.checkValidity()) { // si se cumplen las 3 condiciones y checkValidity, envía el form
+      creditCardRadio.addEventListener("change", function () {
+        updatePaymentMethod(creditCardRadio.checked);
+        formaPagoP.textContent = creditCardRadio.checked
+          ? "Tarjeta de Crédito"
+          : "No ha seleccionado";
+        accountNumber.value = "";
+      });
 
+      transferRadio.addEventListener("change", function () {
+        updatePaymentMethod(!transferRadio.checked);
+        formaPagoP.textContent = transferRadio.checked
+          ? "Transferencia"
+          : "No ha seleccionado";
+        cardNumber.value = "";
+        cardCvv.value = "";
+        cardExpiration.value = "";
+      });
+
+      if (articulosEnCero && direccionCompleta && formaDePago && form.checkValidity()) { // comprueba que cumpla con todo lo necesario antes de enviarlo
       form.reset();
       updateFeedbackClasses();
       compraExitosaDiv.style.display = "block";
-
+    } else {
+      formIsValid = false; // si no cumple alguna condición le da valor invalido al form
     }
-  });
+
+    if (!formIsValid) { // antes de enviarlo controla que el form sea valido, en caso contrario detiene el envio
+      event.preventDefault();
+      event.stopPropagation();
+      compraExitosaDiv.style.display = "none";
+    }
+
+    });
 });
 });
-  
