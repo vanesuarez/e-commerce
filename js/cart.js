@@ -248,7 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true; // Todos los campos necesarios están completos
   }
   
-  // VALIDACIONES, LO DE ARRIBA NO LO TOQUE
   // condiciones que deberan cumplirse para enviar el formulario
   let hasZeroArticles = false;
   let fullAddress = false;
