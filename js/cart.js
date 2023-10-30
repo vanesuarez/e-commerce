@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardCvv = document.getElementById("cardCvv");
   const cardExpiration = document.getElementById("cardExpiration");
   const accountNumber = document.getElementById("accountNumber");
-  const formaPagoP = document.getElementById("formaPagoP");
+  const paymentMethod = document.getElementById("formaPagoP");
   const modalForm = document.getElementById("modalForm");
       
   // Función para deshabilitar los campos dependiendo de cual seleccione
@@ -250,9 +250,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // VALIDACIONES, LO DE ARRIBA NO LO TOQUE
   // condiciones que deberan cumplirse para enviar el formulario
-  let countZeroArticles = false;
+  let hasZeroArticles = false;
   let fullAddress = false;
-  let formaDePago = false;
+  let isPaymentMethodValid = false;
   
   // Manejadores de eventos y validaciones
   forms.forEach(function (form) {
@@ -269,14 +269,14 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let i = 0; i < cart.length; i++) { // busque que no haya productos con cantidad 0
 
         if (cart[i].count == 0) {
-          countZeroArticles = false; // si encuentra 0, indica que no cumple la condición
+          hasZeroArticles = false; // si encuentra 0, indica que no cumple la condición
           event.preventDefault();
           event.stopPropagation();
           compraExitosaDiv.style.display = "none";
           console.error("producto 0"); // prueba producto 0
           break; // detiene la ejecución, sin esto daría por valido un form si el ultimo valor es distinto de 0
         } else {
-          countZeroArticles = true; // al comprobar que no hay productos 0, lo da por valido
+          hasZeroArticles = true; // al comprobar que no hay productos 0, lo da por valido
         }
       }
       // Validar que se hayan completado los campos de dirección de envío
@@ -306,19 +306,19 @@ document.addEventListener("DOMContentLoaded", () => {
             cardExpiration.value.trim() !== ""
             ) 
           {
-            formaDePago = true;
+            isPaymentMethodValid = true;
           } else {
-            formaDePago = false;
+            isPaymentMethodValid = false;
           }
         } else if (transferRadio.checked) {
           if (accountNumber.value.trim() !== "") {
-            formaDePago = true;
+            isPaymentMethodValid = true;
           } else {
-            formaDePago = false;
+            isPaymentMethodValid = false;
           }
         }
       } else {
-        formaDePago = false;
+        isPaymentMethodValid = false;
       }
   
       form.classList.add("was-validated");
@@ -342,12 +342,12 @@ document.addEventListener("DOMContentLoaded", () => {
         cardExpiration.value = "";
         accountNumber.value = "";
         modalForm.classList.remove("was-validated");
-        formaPagoP.textContent = "No ha seleccionado";
+        paymentMethod.textContent = "No ha seleccionado";
       });
 
       creditCardRadio.addEventListener("change", function () {
         updatePaymentMethod(creditCardRadio.checked);
-        formaPagoP.textContent = creditCardRadio.checked
+        paymentMethod.textContent = creditCardRadio.checked
           ? "Tarjeta de Crédito"
           : "No ha seleccionado";
         accountNumber.value = "";
@@ -355,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       transferRadio.addEventListener("change", function () {
         updatePaymentMethod(!transferRadio.checked);
-        formaPagoP.textContent = transferRadio.checked
+        paymentMethod.textContent = transferRadio.checked
           ? "Transferencia"
           : "No ha seleccionado";
         cardNumber.value = "";
@@ -363,7 +363,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardExpiration.value = "";
       });
 
-      if (countZeroArticles && fullAddress && formaDePago && form.checkValidity()) { // comprueba que cumpla con todo lo necesario antes de enviarlo
+      if (hasZeroArticles && fullAddress && isPaymentMethodValid && form.checkValidity()) { // comprueba que cumpla con todo lo necesario antes de enviarlo
       form.reset();
       updateFeedbackClasses();
       compraExitosaDiv.style.display = "block";
