@@ -330,7 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
         checkbox.classList.add("is-invalid");
         validationText.style.display = "block";
       }
-    });
+    
 
     saveBtn.addEventListener("click", () => {
       const selected = document.querySelector(
@@ -390,4 +390,5 @@ document.addEventListener("DOMContentLoaded", () => {
       compraExitosaDiv.style.display = "none";
     }
   });
+});
 });
