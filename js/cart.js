@@ -35,19 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       if (!JSONProduct) {
-      cart.push(newProduct);
+        cart.push(newProduct);
 
-      const article = createCartItem(newProduct);
-      cont.appendChild(article);
-      localStorage.setItem("cart", JSON.stringify(cart));
+        const article = createCartItem(newProduct);
+        cont.appendChild(article);
+        localStorage.setItem("cart", JSON.stringify(cart));
       }
-      
     } catch (error) {
       console.error("Error:", error);
     }
   }
 
-  fetchAndDisplayProduct(url)
+  fetchAndDisplayProduct(url);
 
   function createCartItem(product) {
     const article = document.createElement("div");
@@ -72,15 +71,17 @@ document.addEventListener("DOMContentLoaded", () => {
     cCount.value = product.count;
     article.appendChild(cCount);
     cCount.addEventListener("input", () => {
-      
       const newCount = parseFloat(cCount.value); // guarda la nueva cantidad indicada en el input
-      
-      const productToUpdate = cart.find((product) => product.name === cName.innerHTML); // busca el producto por el nombre
-    
-      if (productToUpdate) { // si existe el producto
-        
+
+      const productToUpdate = cart.find(
+        (product) => product.name === cName.innerHTML
+      ); // busca el producto por el nombre
+
+      if (productToUpdate) {
+        // si existe el producto
+
         productToUpdate.count = newCount; // actualiza su valor
-    
+
         localStorage.setItem("cart", JSON.stringify(cart)); // guarda los cambios en el localStorage
       }
     });
@@ -98,9 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
     article.appendChild(trash);
 
     trash.addEventListener("click", () => {
-      
       const index = cart.findIndex((prod) => prod.name === cName.innerHTML); // busca el índice del artículo con su nombre
-    
+
       if (index !== -1) {
         cart.splice(index, 1); // elimina el artículo del carrito
         localStorage.setItem("cart", JSON.stringify(cart)); // actualiza el almacenamiento local
@@ -115,36 +115,35 @@ document.addEventListener("DOMContentLoaded", () => {
       const count = parseFloat(cCount.value) || 0;
       const subtotal = unitCost * count;
 
-      individualSubtotal.innerHTML = `<b>${product.price.substring(0,4)} ${subtotal.toFixed(2)}</b>`; //calcula el total de cada producto
+      individualSubtotal.innerHTML = `<b>${product.price.substring(
+        0,
+        4
+      )} ${subtotal.toFixed(2)}</b>`; //calcula el total de cada producto
 
       let total = 0;
 
       // calcula subtotal general
-      
-        cart.forEach((product) => { // recorre los objetos guardados en el localStorage
 
-          if (product.price.includes("USD")) {
+      cart.forEach((product) => {
+        // recorre los objetos guardados en el localStorage
 
-            const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
-            const count = parseFloat(product.count);
-            const subtotal = unitCost * count;
-      
-            total += subtotal;
+        if (product.price.includes("USD")) {
+          const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+          const count = parseFloat(product.count);
+          const subtotal = unitCost * count;
 
-          } else {
+          total += subtotal;
+        } else {
+          const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+          const count = parseFloat(product.count);
+          const subtotal = (unitCost / 40) * count;
 
-            const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
-            const count = parseFloat(product.count);
-            const subtotal = unitCost / 40 * count;
-      
-            total += subtotal;
+          total += subtotal;
+        }
+      });
 
-          }
-        });
-      
-        // muestra el subtotal de costo
-        subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
-      
+      // muestra el subtotal de costo
+      subtotalPrice.textContent = `USD ${total.toFixed(2)}`;
 
       function updateShippingPrice() {
         const selectedShippingOption = document.querySelector(
@@ -200,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const accountNumber = document.getElementById("accountNumber");
   const paymentMethod = document.getElementById("formaPagoP");
   const modalForm = document.getElementById("modalForm");
-      
+
   // Función para deshabilitar los campos dependiendo de cual seleccione
   function updatePaymentMethod(creditCardChecked) {
     cardCvv.disabled = !creditCardChecked;
@@ -247,16 +246,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return true; // Todos los campos necesarios están completos
   }
-  
+
   // condiciones que deberan cumplirse para enviar el formulario
   let hasZeroArticles = false;
   let fullAddress = false;
   let isPaymentMethodValid = false;
-  
+
   // Manejadores de eventos y validaciones
   forms.forEach(function (form) {
     form.addEventListener("submit", function (event) {
-
       let formIsValid = true;
 
       if (!form.checkValidity()) {
@@ -264,8 +262,9 @@ document.addEventListener("DOMContentLoaded", () => {
         event.stopPropagation();
         compraExitosaDiv.style.display = "none";
       }
-  
-      for (let i = 0; i < cart.length; i++) { // busque que no haya productos con cantidad 0
+
+      for (let i = 0; i < cart.length; i++) {
+        // busque que no haya productos con cantidad 0
 
         if (cart[i].count == 0) {
           hasZeroArticles = false; // si encuentra 0, indica que no cumple la condición
@@ -282,20 +281,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const street = document.getElementById("street").value;
       const number = document.getElementById("number").value;
       const corner = document.getElementById("corner").value;
-      if (street.trim() !== "" && number.trim() !== "" && corner.trim() !== "") {
+      if (
+        street.trim() !== "" &&
+        number.trim() !== "" &&
+        corner.trim() !== ""
+      ) {
         fullAddress = true; // si ningún campo de "Dirección de envío" esta vacío, lo da por valido
-      } else { // en caso contrario lo da por invalido
+      } else {
+        // en caso contrario lo da por invalido
         fullAddress = false;
         event.preventDefault();
         event.stopPropagation();
         compraExitosaDiv.style.display = "none";
 
         console.error("error dirección"); // prueba error dirección
-
       }
-  
+
       // Validar que se haya seleccionado algún método de pago
-      const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+      const selectedPaymentMethod = document.querySelector(
+        'input[name="paymentMethod"]:checked'
+      );
 
       if (selectedPaymentMethod) {
         if (creditCardRadio.checked) {
@@ -303,8 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cardNumber.value.trim() !== "" &&
             cardCvv.value.trim() !== "" &&
             cardExpiration.value.trim() !== ""
-            ) 
-          {
+          ) {
             isPaymentMethodValid = true;
           } else {
             isPaymentMethodValid = false;
@@ -319,50 +323,59 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         isPaymentMethodValid = false;
       }
-  
+
       form.classList.add("was-validated");
 
       if (!checkbox.checked) {
         checkbox.classList.add("is-invalid");
         validationText.style.display = "block";
       }
+    });
 
-      saveBtn.addEventListener("click", () => {
-        const selected = document.querySelector('input[name="paymentMethod"]:checked');
-        if (selected && validatePaymentFields()) {
-          formPay.textContent = selected.nextElementSibling.textContent;
-          validationText.style.display = "none";
-        }
-      });
+    saveBtn.addEventListener("click", () => {
+      const selected = document.querySelector(
+        'input[name="paymentMethod"]:checked'
+      );
+      if (selected && validatePaymentFields()) {
+        formPay.textContent = selected.nextElementSibling.textContent;
+        validationText.style.display = "none";
+      }
+    });
 
-      cancel.addEventListener("click", function () {
-        cardNumber.value = "";
-        cardCvv.value = "";
-        cardExpiration.value = "";
-        accountNumber.value = "";
-        modalForm.classList.remove("was-validated");
-        paymentMethod.textContent = "No ha seleccionado";
-      });
+    cancel.addEventListener("click", function () {
+      cardNumber.value = "";
+      cardCvv.value = "";
+      cardExpiration.value = "";
+      accountNumber.value = "";
+      modalForm.classList.remove("was-validated");
+      paymentMethod.textContent = "No ha seleccionado";
+    });
 
-      creditCardRadio.addEventListener("change", function () {
-        updatePaymentMethod(creditCardRadio.checked);
-        paymentMethod.textContent = creditCardRadio.checked
-          ? "Tarjeta de Crédito"
-          : "No ha seleccionado";
-        accountNumber.value = "";
-      });
+    creditCardRadio.addEventListener("change", function () {
+      updatePaymentMethod(creditCardRadio.checked);
+      paymentMethod.textContent = creditCardRadio.checked
+        ? "Tarjeta de Crédito"
+        : "No ha seleccionado";
+      accountNumber.value = "";
+    });
 
-      transferRadio.addEventListener("change", function () {
-        updatePaymentMethod(!transferRadio.checked);
-        paymentMethod.textContent = transferRadio.checked
-          ? "Transferencia"
-          : "No ha seleccionado";
-        cardNumber.value = "";
-        cardCvv.value = "";
-        cardExpiration.value = "";
-      });
+    transferRadio.addEventListener("change", function () {
+      updatePaymentMethod(!transferRadio.checked);
+      paymentMethod.textContent = transferRadio.checked
+        ? "Transferencia"
+        : "No ha seleccionado";
+      cardNumber.value = "";
+      cardCvv.value = "";
+      cardExpiration.value = "";
+    });
 
-      if (hasZeroArticles && fullAddress && isPaymentMethodValid && form.checkValidity()) { // comprueba que cumpla con todo lo necesario antes de enviarlo
+    if (
+      hasZeroArticles &&
+      fullAddress &&
+      isPaymentMethodValid &&
+      form.checkValidity()
+    ) {
+      // comprueba que cumpla con todo lo necesario antes de enviarlo
       form.reset();
       updateFeedbackClasses();
       compraExitosaDiv.style.display = "block";
@@ -370,12 +383,11 @@ document.addEventListener("DOMContentLoaded", () => {
       formIsValid = false; // si no cumple alguna condición le da valor invalido al form
     }
 
-    if (!formIsValid) { // antes de enviarlo controla que el form sea valido, en caso contrario detiene el envio
+    if (!formIsValid) {
+      // antes de enviarlo controla que el form sea valido, en caso contrario detiene el envio
       event.preventDefault();
       event.stopPropagation();
       compraExitosaDiv.style.display = "none";
     }
-
-    });
-});
+  });
 });
