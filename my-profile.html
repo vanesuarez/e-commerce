@@ -29,14 +29,8 @@
 <body data-bs-theme="light">
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #c4c4c4;">
     <div class="container">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -55,22 +49,18 @@
           <li>
             <button id="moonButton" class="btn rounded-fill"><i id="dl-icon" class="bi bi-moon-fill"></i></button>
           </li>
-            
+
           <!-- ENTREGA 4.2 DROPDOWN -->
 
           <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
               <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
               <li>
-                 <a id="closeSession" class="dropdown-item" href="login.html">Cerrar Sesión</a>
+                <a id="closeSession" class="dropdown-item" href="login.html">Cerrar Sesión</a>
               </li>
             </ul>
           </div>
@@ -81,20 +71,62 @@
       </div>
     </div>
   </nav>
-  
+
+
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="row">
+        <hr>
+        <h2 class="centrar">Perfil</h2>
+        <hr class="my-4">
+        <form>
+          <div class="row centrar">
+            <div class="col-md-6 mb-3">
+              <label for="firstName" class="form-label">Primer Nombre*</label>
+              <input type="text" class="form-control" id="firstName" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="secondName" class="form-label">Segundo Nombre</label>
+              <input type="text" class="form-control" id="secondName">
+            </div>
+          </div>
+          <div class="row centrar">
+            <div class="col-md-6 mb-3">
+              <label for="firstSurname" class="form-label">Primer Apellido*</label>
+              <input type="text" class="form-control" id="firstSurname" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="secondSurname" class="form-label">Segundo Apellido</label>
+              <input type text="text" class="form-control" id="secondSurname">
+            </div>
+          </div>
+          <div class="row centrar">
+            <div class="col-md-6 mb-3">
+              <label for="email" class="form-label">E-mail*</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="phone" class="form-label">Teléfono de contacto</label>
+              <input type="tel" class="form-control" id="phone">
+            </div>
+          </div>
+          <hr class="my-4">
+          <div class="centrar">
+            <button id="save-button" type="submit" class="btn btn-primary">Guardar cambios</button>
+          </div>
+        </form>
       </div>
     </div>
   </main>
+
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <script src="js/bootstrap.bundle.min.js"></script>
