@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
     const saveButton = document.getElementById("save-button");
 
+    // Usar el nombre de usuario como valor inicial
+    document.getElementById("email").value = savedUsername;
+
     // Agrega un controlador de eventos para el envío del formulario
     form.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -30,7 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
             // Convierte los datos a cadena JSON y guárdalos en el almacenamiento local
             localStorage.setItem("userData", JSON.stringify(userData));
 
-            alert("Los cambios se han guardado correctamente.");
+            // Mostrar la alerta de éxito
+            document.getElementById("sucessAlert").style.display = "block";
         }
     });
 
