@@ -9,6 +9,18 @@
   margin-right: 50px;
 }
 
+/* Desafiate entrega 7 */
+#defaultImage {
+  height: 7rem;
+  max-width: 7rem;
+  max-height: 7rem;
+  object-fit: cover; /* Recorta la imagen en lugar de estirarla */
+}
+
+#profileHeadline {
+  padding: 1rem;
+}
+
 /* Entrega 6.1 */
 
 .finalPrices {
