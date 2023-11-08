@@ -23,59 +23,64 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   </head>
 
-<body>
+  <body>
+    <main id="mainLogin">
+      <div class="mainDiv">
+        <img class="imgForm" src="./img/login.png" alt="" />
+      </div>
 
+      <section class="sectionForm">
+        <h3 class="htresForm">Iniciar sesion</h3>
+      </section>
 
-  <main id="mainLogin">
-    <div class="mainDiv">
-      <img class="imgForm" src="./img/login.png" alt="">
-    </div>
-      
-    <section class="sectionForm">
-      <h3 class="htresForm">Iniciar sesion</h3>
-    </section>
-    
-    <section class="form-section">
-      
-      <form class="general-form" id="login-form" action="">
-        <label for="username"></label>
-        <input type="email" value="" id="username" name="username" placeholder="Email" required>
-      
-        <label for="passwoord"></label>
-        <input type="password" value="" id="password" name="passwoord" placeholder="Contraseña" required>
+      <section class="form-section">
+        
+        <form class="general-form" id="login-form" action="">
+          <div class="form-group">
+            <label for="email" class="form-label"></label>
+            <input
+              class="form-control"
+              type="email"
+              value=""
+              id="username"
+              name="username"
+              placeholder="Email"
+              required
+               />
 
-        <label for="">
-          <input type="checkbox" value="recordar" id="rememberUser"> Recordar usuario
-        </label>
-    
-        <button type="submit" id="logIn">
-          Entrar
-        </button>
-      </form>
-      
-    </section>
-    
-  </main>
-        
-        
-        
-          
-    
-    
+            <label for="passwoord"></label>
+            <input
+              type="password"
+              value=""
+              id="password"
+              name="passwoord"
+              placeholder="Contraseña"
+              required />
+          </div>
 
-     
-      
-        
-        
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
-  <script src="js/login.js"></script>
-</body>
+          <label for="">
+            <input type="checkbox" value="recordar" id="rememberUser" />
+            Recordar usuario
+          </label>
 
+          <button type="submit" id="logIn">Entrar</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+        </p>
+      </div>
+    </footer>
+    <script src="js/login.js"></script>
+  </body>
 </html>
