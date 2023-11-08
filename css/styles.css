@@ -12,6 +12,13 @@
 /* Desafiate entrega 7 */
 #defaultImage {
   height: 7rem;
+  max-width: 7rem;
+  max-height: 7rem;
+  object-fit: cover; /* Recorta la imagen en lugar de estirarla */
+}
+
+#profileHeadline {
+  padding: 1rem;
 }
 
 
@@ -600,6 +607,16 @@ a.custom-card:hover {
   #inputFilter {
     width: 100%; 
   }
+
+  #profileHeadline {
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .d-flex.justify-content-end {
+    justify-content: center !important;
+  }
+
 }
 
 @media (max-width: 600px) {
@@ -627,7 +644,6 @@ a.custom-card:hover {
   .form-control {
     font-size: 14px;
   }
-
 
   #compraExitosa {
     position: fixed;

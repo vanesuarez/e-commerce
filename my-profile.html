@@ -104,31 +104,36 @@
       </div>
     </nav>
 
-    <!-- Alerta -->
-    <div
-      class="alert alert-success mt-3"
-      id="sucessAlert"
-      style="display: none">
-      Datos guardados exitosamente.
-    </div>
-
     <main>
       <div class="container">
         <div class="row">
           <hr />
-          <div class="container">
-            <div class="row justify-content-between">
-              <div class="col-4">
-                <h2>Perfil</h2>
-              </div>
 
-              <!-- Desafiate -->
-              <div class="col-4">
-                <img
-                  src="/img/imagen por defecto.png"
-                  alt="default"
-                  id="defaultImage"
-                  class="img-thumbnail rounded" />
+                    <!-- Alerta -->
+                    <div
+                    class="alert alert-success mt-3"
+                    id="sucessAlert"
+                    style="display: none">
+                    Datos guardados exitosamente.
+                  </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div
+                  class="d-flex justify-content-between align-items-center"
+                  id="profileHeadline">
+                  <h2>Perfil</h2>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex justify-content-end">
+                  <img
+                    src="/img/imagen por defecto.png"
+                    alt="default"
+                    id="defaultImage"
+                    class="img-thumbnail rounded" />
+                </div>
               </div>
             </div>
           </div>
@@ -186,13 +191,10 @@
                 <input type="tel" class="form-control" id="phone" />
               </div>
             </div>
-            
 
             <div class="row centrar">
               <div class="col-md-6 mb-3">
-                <label for="file" class="form-label"
-                  >Seleccionar imagen</label
-                >
+                <label for="file" class="form-label">Seleccionar imagen</label>
                 <input type="file" class="form-control" id="profilePicture" />
               </div>
             </div>
