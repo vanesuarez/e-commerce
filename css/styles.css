@@ -606,6 +606,16 @@ a.custom-card:hover {
   #inputFilter {
     width: 100%; 
   }
+
+  #profileHeadline {
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .d-flex.justify-content-end {
+    justify-content: center !important;
+  }
+  
 }
 
 @media (max-width: 600px) {
