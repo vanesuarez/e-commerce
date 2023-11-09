@@ -126,11 +126,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       cart.forEach((product) => {
         // recorre los objetos guardados en el localStorage
-        const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
-        const count = parseFloat(product.count) || 0;
-        const subtotal = unitCost * count;
 
-        total += subtotal;
+        if (product.price.includes("USD")) {
+          const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+          const count = parseFloat(product.count);
+          const subtotal = unitCost * count;
+
+          total += subtotal;
+        } else {
+          const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
+          const count = parseFloat(product.count);
+          const subtotal = (unitCost / 40) * count;
+
+          total += subtotal;
+        }
       });
 
       // muestra el subtotal de costo
