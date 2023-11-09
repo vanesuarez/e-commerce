@@ -172,12 +172,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   ////////////////////////////////////////////////////
 
-  // Entrega 6 - Parte 2:
+  // Validaciones
 
   // Variables para elementos del DOM
   const forms = document.querySelectorAll(".needs-validation");
   const validationText = document.getElementById("paymentValidation");
-  const compraExitosaDiv = document.getElementById("compraExitosa");
+  const compraExitosaDiv = document.getElementById("alertSuccess");
   const saveBtn = document.getElementById("saveBtn");
   const formPay = document.querySelector(".centrar p");
   const cancel = document.getElementById("cancel");
@@ -189,14 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const accountNumber = document.getElementById("accountNumber");
   const formaPagoP = document.getElementById("formaPagoP");
   const modalForm = document.getElementById("modalForm");
-
-  // Funcion para validar si la cantidad del producto es 0
-  // function validateProductQuantities(cart) {
-  //   return cart.some((product) => product.count === 0);
-  // }
-  // const hasZeroQuantities = validateProductQuantities(cart);
-
-  // console.log(hasZeroQuantities);
 
   // Función para deshabilitar los campos dependiendo de cual seleccione
   function updatePaymentMethod(creditCardChecked) {
@@ -256,16 +248,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       form.classList.add("was-validated");
 
-            // Verifica si ninguno de los checkboxes está seleccionado
-            if (!creditCardRadio.checked && !transferRadio.checked) {
-              creditCardRadio.classList.add("is-invalid");
-              transferRadio.classList.add("is-invalid");
-              validationText.style.display = "block";
-            } else {
-              creditCardRadio.classList.remove("is-invalid");
-              transferRadio.classList.remove("is-invalid");
-              validationText.style.display = "none";
-            }
+      // Verifica si ninguno de los checkboxes está seleccionado
+      if (!creditCardRadio.checked && !transferRadio.checked) {
+        creditCardRadio.classList.add("is-invalid");
+        transferRadio.classList.add("is-invalid");
+        validationText.style.display = "block";
+      } else {
+        creditCardRadio.classList.remove("is-invalid");
+        transferRadio.classList.remove("is-invalid");
+        validationText.style.display = "none";
+      }
 
       if (validatePaymentFields() && form.checkValidity()) {
         form.reset();

@@ -217,9 +217,20 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Guarda el carrito actualizado en el almacenamiento local
     localStorage.setItem("cart", JSON.stringify(cart));
-  
-    // Redirige a la página del carrito
-    window.location.href = "cart.html";
+
+    // Alerta 
+    document.getElementById('exampleModal').classList.add('fade');
+    document.getElementById('exampleModal').style.display = 'block';
+    setTimeout(function() {
+      document.getElementById('exampleModal').classList.add('show');
+    }, 80); // Ajusta este valor si es necesario
+  });
+
+  document.querySelectorAll('[data-mdb-dismiss="modal"]').forEach(function (element) {
+    element.addEventListener('click', function () {
+      document.getElementById('exampleModal').classList.remove('show');
+      document.getElementById('exampleModal').style.display = 'none';
+    });
   });
   
 });
