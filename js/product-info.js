@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // CAROUSEL JS CODE
 
       const carouselInner = document.querySelector(".carousel-inner");
+      const rightColumn = document.getElementById("rightDiv");
 
       // Itera sobre las img y le agrega la clase del boostrap
       data.images.forEach((image, index) => {
@@ -48,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         carouselItem.appendChild(imgElement);
         carouselInner.appendChild(carouselItem);
+        rightColumn.appendChild(carouselInner);
       });
 
       // Entrega 4.1

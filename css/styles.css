@@ -78,8 +78,8 @@
 
 /* boton comprar */
 #buyBtnDiv{
-  margin-top: 2rem;
-  margin-left: 60%;
+  text-align: center;
+  width: 100% !important;
 }
 
 /* carousel */
@@ -169,6 +169,7 @@
   color: #007bff; 
   font-weight: bold;
   margin-bottom: 10px; 
+  text-align: center;
 }
 
 #productPrice {
