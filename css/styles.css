@@ -9,6 +9,10 @@
   margin-right: 50px;
 }
 
+.bi {
+  padding-right: 0.4rem;
+}
+
 /* Desafiate entrega 7 */
 #defaultImage {
   height: 7rem;
@@ -643,7 +647,6 @@ a.custom-card:hover {
   .form-control {
     font-size: 14px;
   }
-
 
   #compraExitosa {
     position: fixed;
