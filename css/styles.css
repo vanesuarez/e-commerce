@@ -655,7 +655,6 @@ a.custom-card:hover {
 
 .form-label {
   font-weight: bold;
-  font-style: italic;
   color: #007bff;
 }
 
@@ -674,7 +673,6 @@ a.custom-card:hover {
 .finalPrices {
   color: #007bff;
   font-weight: bold;
-  font-style: italic;
 }
 
 .text-right {
@@ -682,14 +680,12 @@ a.custom-card:hover {
 }
 
 .subTotal {
-  font-style: italic;
   font-weight: bold;
 }
 
 .total {
   color: #007bff;
   font-weight: bold;
-  font-style: italic;
 }
 
 /*   PAUTA EXTRA!!!! */
