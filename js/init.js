@@ -66,9 +66,7 @@ const session = document.getElementById('closeSession');
 
 session.addEventListener('click', function() {
 
-  localStorage.removeItem('username');
-  localStorage.removeItem('password');
-  localStorage.removeItem('cart');
+  localStorage.clear()
   window.location.href = "login.html";
 })
 
