@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // CAROUSEL JS CODE
 
       const carouselInner = document.querySelector(".carousel-inner");
-      const rightColumn = document.getElementById("rightDiv");
 
       // Itera sobre las img y le agrega la clase del boostrap
       data.images.forEach((image, index) => {
@@ -49,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         carouselItem.appendChild(imgElement);
         carouselInner.appendChild(carouselItem);
-        rightColumn.appendChild(carouselInner);
       });
 
       // Entrega 4.1
@@ -195,44 +193,45 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Entrega 5 desafiate
-  
+
   document.getElementById("buyBtn").addEventListener("click", function () {
     const name = document.getElementById("productName").textContent;
     const price = document.getElementById("productPrice").textContent;
     const img = document.querySelector(".carousel-inner img").src;
-  
+
     // llama el carrito actual del almacenamiento local o crea uno vacio si no existe
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  
-    const exists = cart.find((product) => product.name === name); 
-  
+
+    const exists = cart.find((product) => product.name === name);
+
     if (exists) {
-      exists.quantity += 1;
+      exists.count += 1;
     } else {
       cart.push({
         name: name,
         price: price,
         img: img,
-        quantity: 1,
+        count: 1,
       });
     }
-  
+
     // Guarda el carrito actualizado en el almacenamiento local
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    // Alerta 
-    document.getElementById('exampleModal').classList.add('fade');
-    document.getElementById('exampleModal').style.display = 'block';
-    setTimeout(function() {
-      document.getElementById('exampleModal').classList.add('show');
+    // Alerta
+    document.getElementById("exampleModal").classList.add("fade");
+    document.getElementById("exampleModal").style.display = "block";
+    setTimeout(function () {
+      document.getElementById("exampleModal").classList.add("show");
     }, 80); // Ajusta este valor si es necesario
-  });
 
-  document.querySelectorAll('[data-mdb-dismiss="modal"]').forEach(function (element) {
-    element.addEventListener('click', function () {
-      document.getElementById('exampleModal').classList.remove('show');
-      document.getElementById('exampleModal').style.display = 'none';
-    });
+    document
+      .querySelectorAll('[data-mdb-dismiss="modal"]')
+      .forEach(function (element) {
+        element.addEventListener("click", function () {
+          document.getElementById("exampleModal").classList.remove("show");
+          document.getElementById("exampleModal").style.display = "none";
+        });
+      });
   });
-  
 });
