@@ -16,15 +16,22 @@ document.addEventListener("DOMContentLoaded", function() { // Evento DOMLoaded p
       // Verificar que los campos no estén vacíos, si no lo estan, guarda los datos en una localStorage
       // y redirecciona al index.html
       // si no hay datos, tira un alert
+      // Define una expresion regular que valida email
+	    const validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
-      if (username && password) {
+      if (validEmail.test(username) && password) {
         localStorage.setItem("username", username); // (nombre, el contenido)
         localStorage.setItem("password", password);
         window.location.href = "index.html";
 
       } else {
-        alert("Ingresa datos en ambos campos para continuar");
+        alert("Ingrese Email y Contraseña válidos");
       }
 
   });
+
+
+
+
+
   });
