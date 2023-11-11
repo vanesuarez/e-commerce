@@ -42,66 +42,52 @@ let getJSONData = function (url) {
     });
 };
 
-// REDIRECCIONAR AL LOGIN SI NO SE ENCUENTRAN DATOS EN EL SESSIONSTORAGE
+// Redirecciona al login si no se encuentran datos en el LocalStorage
 
 const savedUsername = localStorage.getItem("username"); // Llamamos al contenido guardado en login.js
 const savedPassword = localStorage.getItem("password");
 
 if (!savedUsername || !savedPassword) {
-  //SI NO ENCUENTRA NINGUN VALOR (ES FALSE, POR ESO !), REDIRECCIONA
+  // si no encuentra ningun valor, redirecciona
   window.location.href = "login.html";
 }
 
-// MOSTRAR USUARIO EN LA BARRA DE NAVEGACION
-
-// ENTREGA 4.2 DROPDOWN
+// Mostrar usuario en la barra de navegacion
 
 // Agregar usuario como boton
-const userInfo = document.createElement("a"); 
+const userInfo = document.createElement("a");
 const dropdownMenu = document.getElementById("dropdownMenuButton1");
-dropdownMenu.innerHTML = savedUsername; 
+dropdownMenu.innerHTML = savedUsername;
 
 // Cerrar sesion y eliminar el usuario del localStorage
-const session = document.getElementById('closeSession');
+const session = document.getElementById("closeSession");
 
-session.addEventListener('click', function() {
-
-  localStorage.removeItem('username');
-  localStorage.removeItem('password');
-  localStorage.removeItem('cart');
+session.addEventListener("click", function () {
+  localStorage.clear();
   window.location.href = "login.html";
-})
+});
 
-          //   ENTREGA 4.3 
+//   Modo noche
 
-          const moonButton = document.getElementById("moonButton");
+const moonButton = document.getElementById("moonButton");
 
-          const darkMode = () => {
-            document.querySelector("body").setAttribute("data-bs-theme", "dark");
-            document.querySelector("#dl-icon").setAttribute("class", "bi bi-sun-fill"); //  cambia el icono 
-          };
-        
-          const lightMode = () => {
-            document.querySelector("body").setAttribute("data-bs-theme", "light");
-            document.querySelector("#dl-icon").setAttribute("class", "bi bi-moon-fill");
-          };
-        
-          const changeTheme = () => {
-            const theme = document.querySelector("body").getAttribute("data-bs-theme");
-            if (theme === "light") {
-              darkMode();
-            } else {
-              lightMode();
-            }
-          };
-        
-          moonButton.addEventListener("click", changeTheme);
+const darkMode = () => {
+  document.querySelector("body").setAttribute("data-bs-theme", "dark");
+  document.querySelector("#dl-icon").setAttribute("class", "bi bi-sun-fill"); //  cambia el icono
+};
 
+const lightMode = () => {
+  document.querySelector("body").setAttribute("data-bs-theme", "light");
+  document.querySelector("#dl-icon").setAttribute("class", "bi bi-moon-fill");
+};
 
+const changeTheme = () => {
+  const theme = document.querySelector("body").getAttribute("data-bs-theme");
+  if (theme === "light") {
+    darkMode();
+  } else {
+    lightMode();
+  }
+};
 
-
-
-
-
-
-
+moonButton.addEventListener("click", changeTheme);

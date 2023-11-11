@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>eMercado - Todo lo que busques está aquí</title>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>eMercado - Todo lo que busques está aquí</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
 
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
-  <link href="css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/styles.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
-</head>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
 
   <body data-bs-theme="light">
     <nav
@@ -33,13 +58,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav w-100 justify-content-between">
             <li class="nav-item">
-              <a class="nav-link active" href="index.html"><b>Inicio</b></a>
+              <a class="nav-link active" href="index.html"><i class="bi bi-house-door"></i><b>Inicio</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="categories.html"><b>Categorías</b></a>
+              <a class="nav-link" href="categories.html"><i class="bi bi-tags"></i><b>Categorías</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="sell.html"><b>Vender</b></a>
+              <a class="nav-link" href="sell.html"><i class="bi bi-piggy-bank"></i><b>Vender</b></a>
             </li>
 
             <!-- ENTREGA 4.3 MODO OSCURO Y CLARO -->
@@ -60,28 +85,22 @@
                 aria-expanded="false"></button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li>
-                  <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
+                  <a class="dropdown-item" href="my-profile.html"><i class="bi bi-person-circle" style="float: left"></i> Mi Perfil</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="cart.html">Mi Carrito</a>
+                  <a class="dropdown-item" href="cart.html"><i class="bi bi-cart" style="float: left"></i>Mi Carrito</a>
                 </li>
                 <li>
                   <a id="closeSession" class="dropdown-item" href="login.html"
-                    >Cerrar Sesión</a
+                    > <i class="bi bi-box-arrow-right" style="float: left"></i>Cerrar Sesión</a
                   >
                 </li>
               </ul>
             </div>
-
-            <!-- ENTREGA 4.2 DROPDOWN -->
           </ul>
         </div>
       </div>
     </nav>
-
-    <div id="compraExitosa" class="alert alert-success" style="display: none">
-      ¡Has comprado con éxito!
-    </div>
 
     <main>
       <section class="centrar">
@@ -113,9 +132,13 @@
         class="needs-validation"
         novalidate>
 
-      <section class="centrar">
-        <br />
+        <hr>
+
+      <section class="centrar form-container">
+
         <h4>Tipo de envío</h4>
+
+        <br>
 
         <div class="form-check">
           <input
@@ -151,11 +174,9 @@
             Standard 12 a 15 días (5%)
           </label>
         </div>
-      </section>
 
-      <hr />
-
-      <section class="centrar">
+        <hr>
+        
         <h4>Dirección de envío</h4>
         <div class="row">
           <div class="col-lg-6 mt-3">
@@ -198,8 +219,6 @@
       </section>
       <hr />
 
-    
-
       <!-- 6.1 Desgloce de precios -->
       <section class="centrar">
         <h4>Costos</h4>
@@ -238,7 +257,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-6">
-                <h5>Total ($)</h5>
+                <h5>Total (USD)</h5>
               </div>
               <div class="col-6 text-right">
                 <h5 class="finalPrices" id="totalPrice"></h5>
@@ -257,6 +276,29 @@
   </form>
 
     <br>
+
+          <!-- Modal de alerta compra exitosa -->
+          <div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content" style="background-color: lightgray">
+                <div class="modal-header">
+                  <h5 class="modal-title" style="color: green;"><b>Compra realizada correctamente.</b></h5>
+                </div>
+                <div class="modal-body">
+                  ¡Gracias por elegirnos! Sigue navegando por la tienda y descubre los mejores productos.
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    data-mdb-dismiss="modal">
+                    Cerrar
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
     </main>
 
@@ -326,8 +368,6 @@
       </div>
 
       <hr>
-
-      
 
     <footer class="text-muted">
       <div class="container">

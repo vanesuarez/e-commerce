@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "productSoldCount"
       ).innerHTML = `<b>Vendidos</b> <br>${data.soldCount}`;
 
-      // CAROUSEL JS CODE
+      // CAROUSEL BOOTSTRAP
 
       const carouselInner = document.querySelector(".carousel-inner");
 
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         carouselInner.appendChild(carouselItem);
       });
 
-      // Entrega 4.1
+      // Productos relacionados
       const related = document.getElementById("related");
 
       data.relatedProducts.forEach((product) => {
@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
           localStorage.setItem("productID", product.id);
         });
-        // Entrega 4.1
       });
     })
     .catch((error) => {
@@ -92,19 +91,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const commentUser = document.createElement("p");
         commentUser.textContent = `${comment.user}`; // mostrar usuario
 
-        //  Bucle for para mostrar las estrellas en cada comentario
+        //  Bucle for para mostrar las estrellas en cada comentario (.checked estrellas pintadas)
         let stars = "";
         for (let i = 1; i < 6; i++) {
           if (i <= comment.score) {
-            stars += '<span class="fa fa-star checked"></span>'; //  clase de estrellas pintadas
+            stars += '<span class="fa fa-star checked"></span>';
           } else {
-            stars += '<span class="fa fa-star"></span>'; //  clase de estellas sin pintar
+            stars += '<span class="fa fa-star"></span>';
           }
         }
         const commentScore = document.createElement("p");
         commentScore.innerHTML = `${stars} `;
-
-        // --
 
         const commentDate = document.createElement("p");
         commentDate.textContent = ` ${comment.dateTime}`; // mostrar fecha
@@ -192,18 +189,18 @@ document.addEventListener("DOMContentLoaded", function () {
     form.reset();
   });
 
-  // Entrega 5 desafiate
-  
+  // Argega al carrito nuevos productos
+
   document.getElementById("buyBtn").addEventListener("click", function () {
     const name = document.getElementById("productName").textContent;
     const price = document.getElementById("productPrice").textContent;
     const img = document.querySelector(".carousel-inner img").src;
-  
+
     // llama el carrito actual del almacenamiento local o crea uno vacio si no existe
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  
-    const exists = cart.find((product) => product.name === name); 
-  
+
+    const exists = cart.find((product) => product.name === name);
+
     if (exists) {
       exists.count += 1;
     } else {
@@ -214,12 +211,24 @@ document.addEventListener("DOMContentLoaded", function () {
         count: 1,
       });
     }
-  
+
     // Guarda el carrito actualizado en el almacenamiento local
     localStorage.setItem("cart", JSON.stringify(cart));
-  
-    // Redirige a la página del carrito
-    window.location.href = "cart.html";
+
+    // Alerta modal con bootstrap
+    document.getElementById("exampleModal").classList.add("fade");
+    document.getElementById("exampleModal").style.display = "block";
+    setTimeout(function () {
+      document.getElementById("exampleModal").classList.add("show");
+    }, 80);
+
+    document
+      .querySelectorAll('[data-mdb-dismiss="modal"]')
+      .forEach(function (element) {
+        element.addEventListener("click", function () {
+          document.getElementById("exampleModal").classList.remove("show");
+          document.getElementById("exampleModal").style.display = "none";
+        });
+      });
   });
-  
 });
