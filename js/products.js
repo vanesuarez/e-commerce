@@ -20,8 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("productID", product.id);
       });
 
-      //
-
       const divText = document.createElement("div");
       divText.classList.add("divForText");
 
@@ -62,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  const catID = localStorage.getItem("catID"); // obtener la clave de localStorage
+  const catID = localStorage.getItem("catID");
 
   if (catID) {
     // si catID es distinto del vacio entonces es true y con ese contenido crea la URL
@@ -80,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         pDet.textContent = `Veras aqui todos los productos de la categoria ${data.catName}.`;
 
-        // ENTREGA 2 - ORDENAR ALFABÉTICAMENTE ASCENDENTE
+        // ORDENAR ALFABÉTICAMENTE ASCENDENTE
         document
           .getElementById("sortAsc")
           .addEventListener("click", function () {
@@ -90,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
             displayProducts(asc);
           });
 
-        // ENTREGA 2 - ORDENAR ALFABÉTICAMENTE DESCENDENTE
+        // ORDENAR ALFABÉTICAMENTE DESCENDENTE
         document
           .getElementById("sortDesc")
           .addEventListener("click", function () {
@@ -100,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             displayProducts(desc);
           });
 
-        // ENTREGA 2 - ORDENAR POR CANTIDAD
+        // ORDENAR POR CANTIDAD
         document
           .getElementById("sortByCount")
           .addEventListener("click", function () {
@@ -110,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
             displayProducts(sortCount);
           });
 
-        // ENTREGA 2 - FILTRAR POR PRECIO
+        // FILTRAR POR PRECIO
         document
           .getElementById("rangeFilterCount")
           .addEventListener("click", function () {
@@ -134,12 +132,11 @@ document.addEventListener("DOMContentLoaded", function () {
             displayProducts(filteredProducts);
           });
 
-        // ENTREGA 2
+          // Buscador
 
         const inputFilter = document.getElementById("inputFilter");
 
         inputFilter.addEventListener("input", function () {
-          // Agregamos evento de escucha, se ejecutará cuando el usuario escriba en el teclado
           const filterText = inputFilter.value.toLowerCase().trim(); // Accedemos al texto que escribió el usuario y le aplicamos validaciones
 
           const searchFilter = data.products.filter(function (product) {

@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "productSoldCount"
       ).innerHTML = `<b>Vendidos</b> <br>${data.soldCount}`;
 
-      // CAROUSEL JS CODE
+      // CAROUSEL BOOTSTRAP
 
       const carouselInner = document.querySelector(".carousel-inner");
 
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         carouselInner.appendChild(carouselItem);
       });
 
-      // Entrega 4.1
+      // Productos relacionados
       const related = document.getElementById("related");
 
       data.relatedProducts.forEach((product) => {
@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
           localStorage.setItem("productID", product.id);
         });
-        // Entrega 4.1
       });
     })
     .catch((error) => {
@@ -92,19 +91,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const commentUser = document.createElement("p");
         commentUser.textContent = `${comment.user}`; // mostrar usuario
 
-        //  Bucle for para mostrar las estrellas en cada comentario
+        //  Bucle for para mostrar las estrellas en cada comentario (.checked estrellas pintadas)
         let stars = "";
         for (let i = 1; i < 6; i++) {
           if (i <= comment.score) {
-            stars += '<span class="fa fa-star checked"></span>'; //  clase de estrellas pintadas
+            stars += '<span class="fa fa-star checked"></span>';
           } else {
-            stars += '<span class="fa fa-star"></span>'; //  clase de estellas sin pintar
+            stars += '<span class="fa fa-star"></span>';
           }
         }
         const commentScore = document.createElement("p");
         commentScore.innerHTML = `${stars} `;
-
-        // --
 
         const commentDate = document.createElement("p");
         commentDate.textContent = ` ${comment.dateTime}`; // mostrar fecha
@@ -192,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
     form.reset();
   });
 
-  // Entrega 5 desafiate
+  // Argega al carrito nuevos productos
 
   document.getElementById("buyBtn").addEventListener("click", function () {
     const name = document.getElementById("productName").textContent;
