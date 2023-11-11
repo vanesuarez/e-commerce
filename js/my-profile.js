@@ -34,6 +34,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Mostrar la alerta de éxito
       document.getElementById("sucessAlert").style.display = "block";
+
+      setTimeout(function () {
+        document.getElementById("sucessAlert").style.display = "none";
+    }, 10000);
     }
   });
 
