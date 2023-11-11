@@ -218,12 +218,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Guarda el carrito actualizado en el almacenamiento local
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    // Alerta
+    // Alerta modal con bootstrap
     document.getElementById("exampleModal").classList.add("fade");
     document.getElementById("exampleModal").style.display = "block";
     setTimeout(function () {
       document.getElementById("exampleModal").classList.add("show");
-    }, 80); // Ajusta este valor si es necesario
+    }, 80);
 
     document
       .querySelectorAll('[data-mdb-dismiss="modal"]')
