@@ -102,10 +102,6 @@
       </div>
     </nav>
 
-    <div id="alertSuccess" class="alert alert-success" style="display: none">
-      ¡Has comprado con éxito!
-    </div>
-
     <main>
       <section class="centrar">
         <div>
@@ -223,8 +219,6 @@
       </section>
       <hr />
 
-    
-
       <!-- 6.1 Desgloce de precios -->
       <section class="centrar">
         <h4>Costos</h4>
@@ -282,6 +276,29 @@
   </form>
 
     <br>
+
+          <!-- Modal de alerta compra exitosa -->
+          <div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content" style="background-color: lightgray">
+                <div class="modal-header">
+                  <h5 class="modal-title" style="color: green;"><b>Compra realizada correctamente.</b></h5>
+                </div>
+                <div class="modal-body">
+                  ¡Gracias por elegirnos! Sigue navegando por la tienda y descubre los mejores productos.
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    data-mdb-dismiss="modal">
+                    Cerrar
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
     </main>
 
