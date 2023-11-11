@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document
           .getElementById("sortAsc")
           .addEventListener("click", function () {
-            let asc = data.products.sort((x, y) =>
-            parseInt(x.cost) - parseInt(y.cost)
+            let asc = data.products.sort(
+              (x, y) => parseInt(x.cost) - parseInt(y.cost)
             );
             displayProducts(asc);
           });
@@ -94,8 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document
           .getElementById("sortDesc")
           .addEventListener("click", function () {
-            let desc = data.products.sort((x, y) =>
-            parseInt(y.cost) - parseInt(x.cost)
+            let desc = data.products.sort(
+              (x, y) => parseInt(y.cost) - parseInt(x.cost)
             );
             displayProducts(desc);
           });

@@ -68,16 +68,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const cCount = document.createElement("input");
     cCount.type = "number";
     cCount.min = "0";
-    cCount.value = product.count || 1; 
+    cCount.value = product.count || 1;
     article.appendChild(cCount);
     cCount.addEventListener("input", () => {
       const newCount = parseFloat(cCount.value); // guarda la nueva cantidad indicada en el input
 
       const productToUpdate = cart.find(
-        (product) => product.name === cName.innerHTML); // busca el producto por el nombre
+        (product) => product.name === cName.innerHTML
+      ); // busca el producto por el nombre
 
       if (productToUpdate) {
-
         productToUpdate.count = newCount; // actualiza su valor
 
         localStorage.setItem("cart", JSON.stringify(cart)); // guarda los cambios en el localStorage
