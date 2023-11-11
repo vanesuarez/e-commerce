@@ -68,17 +68,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const cCount = document.createElement("input");
     cCount.type = "number";
     cCount.min = "0";
-    cCount.value = product.count || 1; // Establece el valor en 1 si no se proporciona una cantidad
+    cCount.value = product.count || 1; 
     article.appendChild(cCount);
     cCount.addEventListener("input", () => {
       const newCount = parseFloat(cCount.value); // guarda la nueva cantidad indicada en el input
 
       const productToUpdate = cart.find(
-        (product) => product.name === cName.innerHTML
-      ); // busca el producto por el nombre
+        (product) => product.name === cName.innerHTML); // busca el producto por el nombre
 
       if (productToUpdate) {
-        // si existe el producto
 
         productToUpdate.count = newCount; // actualiza su valor
 
@@ -89,12 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const individualSubtotal = document.createElement("p");
     article.appendChild(individualSubtotal);
 
-    const trash = document.createElement("div");
-    trash.innerHTML = `<button type="button" class="btn btn-outline-danger">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
-    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
-    </svg></button>`;
+    const trash = document.createElement("span");
+    trash.innerHTML = `<button type="button" class="btn btn-outline-danger ">
+    <i class="bi bi-trash3 "></i></button>`;
 
     article.appendChild(trash);
 
@@ -118,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
       individualSubtotal.innerHTML = `<b>${product.price.substring(
         0,
         4
-      )} ${subtotal.toFixed(2)}</b>`; //calcula el total de cada producto
+      )} ${subtotal.toFixed(2)}</b>`; // calcula el total de cada producto
 
       let total = 0;
 
@@ -181,9 +176,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   ////////////////////////////////////////////////////
 
-  // Validaciones
+  // Validaciones formulario
 
-  // Variables para elementos del DOM
+  // Constantes para elementos del DOM
   const forms = document.querySelectorAll(".needs-validation");
   const validationText = document.getElementById("paymentValidation");
   const compraExitosaDiv = document.getElementById("alertSuccess");
