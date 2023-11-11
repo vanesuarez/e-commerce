@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateSubtotal() {
       const unitCost = parseFloat(product.price.replace(/[^0-9.-]+/g, ""));
       const count = parseFloat(cCount.value) || 0;
-      const subtotal = unitCost * count;
+      let subtotal = unitCost * count; // Inicializar el subtotal
 
       individualSubtotal.innerHTML = `<b>${product.price.substring(
         0,
@@ -181,13 +181,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   ////////////////////////////////////////////////////
 
-  // Entrega 6 - Parte 2:
+  // Validaciones
 
   // Variables para elementos del DOM
   const forms = document.querySelectorAll(".needs-validation");
-  const checkbox = document.querySelector("#creditCard, #transfer");
   const validationText = document.getElementById("paymentValidation");
-  const compraExitosaDiv = document.getElementById("compraExitosa");
+  const compraExitosaDiv = document.getElementById("alertSuccess");
   const saveBtn = document.getElementById("saveBtn");
   const formPay = document.querySelector(".centrar p");
   const cancel = document.getElementById("cancel");
@@ -326,9 +325,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       form.classList.add("was-validated");
 
-      if (!checkbox.checked) {
-        checkbox.classList.add("is-invalid");
+      // Verifica si ninguno de los checkboxes está seleccionado
+      if (!creditCardRadio.checked && !transferRadio.checked) {
+        creditCardRadio.classList.add("is-invalid");
+        transferRadio.classList.add("is-invalid");
         validationText.style.display = "block";
+      } else {
+        creditCardRadio.classList.remove("is-invalid");
+        transferRadio.classList.remove("is-invalid");
+        validationText.style.display = "none";
       }
     
 
