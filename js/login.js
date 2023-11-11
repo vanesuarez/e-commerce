@@ -13,9 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const username = usernameInput.value.trim(); // Guarda los datos del usuario en una constante
     const password = passwordInput.value.trim();
 
-    // Verificar que los campos no estén vacíos, si no lo estan, guarda los datos en una localStorage
+    // Verificar que los campos no estén vacíos, si no lo estan, guarda los datos en el localStorage
     // y redirecciona al index.html
     // si no hay datos, tira un alert
+
     // Define una expresion regular que valida email
     const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
@@ -24,12 +25,13 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("password", password);
       window.location.href = "index.html";
     } else {
-    // Alerta
+
+    // Alerta modal con bootstrap
     document.getElementById("exampleModal").classList.add("fade");
     document.getElementById("exampleModal").style.display = "block";
     setTimeout(function () {
       document.getElementById("exampleModal").classList.add("show");
-    }, 80); // Ajusta este valor si es necesario
+    }, 80); 
 
     document
       .querySelectorAll('[data-mdb-dismiss="modal"]')
