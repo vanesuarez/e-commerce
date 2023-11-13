@@ -190,8 +190,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardCvv = document.getElementById("cardCvv");
   const cardExpiration = document.getElementById("cardExpiration");
   const accountNumber = document.getElementById("accountNumber");
-  const formaPagoP = document.getElementById("formaPagoP");
+  const paymentMethod = document.getElementById("formaPagoP");
   const modalForm = document.getElementById("modalForm");
+  const street = document.getElementById("street");
+  const addressNumber = document.getElementById("number");
+  const corner =  document.getElementById("corner");
 
   // Función para deshabilitar los campos dependiendo de cual seleccione
   function updatePaymentMethod(creditCardChecked) {
@@ -259,6 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Si todo esta bien, mostrar el mensaje de éxito y resetear el formulario
 
+      if (validatePaymentFields() && street.value.trim() !== "" && addressNumber.value.trim() !== "" && corner.value.trim() !== "") {
       // Alerta modal con bootstrap
       document.getElementById("exampleModal").classList.add("fade");
       document.getElementById("exampleModal").style.display = "block";
@@ -280,7 +284,9 @@ document.addEventListener("DOMContentLoaded", () => {
         form.classList.remove("was-validated");
         modalForm.classList.remove("was-validated");
         updateFeedbackClasses();
-        formaPagoP.textContent = "No ha seleccionado";
+        paymentMethod.textContent = "No ha seleccionado";
+
+      }
         
     });
   });
@@ -301,12 +307,12 @@ document.addEventListener("DOMContentLoaded", () => {
     cardExpiration.value = "";
     accountNumber.value = "";
     modalForm.classList.remove("was-validated");
-    formaPagoP.textContent = "No ha seleccionado";
+    paymentMethod.textContent = "No ha seleccionado";
   });
 
   creditCardRadio.addEventListener("change", function () {
     updatePaymentMethod(creditCardRadio.checked);
-    formaPagoP.textContent = creditCardRadio.checked
+    paymentMethod.textContent = creditCardRadio.checked
       ? "Tarjeta de Crédito"
       : "No ha seleccionado";
     accountNumber.value = "";
@@ -314,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   transferRadio.addEventListener("change", function () {
     updatePaymentMethod(!transferRadio.checked);
-    formaPagoP.textContent = transferRadio.checked
+    paymentMethod.textContent = transferRadio.checked
       ? "Transferencia"
       : "No ha seleccionado";
     cardNumber.value = "";
