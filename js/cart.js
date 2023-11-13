@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalForm = document.getElementById("modalForm");
   const street = document.getElementById("street");
   const addressNumber = document.getElementById("number");
-  const corner =  document.getElementById("corner");
+  const corner = document.getElementById("corner");
 
   // Función para deshabilitar los campos dependiendo de cual seleccione
   function updatePaymentMethod(creditCardChecked) {
@@ -262,22 +262,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Si todo esta bien, mostrar el mensaje de éxito y resetear el formulario
 
-      if (validatePaymentFields() && street.value.trim() !== "" && addressNumber.value.trim() !== "" && corner.value.trim() !== "") {
-      // Alerta modal con bootstrap
-      document.getElementById("exampleModal").classList.add("fade");
-      document.getElementById("exampleModal").style.display = "block";
-      setTimeout(function () {
-        document.getElementById("exampleModal").classList.add("show");
-      }, 80);
+      if (
+        validatePaymentFields() &&
+        street.value.trim() !== "" &&
+        addressNumber.value.trim() !== "" &&
+        corner.value.trim() !== ""
+      ) {
+        // Alerta modal con bootstrap
+        document.getElementById("exampleModal").classList.add("fade");
+        document.getElementById("exampleModal").style.display = "block";
+        setTimeout(function () {
+          document.getElementById("exampleModal").classList.add("show");
+        }, 80);
 
-      document
-        .querySelectorAll('[data-mdb-dismiss="modal"]')
-        .forEach(function (element) {
-          element.addEventListener("click", function () {
-            document.getElementById("exampleModal").classList.remove("show");
-            document.getElementById("exampleModal").style.display = "none";
+        document
+          .querySelectorAll('[data-mdb-dismiss="modal"]')
+          .forEach(function (element) {
+            element.addEventListener("click", function () {
+              document.getElementById("exampleModal").classList.remove("show");
+              document.getElementById("exampleModal").style.display = "none";
+            });
           });
-        });
 
         // resetear todo
         form.reset();
@@ -285,9 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modalForm.classList.remove("was-validated");
         updateFeedbackClasses();
         paymentMethod.textContent = "No ha seleccionado";
-
       }
-        
     });
   });
 
