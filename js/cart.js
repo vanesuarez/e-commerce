@@ -176,9 +176,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   ////////////////////////////////////////////////////
 
-  // Validaciones formulario
+  // Validaciones
 
-  // Constantes para elementos del DOM
+  // Variables para elementos del DOM
   const forms = document.querySelectorAll(".needs-validation");
   const validationText = document.getElementById("paymentValidation");
   const saveBtn = document.getElementById("saveBtn");
@@ -192,9 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const accountNumber = document.getElementById("accountNumber");
   const paymentMethod = document.getElementById("formaPagoP");
   const modalForm = document.getElementById("modalForm");
-  const street = document.getElementById("street");
-  const addressNumber = document.getElementById("number");
-  const corner = document.getElementById("corner");
 
   // Función para deshabilitar los campos dependiendo de cual seleccione
   function updatePaymentMethod(creditCardChecked) {
@@ -225,6 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardCvv.value.trim() === "" ||
         cardExpiration.value.trim() === ""
       ) {
+        // Al menos uno de los campos de la tarjeta de crédito está vacío
         validationText.textContent =
           "Por favor, complete los campos de tarjeta de crédito.";
         validationText.style.display = "block";
@@ -232,6 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } else if (transferRadio.checked) {
       if (accountNumber.value.trim() === "") {
+        // El campo de número de cuenta para transferencia está vacío
         validationText.textContent =
           "Por favor, complete el campo de número de cuenta.";
         validationText.style.display = "block";
@@ -241,10 +240,76 @@ document.addEventListener("DOMContentLoaded", () => {
     return true; // Todos los campos necesarios están completos
   }
 
+  // condiciones que deberan cumplirse para enviar el formulario
+  let hasZeroArticles = false;
+  let fullAddress = false;
+  let isPaymentMethodValid = false;
+
+  // Manejadores de eventos y validaciones
   forms.forEach(function (form) {
     form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
+      let formIsValid = true;
+
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      for (let i = 0; i < cart.length; i++) {
+        // busque que no haya productos con cantidad 0
+
+        if (cart[i].count == 0) {
+          hasZeroArticles = false; // si encuentra 0, indica que no cumple la condición
+          event.preventDefault();
+          event.stopPropagation();
+          break; // detiene la ejecución, sin esto daría por valido un form si el ultimo valor es distinto de 0
+        } else {
+          hasZeroArticles = true; // al comprobar que no hay productos 0, lo da por valido
+        }
+      }
+      // Validar que se hayan completado los campos de dirección de envío
+      const street = document.getElementById("street").value;
+      const number = document.getElementById("number").value;
+      const corner = document.getElementById("corner").value;
+      if (
+        street.trim() !== "" &&
+        number.trim() !== "" &&
+        corner.trim() !== ""
+      ) {
+        fullAddress = true; // si ningún campo de "Dirección de envío" esta vacío, lo da por valido
+      } else {
+        // en caso contrario lo da por invalido
+        fullAddress = false;
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      // Validar que se haya seleccionado algún método de pago
+      const selectedPaymentMethod = document.querySelector(
+        'input[name="paymentMethod"]:checked'
+      );
+
+      if (selectedPaymentMethod) {
+        if (creditCardRadio.checked) {
+          if (
+            cardNumber.value.trim() !== "" &&
+            cardCvv.value.trim() !== "" &&
+            cardExpiration.value.trim() !== "" 
+          ) {
+            isPaymentMethodValid = true;
+          } else {
+            isPaymentMethodValid = false;
+          }
+        } else if (transferRadio.checked) {
+          if (accountNumber.value.trim() !== "") {
+            isPaymentMethodValid = true;
+          } else {
+            isPaymentMethodValid = false;
+          }
+        }
+      } else {
+        isPaymentMethodValid = false;
+      }
 
       form.classList.add("was-validated");
 
@@ -253,81 +318,86 @@ document.addEventListener("DOMContentLoaded", () => {
         creditCardRadio.classList.add("is-invalid");
         transferRadio.classList.add("is-invalid");
         validationText.style.display = "block";
-        return; // Detener la ejecución si no se seleccionó un método de pago
       } else {
         creditCardRadio.classList.remove("is-invalid");
         transferRadio.classList.remove("is-invalid");
         validationText.style.display = "none";
       }
+    
 
-      // Si todo esta bien, mostrar el mensaje de éxito y resetear el formulario
-
-      if (
-        validatePaymentFields() &&
-        street.value.trim() !== "" &&
-        addressNumber.value.trim() !== "" &&
-        corner.value.trim() !== ""
-      ) {
-        // Alerta modal con bootstrap
-        document.getElementById("exampleModal").classList.add("fade");
-        document.getElementById("exampleModal").style.display = "block";
-        setTimeout(function () {
-          document.getElementById("exampleModal").classList.add("show");
-        }, 80);
-
-        document
-          .querySelectorAll('[data-mdb-dismiss="modal"]')
-          .forEach(function (element) {
-            element.addEventListener("click", function () {
-              document.getElementById("exampleModal").classList.remove("show");
-              document.getElementById("exampleModal").style.display = "none";
-            });
-          });
-
-        // resetear todo
-        form.reset();
-        form.classList.remove("was-validated");
-        modalForm.classList.remove("was-validated");
-        updateFeedbackClasses();
-        paymentMethod.textContent = "No ha seleccionado";
+    saveBtn.addEventListener("click", () => {
+      const selected = document.querySelector(
+        'input[name="paymentMethod"]:checked'
+      );
+      if (selected && validatePaymentFields()) {
+        formPay.textContent = selected.nextElementSibling.textContent;
+        validationText.style.display = "none";
       }
     });
-  });
 
-  saveBtn.addEventListener("click", () => {
-    const selected = document.querySelector(
-      'input[name="paymentMethod"]:checked'
-    );
-    if (selected && validatePaymentFields()) {
-      formPay.textContent = selected.nextElementSibling.textContent;
-      validationText.style.display = "none";
+    cancel.addEventListener("click", function () {
+      cardNumber.value = "";
+      cardCvv.value = "";
+      cardExpiration.value = "";
+      accountNumber.value = "";
+      modalForm.classList.remove("was-validated");
+      paymentMethod.textContent = "No ha seleccionado";
+    });
+
+    creditCardRadio.addEventListener("change", function () {
+      updatePaymentMethod(creditCardRadio.checked);
+      paymentMethod.textContent = creditCardRadio.checked
+        ? "Tarjeta de Crédito"
+        : "No ha seleccionado";
+      accountNumber.value = "";
+    });
+
+    transferRadio.addEventListener("change", function () {
+      updatePaymentMethod(!transferRadio.checked);
+      paymentMethod.textContent = transferRadio.checked
+        ? "Transferencia"
+        : "No ha seleccionado";
+      cardNumber.value = "";
+      cardCvv.value = "";
+      cardExpiration.value = "";
+    });
+
+    if (
+      hasZeroArticles &&
+      fullAddress &&
+      isPaymentMethodValid &&
+      form.checkValidity()
+    ) {
+      
+      // comprueba que cumpla con todo lo necesario antes de enviarlo
+      form.reset();
+      updateFeedbackClasses();
+
+              // Alerta modal con bootstrap
+              document.getElementById("exampleModal").classList.add("fade");
+              document.getElementById("exampleModal").style.display = "block";
+              setTimeout(function () {
+                document.getElementById("exampleModal").classList.add("show");
+              }, 80);
+      
+              document
+                .querySelectorAll('[data-mdb-dismiss="modal"]')
+                .forEach(function (element) {
+                  element.addEventListener("click", function () {
+                    document.getElementById("exampleModal").classList.remove("show");
+                    document.getElementById("exampleModal").style.display = "none";
+                  });
+                });
+
+    } else {
+      formIsValid = false; // si no cumple alguna condición le da valor invalido al form
+    }
+
+    if (!formIsValid) {
+      // antes de enviarlo controla que el form sea valido, en caso contrario detiene el envio
+      event.preventDefault();
+      event.stopPropagation();
     }
   });
-
-  cancel.addEventListener("click", function () {
-    cardNumber.value = "";
-    cardCvv.value = "";
-    cardExpiration.value = "";
-    accountNumber.value = "";
-    modalForm.classList.remove("was-validated");
-    paymentMethod.textContent = "No ha seleccionado";
-  });
-
-  creditCardRadio.addEventListener("change", function () {
-    updatePaymentMethod(creditCardRadio.checked);
-    paymentMethod.textContent = creditCardRadio.checked
-      ? "Tarjeta de Crédito"
-      : "No ha seleccionado";
-    accountNumber.value = "";
-  });
-
-  transferRadio.addEventListener("change", function () {
-    updatePaymentMethod(!transferRadio.checked);
-    paymentMethod.textContent = transferRadio.checked
-      ? "Transferencia"
-      : "No ha seleccionado";
-    cardNumber.value = "";
-    cardCvv.value = "";
-    cardExpiration.value = "";
-  });
+});
 });
