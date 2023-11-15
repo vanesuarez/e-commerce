@@ -192,6 +192,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const accountNumber = document.getElementById("accountNumber");
   const formaPagoP = document.getElementById("formaPagoP");
   const modalForm = document.getElementById("modalForm");
+  const street = document.getElementById("street");
+  const addressNumber = document.getElementById("number");
+  const corner = document.getElementById("corner");
 
   // Función para deshabilitar los campos dependiendo de cual seleccione
   function updatePaymentMethod(creditCardChecked) {
@@ -259,6 +262,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Si todo esta bien, mostrar el mensaje de éxito y resetear el formulario
 
+      if (
+        validatePaymentFields() &&
+        street.value.trim() !== "" &&
+        addressNumber.value.trim() !== "" &&
+        corner.value.trim() !== ""
+      ) { 
       // Alerta modal con bootstrap
       document.getElementById("exampleModal").classList.add("fade");
       document.getElementById("exampleModal").style.display = "block";
@@ -281,7 +290,8 @@ document.addEventListener("DOMContentLoaded", () => {
         modalForm.classList.remove("was-validated");
         updateFeedbackClasses();
         formaPagoP.textContent = "No ha seleccionado";
-        
+
+      }
     });
   });
 
