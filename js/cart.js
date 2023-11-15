@@ -241,10 +241,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return true; // Todos los campos necesarios están completos
   }
 
+  let hasZeroArticles = false;
+
   forms.forEach(function (form) {
     form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
+
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
 
       form.classList.add("was-validated");
 
@@ -260,13 +265,27 @@ document.addEventListener("DOMContentLoaded", () => {
         validationText.style.display = "none";
       }
 
+      // Validacion productos con cantidad 0
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].count == 0) {
+          hasZeroArticles = false; // si encuentra 0, indica que no cumple la condición
+          event.preventDefault();
+          event.stopPropagation();
+          alert("Error al realizar la compra. No puedes tener un articulo con cantidad 0. Actualiza e intenta nuevamente");
+          break; // detiene la ejecución, sin esto daría por valido un form si el ultimo valor es distinto de 0
+        } else {
+          hasZeroArticles = true; // al comprobar que no hay productos 0, lo da por valido
+        }
+      }
+
       // Si todo esta bien, mostrar el mensaje de éxito y resetear el formulario
 
       if (
         validatePaymentFields() &&
         street.value.trim() !== "" &&
         addressNumber.value.trim() !== "" &&
-        corner.value.trim() !== ""
+        corner.value.trim() !== "" &&
+        hasZeroArticles
       ) { 
       // Alerta modal con bootstrap
       document.getElementById("exampleModal").classList.add("fade");
