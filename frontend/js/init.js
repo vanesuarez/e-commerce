@@ -1,14 +1,13 @@
 const catID = localStorage.getItem("catID"); 
+const productID = localStorage.getItem("productID");
 
-const CATEGORIES_URL = "http://localhost:3000/cats";
-const PUBLISH_PRODUCT_URL =
-  "https://japceibal.github.io/emercado-api/sell/publish.json";
-const PRODUCTS_URL = `http://localhost:3000/cats/${catID}`;
-const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
-const PRODUCT_INFO_COMMENTS_URL =
-  "https://japceibal.github.io/emercado-api/products_comments/";
-const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
-const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
+const CATEGORIES_URL = "http://localhost:3000/cats"; // done
+const PUBLISH_PRODUCT_URL = "http://localhost:3000/sell"; // done
+const PRODUCTS_URL = `http://localhost:3000/cats/${catID}`; // done
+const PRODUCT_INFO_URL = `http://localhost:3000/products/${productID}`; // done
+const PRODUCT_INFO_COMMENTS_URL = `http://localhost:3000/products_comments/${productID}`; // done;
+const CART_INFO_URL = "http://localhost:3000/user_cart"; // done
+const CART_BUY_URL = "http://localhost:3000/cart"; // done
 const EXT_TYPE = ".json";
 
 let showSpinner = function () {

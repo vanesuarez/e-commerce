@@ -15,22 +15,57 @@ app.get("/cats", (req, res) => {
   res.sendFile(filePath);
 });
 
-// Productos
+// Productos dentro de la categoria
 app.get("/cats/:id", (req, res) => {
 
   const id = req.params.id;
-  const filePath = __dirname + "/jsonFiles/cats_products/" + id + ".json";
+  const filePath = __dirname + `/jsonFiles/cats_products/${id}.json`;
 
     res.sendFile(filePath);
 });
 
 // Producto info
-app.get("/cats/:id", (req, res) => {
+app.get("/products/:id", (req, res) => {
 
   const id = req.params.id;
-  const filePath = __dirname + "/jsonFiles/cats_products/" + id + ".json";
+  const filePath = __dirname + `/jsonFiles/products/${id}.json`;
 
     res.sendFile(filePath);
+});
+
+// Producto info comments
+app.get("/products_comments/:id", (req, res) => {
+
+  const id = req.params.id;
+  const filePath = __dirname + `/jsonFiles/products_comments/${id}.json`;
+
+    res.sendFile(filePath);
+});
+
+// Cart item (default - Peugeot)
+app.get("/user_cart/", (req, res) => {
+
+  const filePath = __dirname + "/jsonFiles/user_cart/25801.json";
+
+    res.sendFile(filePath);
+});
+
+// Cart 
+app.get("/cart/", (req, res) => {
+
+  const filePath = __dirname + "/jsonFiles/cart/buy.json";
+
+    res.sendFile(filePath);
+
+});
+
+// Sell - Publish 
+app.get("/sell/", (req, res) => {
+
+  const filePath = __dirname + "/jsonFiles/sell/publish.json";
+
+    res.sendFile(filePath);
+
 });
 
 app.listen(port, () => {
