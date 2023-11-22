@@ -11,7 +11,7 @@ app.use(cors());
 
 app.get("/cats", (req, res) => {
 
-  const filePath = __dirname + "/jsonFiles/cats/cat.json";
+  const filePath = __dirname + "/jsonFiles/cats/cat.json"; //dirname es variable global de node.js que representa el directorio del arhcivo actual
 
   res.sendFile(filePath);
 });
