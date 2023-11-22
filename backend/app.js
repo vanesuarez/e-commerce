@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors"); // middleware cors para ver el frontend, permite hacer solicitud desde dominios diferentes
 const app = express();
 const port = 3000;
-
+const jwt = require("jsonwebtoken");
+const SECRET_KEY = "CLAVE SECRETA";
 
 app.use(express.json());
 app.use(cors());
@@ -66,6 +67,29 @@ app.get("/sell/", (req, res) => {
 
     res.sendFile(filePath);
 
+});
+
+// Parte 2 - Login
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  if (username === "admin" && password === "admin") {
+    const token = jwt.sign({ username }, SECRET_KEY);
+    res.status(200).json({ token });
+  } else {
+    res.status(401).json({ message: "Usuario y/o contraseña incorrecta" });
+  }
+});
+
+//parte 3 - /cart
+
+app.use("/cart", (req, res, next)=>{
+  try {
+    const decoded = jwt.verify(req.headers["access"], SECRET_KEY);
+    console.log(decoded); 
+    next();
+  } catch(err) {
+    res.status(401).json({ message: "Usuario no autorizado" });
+  }
 });
 
 app.listen(port, () => {
