@@ -51,7 +51,17 @@ app.get("/user_cart/", (req, res) => {
     res.sendFile(filePath);
 });
 
-// Cart 
+// Cart
+app.use("/cart", (req, res, next)=>{
+  try {
+    const decoded = jwt.verify(req.headers["access"], SECRET_KEY);
+    console.log(decoded); 
+    next();
+  } catch(err) {
+    res.status(401).json({ message: "Usuario no autorizado" });
+  }
+});
+
 app.get("/cart/", (req, res) => {
 
   const filePath = __dirname + "/jsonFiles/cart/buy.json";
@@ -82,15 +92,7 @@ app.post("/login", (req, res) => {
 
 //parte 3 - /cart
 
-app.use("/cart", (req, res, next)=>{
-  try {
-    const decoded = jwt.verify(req.headers["access"], SECRET_KEY);
-    console.log(decoded); 
-    next();
-  } catch(err) {
-    res.status(401).json({ message: "Usuario no autorizado" });
-  }
-});
+
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
