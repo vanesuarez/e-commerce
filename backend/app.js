@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors"); // middleware cors para ver el frontend, permite hacer solicitud desde dominios diferentes
 const app = express();
 const port = 3000;
+const fs = require('fs');
 const jwt = require("jsonwebtoken");
 const SECRET_KEY = "CLAVE SECRETA";
 
@@ -12,7 +13,7 @@ app.use(cors());
 app.get("/cats", (req, res) => {
 
   const filePath = __dirname + "/jsonFiles/cats/cat.json"; //dirname es variable global de node.js que representa el directorio del archivo actual
-
+  // const filePath = "Hola joha"
   res.sendFile(filePath);
 });
 
@@ -55,7 +56,7 @@ app.get("/user_cart/", (req, res) => {
 app.use("/cart", (req, res, next)=>{
   try {
     const decoded = jwt.verify(req.headers["access"], SECRET_KEY);
-    console.log(decoded); 
+    console.log(decoded);
     next();
   } catch(err) {
     res.status(401).json({ message: "Usuario no autorizado" });
@@ -70,7 +71,7 @@ app.get("/cart/", (req, res) => {
 
 });
 
-// Sell - Publish 
+// Sell - Publish
 app.get("/sell/", (req, res) => {
 
   const filePath = __dirname + "/jsonFiles/sell/publish.json";
@@ -93,6 +94,23 @@ app.post("/login", (req, res) => {
 //parte 3 - /cart
 
 
+//Desafiate
+app.post("/cart", (req, res) =>{
+  const cartItems = JSON.stringify(req.body);
+
+  // Especifica el nombre del archivo y la ruta en donde vamos a guardar
+  const dataCartItems = 'dataCartItems.json';
+
+  // Utiliza fs.writeFile para escribir el JSON en el archivo
+  fs.writeFile(dataCartItems, cartItems, 'utf8', (err) => {
+    if (err) {
+      res.send("Error al guardar los datos")
+    } else {
+      res.send("Los datos se han guardado correctamente")
+    }
+  });
+
+})
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
