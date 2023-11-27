@@ -90,9 +90,6 @@ app.post("/login", (req, res) => {
   }
 });
 
-//parte 3 - /cart
-
-
 //Desafiate
 app.post("/cart", (req, res) => {
   const newArticle = req.body;
