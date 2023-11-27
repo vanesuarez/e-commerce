@@ -7,6 +7,7 @@ Para probar este proyecto en Postman, se debe realizar lo siguiente:
 
 El archivo init.js tiene los cambios realizados en los endpoint para dirigir a los JSON del localhost. Todos los archivos se visualizaran en el frontend correctamente utilizando Liver Server debido a la dependencia "cors" agregada.
 
+# Para más información sobre cómo funciona el servidor, leer el PDF adjunto.
 
 
 
