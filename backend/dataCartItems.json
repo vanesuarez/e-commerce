@@ -1,1 +1,1 @@
-[{"nombre":"Peugeot Palio","costo":123,"cantidad":1,"subtotal":10000},{"nombre":"Chevrolet Uno","costo":2,"cantidad":1,"subtotal":10000}]
+[{"user":"Pedrito","cartItems":[{"nombre":"Peugeot Palio","costo":123,"cantidad":1,"subtotal":10000},{"nombre":"Chevrolet Uno","costo":2,"cantidad":1,"subtotal":10000}]},{"user":"Juancito","cartItems":[{"nombre":"Peugeot Palio","costo":123,"cantidad":1,"subtotal":10000},{"nombre":"Chevrolet Uno","costo":2,"cantidad":1,"subtotal":10000}]}]

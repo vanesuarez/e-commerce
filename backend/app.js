@@ -94,22 +94,41 @@ app.post("/login", (req, res) => {
 
 
 //Desafiate
-app.post("/cart", (req, res) =>{
-  const cartItems = JSON.stringify(req.body);
+app.post("/cart", (req, res) => {
+  const datosNuevos = req.body;
 
   // Especifica el nombre del archivo y la ruta en donde vamos a guardar
-  const dataCartItems = 'dataCartItems.json';
+  const dataFile = 'dataCartItems.json';
 
-  // Utiliza fs.writeFile para escribir el JSON en el archivo
-  fs.writeFile(dataCartItems, cartItems, 'utf8', (err) => {
+  // Lee el contenido actual del archivo (si existe)
+  fs.readFile(dataFile, 'utf8', (err, datosViejos) => {
     if (err) {
-      res.send("Error al guardar los datos")
+      // Si el archivo no existe o hay un error al leerlo, simplemente escribe los nuevos datos en el archivo
+      escribirEnArchivo([datosNuevos]);
     } else {
-      res.send("Los datos se han guardado correctamente")
+      console.log('entra acá', datosViejos);
+      // Si el archivo existe y tiene datos, combina los datos existentes con los nuevos datos
+      const datosExistente = datosViejos ? JSON.parse(datosViejos) : [];
+      const datosCombinados = [...datosExistente, datosNuevos];
+
+      // Escribe los datos combinados en el archivo
+      escribirEnArchivo(datosCombinados);
     }
   });
 
-})
+  function escribirEnArchivo(datos) {
+    const jsonData = JSON.stringify(datos);
+
+    fs.writeFile(dataFile, jsonData, 'utf8', (err) => {
+      if (err) {
+        res.send("Error al guardar los datos");
+      } else {
+        res.send("Los datos se han guardado correctamente");
+      }
+    });
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
