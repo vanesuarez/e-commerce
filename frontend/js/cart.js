@@ -15,8 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cont.appendChild(article);
   });
 
-  const url = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
-
   async function fetchAndDisplayProduct(url) {
     try {
       const response = await fetch(url);
@@ -46,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  fetchAndDisplayProduct(url);
+  fetchAndDisplayProduct(CART_INFO_URL);
 
   function createCartItem(product) {
     const article = document.createElement("div");
