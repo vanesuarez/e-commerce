@@ -96,7 +96,7 @@ app.post("/login", (req, res) => {
 //Desafiate
 app.post("/cart", (req, res) => {
   const datosNuevos = req.body;
-
+console.log(datosNuevos);
   // Especifica el nombre del archivo y la ruta en donde vamos a guardar
   const dataFile = 'dataCartItems.json';
 

@@ -288,6 +288,21 @@ document.addEventListener("DOMContentLoaded", () => {
         corner.value.trim() !== "" &&
         hasZeroArticles
       ) {
+        const fetchBody = {
+          user: localStorage.getItem('username'),
+          cartItems: JSON.parse(localStorage.getItem('cart'))
+        }
+        console.log(fetchBody);
+        fetch('http://localhost:3000/cart', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'access': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzAxMDM0ODk3fQ.cc44E8Ns0bOZeMQSx-0QX7j-3xPrN6xxI-FhRoE2R7g'
+          },
+          body: JSON.stringify(fetchBody)
+        })
+        .then(res => res.JSON())
+        .then(data => console.log(data))
         // Alerta modal con bootstrap
         document.getElementById("exampleModal").classList.add("fade");
         document.getElementById("exampleModal").style.display = "block";
