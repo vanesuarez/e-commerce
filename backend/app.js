@@ -95,29 +95,29 @@ app.post("/login", (req, res) => {
 
 //Desafiate
 app.post("/cart", (req, res) => {
-  const datosNuevos = req.body;
-console.log(datosNuevos);
+  const newArticle = req.body;
+
   // Especifica el nombre del archivo y la ruta en donde vamos a guardar
   const dataFile = 'dataCartItems.json';
 
   // Lee el contenido actual del archivo (si existe)
-  fs.readFile(dataFile, 'utf8', (err, datosViejos) => {
+  fs.readFile(dataFile, 'utf8', (err, currentData) => {
     if (err) {
       // Si el archivo no existe o hay un error al leerlo, simplemente escribe los nuevos datos en el archivo
-      escribirEnArchivo([datosNuevos]);
+      writeInFile([newArticle]);
     } else {
-      console.log('entra acá', datosViejos);
+      console.log('entra acá', currentData);
       // Si el archivo existe y tiene datos, combina los datos existentes con los nuevos datos
-      const datosExistente = datosViejos ? JSON.parse(datosViejos) : [];
-      const datosCombinados = [...datosExistente, datosNuevos];
+      const existingData = currentData ? JSON.parse(currentData) : [];
+      const allData = [...existingData, newArticle];
 
       // Escribe los datos combinados en el archivo
-      escribirEnArchivo(datosCombinados);
+      writeInFile(allData);
     }
   });
 
-  function escribirEnArchivo(datos) {
-    const jsonData = JSON.stringify(datos);
+  function writeInFile(data) {
+    const jsonData = JSON.stringify(data);
 
     fs.writeFile(dataFile, jsonData, 'utf8', (err) => {
       if (err) {
