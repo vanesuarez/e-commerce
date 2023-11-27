@@ -290,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
           user: localStorage.getItem('username'),
           cartItems: JSON.parse(localStorage.getItem('cart'))
         }
-        fetch('http://localhost:3000/cart', {
+        fetch(CART_BUY_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
