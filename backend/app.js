@@ -13,7 +13,6 @@ app.use(cors());
 app.get("/cats", (req, res) => {
 
   const filePath = __dirname + "/jsonFiles/cats/cat.json"; //dirname es variable global de node.js que representa el directorio del archivo actual
-  // const filePath = "Hola joha"
   res.sendFile(filePath);
 });
 
@@ -52,7 +51,7 @@ app.get("/user_cart/", (req, res) => {
     res.sendFile(filePath);
 });
 
-// Cart
+// Cart acceso
 app.use("/cart", (req, res, next)=>{
   try {
     const decoded = jwt.verify(req.headers["access"], SECRET_KEY);
