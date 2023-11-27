@@ -292,7 +292,6 @@ document.addEventListener("DOMContentLoaded", () => {
           user: localStorage.getItem('username'),
           cartItems: JSON.parse(localStorage.getItem('cart'))
         }
-        console.log(fetchBody);
         fetch('http://localhost:3000/cart', {
           method: 'POST',
           headers: {
@@ -301,8 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           body: JSON.stringify(fetchBody)
         })
-        .then(res => res.JSON())
-        .then(data => console.log(data))
         // Alerta modal con bootstrap
         document.getElementById("exampleModal").classList.add("fade");
         document.getElementById("exampleModal").style.display = "block";
